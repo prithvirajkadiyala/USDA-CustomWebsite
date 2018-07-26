@@ -1,0 +1,118 @@
+{% extends "tempheader.html" %}
+
+<html>
+<head><title>{% block title %}Update Experiment{% endblock %}</title></head>
+<body>
+	
+	{% block main %}
+	<div id="Notification area"></div>
+	<h1>This is the View/Update Experiment page</h1>
+		<div id="toolbar" class="btn-group">
+		<button type="button" id="UploadCSV" class="btn btn-default" >
+			<i class="glyphicon glyphicon-plus" ></i>
+		</button>
+	</div>
+	<table id="table"
+		data-search="true"
+		data-pagination="true"
+		data-show-refresh="true"
+		data-show-columns="true"
+		data-show-export="true"
+		data-filter-control="true"
+	>
+		<thead>
+			<tr>
+				<th data-field="state" data-checkbox="true"></th>
+				<th data-field="name">Herd Name</th>
+				<th data-field="description">description</th>
+				<th data-field="create_date">Create Date</th>
+				<th data-field="AIDs">Animal IDs</th>
+				<th data-field="animalname">Animal names</th>
+				<th data-field="string">Attributes</th>
+				
+			</tr>
+		</thead>
+	</table>
+	
+	<button type="button" class="btn btn-primary btn-lg" id="Edit">Edit</button>
+	<button type="button" class="btn btn-danger btn-lg" id="Delete">Delete</button>
+	
+	<!-- Modal Expansion code -->
+	<div class="modal fade" id="ExperimentEditModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-lg">
+		<div class="modal-content">
+		  <div class="modal-content">
+			  <div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Edit this Experiment?</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				  <span aria-hidden="true">&times;</span>
+				</button>
+			  </div>
+			  <fieldset disabled>
+				  <div class="modal-body">
+						<p>This Experiment?</p>
+					  <input type="text" class="form-control" id="name" placeholder="Name">
+				  </div>
+			  </fieldset>
+			  <div class="modal-footer">
+				<button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+				<button type="button" id = "Edit_Experiment_Yes" class="btn btn-primary">Yes</button>
+			  </div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+	<div class="modal fade" id="ExperimentDeleteModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-lg">
+		<div class="modal-content">
+		  <div class="modal-content">
+			  <div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Delete Transactions for this Pasture?</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				  <span aria-hidden="true">&times;</span>
+				</button>
+			  </div>
+			  <fieldset disabled>
+				  <div class="modal-body">
+						<p>This Experiment?</p>
+					  <input type="text" class="form-control" id="nameDelete" placeholder="Experiment">
+				  </div>
+			  </fieldset>
+			  <div class="modal-footer">
+				<button type="button" class="btn btn-danger" id="Delete_No" data-dismiss="modal">No</button>
+				<button type="button" id = "Delete_Yes" class="btn btn-primary" data-dismiss="modal">Yes</button>
+			  </div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+	<div class="modal fade" id="UploadCSVModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-lg">
+		<div class="modal-content">
+		  <div class="modal-content">
+			  <div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Want to Upload CSV?</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				  <span aria-hidden="true">&times;</span>
+				</button>
+			  </div>
+			  <div class="modal-body">
+				<div class="container" style="min-height:100% width:80%">
+					<input type="file" id="fileUpload"/>
+					<input type="button" id="upload" value="Upload" />
+				</div>
+				<div id="dvCSV"></div>
+			  </div>
+			  <div class="modal-footer">
+				<button type="button" id = "Upload_Done" class="btn btn-primary" data-dismiss="modal">Done?</button>
+			  </div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+	{% endblock %}
+
+{% block experiment %}class="panel-collapse collapse in" {% endblock %}
+{% block imports %} <script type = "text/javascript" src="{{url_for('static', filename= 'js/experiment_list_scripts.js')}}"></script>{% endblock %}
+</body>
+</html>

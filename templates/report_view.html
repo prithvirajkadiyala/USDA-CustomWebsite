@@ -1,0 +1,55 @@
+{% extends "tempheader.html" %}
+
+<html>
+<head><title>{% block title %}View Report{% endblock %}</title>
+
+</head>
+<body>
+{% block main %}
+	<div id="Notification area"></div>
+	<h1>This is the View Report page</h1>
+	<div class="container">
+		<table data-toggle="table"
+		data-pagination="true"
+		data-search="true"
+		data-click-to-select="true">
+		<thead>
+		<tr>
+			<th data-field="state" data-checkbox="true"></th>
+			<th data-field="report_number">Report Number</th>
+			<th data-field="Herd_Name">Herd Name</th>
+			<th data-field="report_description">Report Description</th>
+			<th data-field="animals_report">Animals in the report</th>
+		</tr>
+		</thead>
+		<tbody>
+		 <tr>
+		   <td data-checkbox="true"></td>
+		   <td>1</td>
+		   <td>Grazer</td>
+		   <td>Grazing in Pasture 10</td>
+		   <td>1,2,3,4,5,6,7,8,9,10</td>
+		 </tr>
+		 <tr>
+		   <td data-checkbox="true"></td>
+		   <td>2</td>
+		   <td>Feed</td>
+		   <td>Different Feeding Patterns</td>
+		   <td>11,12,13,14,15,16,17,18,19,20</td>
+		 </tr>
+		 <tr>
+		   <td data-checkbox="true"></td>
+		   <td>3</td>
+		   <td>Birth</td>
+		   <td>Pregnant Cows</td>
+		   <td>21,22,23,24,25,26,27,28,29,30</td>
+		 </tr>
+		</tbody>
+	</table>
+	</div>
+	<button type="button" class="btn btn-primary btn-lg">Edit</button>
+	<button type="button" class="btn btn-secondary btn-lg">Delete</button>
+	{% endblock %}
+{% block Report %} class="panel-collapse collapse in" {% endblock %}
+</body>
+</html>

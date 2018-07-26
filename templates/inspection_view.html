@@ -1,0 +1,78 @@
+{% extends "tempheader.html" %}
+
+<html>
+<head><title>{% block title %}Inspection Report View{% endblock %}</title></head>
+<body>
+	
+	{% block main %}
+	<div id="Notification area"></div>
+	<h1>This is the View Inspection Reports page</h1>
+	
+	<table id="table"
+		data-search="true"
+		data-pagination="true"
+		data-show-refresh="true"
+		data-show-columns="true"
+		data-show-export="true"
+		data-filter-control="true">
+		<thead>
+			<tr>
+				<th data-field="state" data-checkbox="true" id="selectall"></th>
+				<th data-sortable="true" data-field="pasture_ID">pasture_ID</th>
+				<th data-sortable="true" data-field="live_stock" data-filter-control="input">live_stock</th>
+				<th data-field="eartag">Ear Tag</th>
+				<th data-field="eid" class="w150">EID</th>
+				<th data-field="sire" class="w200">sire</th>
+				<th data-field="dam" class="w200">Dam</th>
+				<th data-field="DOB" class="w200">DOB</th>
+				<th data-field="Herd" class="w100" data-filter-control="select">Herd</th>
+				<th data-field="alternativeid">alternativeid</th>
+				<th data-field="animaltype">animaltype</th>
+				<th data-field="brand">brand</th>
+				<th data-field="brandlocation">brandlocation</th>
+				<th data-field="breed" class="w100">breed</th>
+				<th data-field="breeder" class="w200">breeder</th>
+				<th data-field="color">color</th>
+				<th data-field="comments">comments</th>
+				<th data-field="current_expt_no">current_expt_no</th>
+				<th data-field="currentframescore">currentframescore</th>
+				<th data-field="damframescore">damframescore</th>
+				<th data-field="dateacquired">dateacquired</th>
+				<th data-field="datedisposed">datedisposed</th>
+				<th data-field="disposalreason">disposalreason</th>
+				<th data-field="email_id" data-filter-control="select">email_id</th>
+				<th data-field="gender" data-filter-control="select">gender</th>
+				<th data-field="height">height</th>
+				<th data-field="herdnumberlocation">herdnumberlocation</th>
+				<th data-field="herdstatus">herdstatus</th>
+				<th data-field="hornstatus">hornstatus</th>
+				<th data-field="howacquired">howacquired</th>
+				<th data-field="howconceived">howconceived</th>
+				<th data-field="howdisposed">howdisposed</th>
+				<th data-field="includeinlookups">includeinlookups</th>
+				<th data-field="managementcode">managementcode</th>
+				<th data-field="ownerID" class="w200">ownerID</th>
+				<th data-field="pasturenumber">pasture number</th>
+				<th data-field="registration">registration</th>
+				<th data-field="sex">sex</th>
+				<th data-field="species">species</th>
+				<th data-field="springfall">springfall</th>
+				<th data-field="status">status</th>
+				<th data-field="tattooleft">tattooleft</th>
+				<th data-field="tattooright">tattooright</th>
+				<th data-field="weight">weight</th>	
+			</tr>
+		</thead>
+	</table>
+	
+	<button type="button" class="btn btn-primary btn-lg" id="Edit">Edit</button>
+	<button type="button" class="btn btn-secondary btn-lg" id="Delete">Delete</button>
+	</div>
+	
+	<p>Click on specific report to expand/View will be added soon</p>
+	{% endblock %}
+
+{% block Inspection %} class="panel-collapse collapse in" {% endblock %}
+{% block imports %} <script type = "text/javascript" src="{{url_for('static', filename= 'js/inspection_list_scripts.js')}}"></script>{% endblock %}
+</body>
+</html>

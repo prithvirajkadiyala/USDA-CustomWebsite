@@ -1,0 +1,152 @@
+{% extends "tempheader.html" %}
+
+<html>
+<head><title>{% block title %}List Experiment{% endblock %}</title></head>
+<body>
+	
+	{% block main %}
+	<div id="Notification area"></div>
+	<h1>List Experiment</h1>
+		<div id="toolbar" class="btn-group">
+		<button type="button" id="UploadCSV" class="btn btn-default" >
+			<i class="glyphicon glyphicon-plus" ></i>
+		</button>
+	</div>
+	<table id="table"
+		data-search="true"
+		data-pagination="true"
+		data-show-refresh="true"
+		data-show-columns="true"
+		data-show-export="true"
+		data-filter-control="true"
+	>
+		<thead>
+			<tr>
+				<th data-field="state" data-checkbox="true"></th>
+				<th data-field="Animal_ID">Animal_ID</th>
+				<th data-field="adj205h">adj205h</th>
+				<th data-field="adj205w">adj205w</th>
+				<th data-field="adj365dht">adj365dht</th>
+				<th data-field="adjyearlingh">adjyearlingh</th>
+				<th data-field="adjyearlingw">adjyearlingw</th>
+				<th data-field="ageatwean">ageatwean</th>
+				<th data-field="ageatyearling">ageatyearling</th>
+				<th data-field="animalname">animalname</th>
+				<th data-field="animaltype">animaltype</th>
+				<th data-field="backfat">backfat</th>
+				<th data-field="bcsdifference">bcsdifference</th>
+				<th data-field="bcsprevious">bcsprevious</th>
+				<th data-field="bcsrecent">bcsrecent</th>
+				<th data-field="birthweight">birthweight</th>
+				<th data-field="birthweightadj">birthweightadj</th>
+				<th data-field="blockpen">blockpen</th>
+				<th data-field="currentwtcow">currentwtcow</th>
+				<th data-field="currentwtheifer">currentwtheifer</th>
+				<th data-field="customheightdate">customheightdate</th>
+				<th data-field="customheight">customheight</th>
+				<th data-field="customweight">customweight</th>
+				<th data-field="customweightdate">customweightdate</th>
+				<th data-field="damwtatwean">damwtatwean</th>
+				<th data-field="email_id">email_id</th>
+				<th data-field="expt_date">expt_date</th>
+				<th data-field="expt_name">expt_name</th>
+				<th data-field="replicate">replicate</th>
+				<th data-field="sireframescore">sireframescore</th>
+				<th data-field="treatment">treatment</th>
+				<th data-field="weandate">weandate</th>
+				<th data-field="weanframescore">weanframescore</th>
+				<th data-field="weangpd">weangpd</th>
+				<th data-field="weanheight">weanheight</th>
+				<th data-field="weanwda">weanwda</th>
+				<th data-field="weanweight">weanweight</th>
+				<th data-field="weanweightdate">weanweightdate</th>
+				<th data-field="yearlingdate">yearlingdate</th>
+				<th data-field="yearlingframescore">yearlingframescore</th>
+				<th data-field="yearlingheight">yearlingheight</th>
+				<th data-field="yearlingweight">yearlingweight</th>	
+			</tr>
+		</thead>
+	</table>
+	
+	<button type="button" class="btn btn-primary btn-lg" id="Edit">Edit</button>
+	<button type="button" class="btn btn-danger btn-lg" id="Delete">Delete</button>
+	
+	<!-- Modal Expansion code -->
+	<div class="modal fade" id="ExperimentEditModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-lg">
+		<div class="modal-content">
+		  <div class="modal-content">
+			  <div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Edit this Experiment?</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				  <span aria-hidden="true">&times;</span>
+				</button>
+			  </div>
+			  <fieldset disabled>
+				  <div class="modal-body">
+						<p>This Experiment?</p>
+					  <input type="text" class="form-control" id="name" placeholder="Name">
+				  </div>
+			  </fieldset>
+			  <div class="modal-footer">
+				<button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+				<button type="button" id = "Edit_Experiment_Yes" class="btn btn-primary">Yes</button>
+			  </div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+	<div class="modal fade" id="ExperimentDeleteModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-lg">
+		<div class="modal-content">
+		  <div class="modal-content">
+			  <div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Delete Transactions for this Pasture?</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				  <span aria-hidden="true">&times;</span>
+				</button>
+			  </div>
+			  <fieldset disabled>
+				  <div class="modal-body">
+						<p>This Experiment?</p>
+					  <input type="text" class="form-control" id="nameDelete" placeholder="Experiment">
+				  </div>
+			  </fieldset>
+			  <div class="modal-footer">
+				<button type="button" class="btn btn-danger" id="Delete_No" data-dismiss="modal">No</button>
+				<button type="button" id = "Delete_Yes" class="btn btn-primary" data-dismiss="modal">Yes</button>
+			  </div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+	<div class="modal fade" id="UploadCSVModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-lg">
+		<div class="modal-content">
+		  <div class="modal-content">
+			  <div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Want to Upload CSV?</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				  <span aria-hidden="true">&times;</span>
+				</button>
+			  </div>
+			  <div class="modal-body">
+				<div class="container" style="min-height:100% width:80%">
+					<input type="file" id="fileUpload"/>
+					<input type="button" id="upload" value="Upload" />
+				</div>
+				<div id="dvCSV"></div>
+			  </div>
+			  <div class="modal-footer">
+				<button type="button" id = "Upload_Done" class="btn btn-primary" data-dismiss="modal">Done?</button>
+			  </div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+	{% endblock %}
+
+{% block experiment %}class="panel-collapse collapse in" {% endblock %}
+{% block imports %} <script type = "text/javascript" src="{{url_for('static', filename= 'js/experiment_update_scripts.js')}}"></script>{% endblock %}
+</body>
+</html>

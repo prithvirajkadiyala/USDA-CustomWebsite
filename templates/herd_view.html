@@ -1,0 +1,106 @@
+{% extends "tempheader.html" %}
+
+<html>
+<head><title>{% block title %}View Herd{% endblock %}</title></head>
+<body>
+	
+	{% block main %}
+	<div id="Notification area"></div>
+	<h1>This is the View Herd page</h1>
+	
+	<div class="container">
+		<table id="table"
+			data-search="true"
+			data-pagination="true"
+			data-show-refresh="true"
+			data-show-columns="true"
+			data-show-export="true"
+			data-filter-control="true">
+			<thead>
+				<tr>
+					<th data-field="state" data-checkbox="true" id="selectall"></th>
+					<th data-sortable="true" data-field="name" data-filter-control="select">Herd Name</th>
+					<th data-sortable="true" data-field="description">Description</th>
+					<th data-field="create_date">Create Date</th>
+				</tr>
+			</thead>
+		</table>
+		<br>
+		<button type="button" class="btn btn-primary btn-lg" id="Edit">Edit</button>
+		<button type="button" class="btn btn-secondary btn-lg" id="Delete">Delete</button>
+	</div>
+	<div class="modal fade" id="HerdEditModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-lg">
+		<div class="modal-content">
+		  <div class="modal-content">
+			  <div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Edit this Herd?</h5>
+				<!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"> -->
+				  <!-- <span aria-hidden="true">&times;</span> -->
+				<!-- </button> -->
+			  </div>
+			  <div class="modal-body">
+					  <fieldset disabled>
+						  <div class="row">
+								<input type="text" name="Herd_Name" id="Herd_Name" value=""/>
+								
+								<input type="text" name="create_date" id="create_date" value=""/>
+						  </div>
+					  </fieldset>
+					<div class="row">
+						<div class="col-xs-5">
+							<select name="from[]" id="search" class="form-control" size="10" multiple="multiple">
+							</select>
+						</div>
+
+						<div class="col-xs-2">
+							<button type="button" id="search_rightAll" class="btn btn-block"><i class="glyphicon glyphicon-forward"></i></button>
+							<button type="button" id="search_rightSelected" class="btn btn-block"><i class="glyphicon glyphicon-chevron-right"></i></button>
+							<button type="button" id="search_leftSelected" class="btn btn-block"><i class="glyphicon glyphicon-chevron-left"></i></button>
+							<button type="button" id="search_leftAll" class="btn btn-block"><i class="glyphicon glyphicon-backward"></i></button>
+						</div>
+
+						<div class="col-xs-5">
+							<select name="to[]" id="search_to" class="form-control" size="10" multiple="multiple"></select>
+						</div>
+					</div>
+			  </div>
+			  <div class="modal-footer">
+				<button type="button" id = "Herd_Edit_No" class="btn btn-danger" data-dismiss="modal">No</button>
+				<button type="button" id = "Animal_Add_Modal_Yes" class="btn btn-primary">Yes</button>
+			  </div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+	<div class="modal fade" id="HerdDeleteModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-lg">
+		<div class="modal-content">
+		  <div class="modal-content">
+			  <div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Delete this Herd?</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				  <span aria-hidden="true">&times;</span>
+				</button>
+			  </div>
+			  <fieldset disabled>
+				  <div class="modal-body">
+						<input type="text" name="Delete_Name" id="Delete_Name" value=""/>
+						
+						<input type="text" name="Delete_Date" id="Delete_Date" value=""/>
+				  </div>
+			  </fieldset>
+			  <div class="modal-footer">
+				<button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+				<button type="button" id = "Delete_Yes" class="btn btn-primary" data-dismiss="modal">Yes</button>
+			  </div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+	{% endblock %}
+
+{% block Herd %} class="panel-collapse collapse in" {% endblock %}
+{% block imports %} <script type = "text/javascript" src="{{url_for('static', filename= 'js/herd_list_scripts.js')}}"></script>{% endblock %}
+</body>
+</html>

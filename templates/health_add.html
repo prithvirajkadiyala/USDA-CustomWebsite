@@ -1,0 +1,101 @@
+{% extends "tempheader.html" %}
+
+<html>
+<head><title>{% block title %}Health Add{% endblock %}</title></head>
+<body>
+{% block main %}
+<div id="Notification area"></div>
+<h1>Health Add page</h1>
+<div class="container">
+	<button type="button" class="btn btn-primary btn-lg" id="Add_Button">Add</button>
+	<div class="form-group">
+		<label for="animalname" class="control-label col-xs-1">Animal Name</label>
+		<div class="col-xs-2">
+			<input type="text" class="form-control" id="animalname" placeholder="Animal Name">
+		</div>
+		<label for="create_date" class="control-label col-xs-1">Create Date</label>
+		<div class="input-group col-xs-2">
+		   <input class="date form-control" id="create_date" name="create_date" placeholder="YYYY-MM-DD" type="text"/>
+		</div>
+	</div>
+	<hr width="50%" size="3" align="center">
+	<div class="form-group">
+		<label for="Medical_ID" class="control-label col-xs-1">Medicine</label>
+		<div class="col-xs-2">
+		  <select class="form-control" id="Medical_ID"></select>
+		</div>
+		<label for="location" class="control-label col-xs-1">Location</label>
+		<div class="col-xs-2">
+			<input type="text" class="form-control" id="location" placeholder="Location">
+		</div>
+		<label for="uploads" class="control-label col-xs-1">Uploads</label>
+		<div class="col-xs-2">
+			<input type="text" class="form-control" id="uploads" placeholder="uploads" disabled>
+		</div>
+		<button type="button" class="btn btn-info" id="Upload_PDF">Upload PDF</button>
+	</div>
+	<br>
+	<hr width="50%" size="3" align="center">
+	<div class="form-group">
+        <div class="col-xs-12">
+            <textarea class="form-control" rows="6" id="medical_notes" placeholder="Medical Notes"></textarea>
+        </div>
+	</div>
+	<br>
+	<hr width="50%" size="3" align="center">
+	<div class="form-group">
+        <div class="col-xs-12">
+            <textarea class="form-control" rows="6" id="result" placeholder="Laboratory Result" diabled="false"></textarea>
+        </div>
+	</div>
+	<br>
+	<hr width="50%" size="3" align="center">
+	<div class="form-group">
+		<label for="Amt_given" class="control-label col-xs-1">Amount Given</label>
+		<div class="col-xs-2">
+			<input type="text" class="form-control" id="Amt_given" placeholder="Amount Given">
+		</div>
+		<label for="route" class="control-label col-xs-1">Route</label>
+		<div class="col-xs-2">
+			<input type="text" class="form-control" id="route" placeholder="Route">
+		</div>
+		<label for="water_feed" class="control-label col-xs-1">Water/Feed</label>
+		<div class="col-xs-2">
+			<input type="text" class="form-control" id="water_feed" placeholder="Water/Feed">
+		</div>
+		<label for="withdraw_time" class="control-label col-xs-1">Withdraw Time</label>
+		<div class="col-xs-2">
+			<input type="text" class="form-control" id="withdraw_time" placeholder="Withdraw Time">
+		</div>
+	</div>
+	<div class="modal fade" id="UploadPDFModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-lg">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<h5 class="modal-title" id="exampleModalLabel">Upload PDF</h5>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			  <span aria-hidden="true">&times;</span>
+			</button>
+		  </div>
+		  <form id="upload-file" role="form" action="sendQuestions" method="post" enctype="multipart/form-data">
+			<div class="modal-body">
+				<label for="file"><b>Upload packet here</b></label>
+				<input type="file" name="file" id="Upload">
+				<p class="help-block">Please make sure that PDF names dont have spaces.
+										This might take a few seconds.</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button id="upload-file-btn" type="button" class="btn btn-primary" data-dismiss="modal" value="Upload">Upload</button>
+			</div>
+		</form>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
+
+{% block HealthRecords %} class="panel-collapse collapse in" {% endblock %}
+{% block imports %} <script type = "text/javascript" src="{{url_for('static', filename= 'js/health_add_scripts.js')}}"></script>{% endblock %}
+</body>
+</html>

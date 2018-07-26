@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+	<!-- FontAwesome Min CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+	<!-- Flatpickr CSS -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+	<link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/dark.css">
+	<!-- Flatpickr Date Plugin -->
+	<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/extensions/filter-control/bootstrap-table-filter-control.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/extensions/sticky-header/bootstrap-table-sticky-header.css" />
+
+<style>
+body {margin:0;font-family:Arial}
+.main {
+    margin-left: 15%; /* Same as the width of the sidenav */
+	font-size: 12px;
+	height: 5%;
+    padding: 0px 10px;
+
+}
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+  margin-left : 15%;
+}
+
+.topnav-right {
+  float: right;
+}
+
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 15px;
+}
+
+.topnav a.active {
+  background-color: #71E1F7;
+  color: white;
+}
+
+.topnav .icon {
+  display: none;
+}
+
+/* Dropdown container - needed to position the dropdown content */
+.dropdown {
+    float: left;
+    overflow: hidden;
+}
+
+/* Style the dropdown button to fit inside the topnav */
+.dropdown .dropbtn {
+    font-size: 17px;
+    border: none;
+    outline: none;
+    color: white;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+}
+
+/* Style the dropdown content (hidden by default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+/* Style the links inside the dropdown */
+.dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+/* Add a dark background on topnav links and the dropdown button on hover */
+.topnav a:hover, .dropdown:hover .dropbtn {
+    background-color: #555;
+    color: white;
+}
+
+/* Add a grey background to dropdown links on hover */
+.dropdown-content a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+/* Show the dropdown menu when the user moves the mouse over the dropdown button */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+@media screen and (max-width: 600px) {
+  .topnav a:not(:first-child), .dropdown .dropbtn {
+    display: none;
+  }
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .topnav.responsive {position: relative;}
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  .topnav.responsive .dropdown {float: none;}
+  .topnav.responsive .dropdown-content {position: relative;}
+  .topnav.responsive .dropdown .dropbtn {
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+}
+.dropdown-menu>li>a{
+	color : #000;
+}
+.homebutton{
+ backgroundColor:#E81A68
+}
+</style>
+<style>
+.sidenav1 {
+    height: 100%;
+    width: 15%;
+    position: fixed;
+    z-index: 1;
+    top: 0px;
+    left: 0;
+    background-color: #333;
+    overflow-x: hidden;
+}
+a {
+  <!-- background-color: #333; -->
+  <!-- text-align: center; -->
+  text-decoration: none;
+  font-size: 15px;
+}
+.panel{
+ border: none;
+}
+li {
+list-style:none;
+}
+
+.panel-default>.panel-heading {
+	background-image: linear-gradient(to bottom,#333333 0,#333333 100%);
+    color: #fff;
+    background-color: #00436a;
+    border-color: #ddd;
+}
+
+.panel-group .panel+.panel {
+    margin-top: 0px;
+}
+.panel-collapse {
+	background-color:#333;
+}
+
+.glyphicon {
+margin-right:10px;
+}
+
+
+ul.list-group {
+	margin:0px;
+}
+
+ul.bulletlist li {
+	list-style:disc;
+}
+
+
+ul.list-group  li a {
+ display:block;
+ padding:5px 0px 5px 15px;
+ text-decoration:none;
+}
+
+ul.list-group li {
+	border-bottom: 1px dotted rgba(0,0,0,0.2);
+}
+
+
+ul.list-group  li a:hover, ul li a:focus {
+ color:#fff;
+ background-color: #00436a;
+}
+
+.panel-title a:hover,
+.panel-title a:active,
+.panel-title a:focus,
+.panel-title .open a:hover,
+.panel-title .open a:active,
+.panel-title .open a:focus
+ {
+	text-decoration:none;
+	color:#fff;
+}
+
+.panel-title>.small, .panel-title>.small>a, .panel-title>a, .panel-title>small, .panel-title>small>a {
+        display: block;
+}
+
+@media (min-width: 768px){
+.navbar-collapse.collapse
+	{
+    display: block!important;
+    height: auto!important;
+    padding-bottom: 0;
+    overflow: visible!important;
+	padding-left:0px;
+}
+}
+
+@media (min-width: 992px){
+.menu-hide {
+    display: none;
+}
+
+}
+.menu-hide .panel-default>.panel-heading {
+    color: #fff;
+    background-color: #8e8c8c;
+    border-color: #ddd;
+}
+
+.w200 .th-inner {
+  width: 200px;
+}
+.w100 .th-inner {
+  width: 100px;
+}
+.w150 .th-inner {
+  width: 150px;
+}
+.w500 .th-inner {
+  width: 500px;
+}
+{% block style %}
+{% endblock %}
+</style>
+
+<title>{% block title %}Homepage{% endblock %}</title>
+</head>
+<body>
+
+
+{% if session ['logged_in'] %}
+<div class="sidenav1">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#sideNavbar"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+    </div>
+    <div class="collapse navbar-collapse" id="sideNavbar">
+      <div class="panel-group" id="accordion">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title"> <a href="/tempsearchpage"><span class="glyphicon glyphicon-home"></span>Home</a> </h3>
+          </div>
+        </div>
+		<div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title"> <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-piggy-bank"> </span>Animal<span class="caret"></span></a> </h4>
+          </div>
+          <!-- Note: By adding "in" after "collapse", it starts with that particular panel open by default; remove if you want them all collapsed by default -->
+          <div id="collapseOne" {% block animal %}class="panel-collapse collapse"{% endblock %}>
+            <ul class="list-group">
+              <li><a href="/animal/list" class="navlink">List Animals</a></li>
+              <li><a href="/animal/add" class="navlink">Add Animal</a></li>
+              <li><a href="/animal/update" class="navlink">Update Animal</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title"> <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><span class="glyphicon glyphicon-cog"> </span>Experiment<span class="caret"></span></a> </h4>
+          </div>
+          <div id="collapseTwo" {% block experiment %}class="panel-collapse collapse" {% endblock %}>
+            <ul class="list-group">
+              <li><a class="navlink" href="/experiment/add">Add Experiment</a></li>
+			  <li><a class="navlink" href="/experiment/list">List Experiment</a></li>
+              <li><a class="navlink" href="/experiment/update">Update Experiment</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title"> <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree"><span class="glyphicon glyphicon-calendar"> </span>Inventory<span class="caret"></span></a> </h4>
+          </div>
+          <div id="collapseThree" {% block Inventory %} class="panel-collapse collapse" {% endblock %}>
+            <ul class="list-group">
+              <li><a class="navlink" href="/inventory/formulary">Formulary</a></li>
+              <li><a class="navlink" href="/inventory/pasture">Pasture Management</a></li>
+              <!--<li><a class="navlink" href="/inventory/procedure">Procedure</a></li>-->
+            </ul>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title"> <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour"><span class="glyphicon glyphicon-th-list"></span>Inspection<span class="caret"></span></a></h4>
+          </div>
+          <div id="collapseFour" {% block Inspection %} class="panel-collapse collapse" {% endblock %}>
+            <ul class="list-group">
+              <li><a class="navlink" href="/inspection/submit">Submit Inspection</a></li>
+              <li><a class="navlink" href="/inspection/view">View Inspection Reports</a></li>
+            </ul>
+          </div>
+        </div>
+		<div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title"> <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive"><span class="glyphicon glyphicon-object-align-bottom"></span>Reproduction<span class="caret"></span></a></h4>
+          </div>
+          <div id="collapseFive" {% block Reproduction %} class="panel-collapse collapse" {% endblock %}>
+            <ul class="list-group">
+              <li><a class="navlink" href="/reproduction/calfadd">Add Calf</a></li>
+			  <li><a class="navlink" href="/reproduction/listview">List Calf Records</a></li>
+              <li><a class="navlink" href="/reproduction/calfview">Update Calf</a></li>
+            </ul>
+          </div>
+        </div>
+		<div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title"> <a data-toggle="collapse" data-parent="#accordion" href="#collapseEight"><span class="glyphicon glyphicon-plus"></span>Health Records<span class="caret"></span></a></h4>
+          </div>
+          <div id="collapseEight" {% block HealthRecords %} class="panel-collapse collapse" {% endblock %}>
+            <ul class="list-group">
+              <li><a class="navlink" href="/health/list">List Health Record</a></li>
+              <li><a class="navlink" href="/health/add">Add Health Record</a></li>
+              <!--<li><a class="navlink" href="/health/update">Update Health Record</a></li>-->
+            </ul>
+          </div>
+        </div>
+		<div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title"> <a data-toggle="collapse" data-parent="#accordion" href="#collapseSix"><span class="glyphicon glyphicon-check"></span>Report<span class="caret"></span></a></h4>
+          </div>
+          <div id="collapseSix" {% block Report %} class="panel-collapse collapse" {% endblock %}>
+            <ul class="list-group">
+              <li><a class="navlink" href="/report/create">Create Report</a></li>
+              <li><a class="navlink" href="/report/view">View Report</a></li>
+            </ul>
+          </div>
+        </div>
+		<div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title"> <a data-toggle="collapse" data-parent="#accordion" href="#collapseSeven"><span class="glyphicon glyphicon-stats"></span>Herd<span class="caret"></span></a></h4>
+          </div>
+          <div id="collapseSeven" {% block Herd %} class="panel-collapse collapse" {% endblock %}>
+            <ul class="list-group">
+              <li><a class="navlink" href="/herd/create">Create Herd</a></li>
+              <li><a class="navlink" href="/herd/view">Update Herd</a></li>
+              <li><a class="navlink" href="/herd/grazing">Grazing</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="topnav navbar-fixed-top">
+
+	<div class="topnav-right">
+		<div class="dropdown">
+			<button class="dropbtn">{{session['email']}}<i class="fa fa-caret-down"></i></button>
+			<div class="dropdown-content">
+			  <a href="/UserInfo">User Info</a>
+			  <a href="/ChangePassword">Change Password</a>
+			</div>
+		</div>
+	<a href="/logout"> <span class="glyphicon glyphicon-log-out"></span> Signout &nbsp;</a>
+	{% else %}
+	<a href="/register"> <span class="glyphicon glyphicon-user"></span> Signup &nbsp;</a>
+	{% endif %}
+	</div>
+</div>
+<div class="main">
+	<div id="Notification_area">
+		<div class="container-fluid" style="min-height:100%; width:100%; margin-top:80px;">
+			<div style="width:50%; margin:0px auto;" align="center">
+			  {% with msgs = get_flashed_messages() %}
+				{% if msgs %}
+				  {% for msg in msgs %}
+					<div class="alert alert-info">
+						{{ msg }}
+					</div>
+				  {% endfor %}
+				{% endif %}
+			  {% endwith %}
+			</div>
+		</div>
+	</div>
+{% block main %}
+  <h2>Top Navigation Example</h2>
+  <p>Some content..</p>
+{% endblock %}
+</div>
+<script>
+	$(".date").flatpickr({});
+</script>
+	<!-- bootstrap table imports -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+
+
+		<!-- Our own headerscript file -->
+	<script type = "text/javascript" src="{{url_for('static', filename= 'js/tempheaderscripts.js')}}"></script>
+	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/popper.min.js"></script> -->
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+	<!-- Multiple select plugin local import -->
+	<script type = "text/javascript" src="{{url_for('static', filename= 'js/multiselect.js')}}"></script>
+	<!-- <script type = "text/javascript" src="{{url_for('static', filename= 'js/flatpickr.min.js')}}"></script> -->
+
+	<!-- CSV Upload Helper JavaScript File -->
+	<script type = "text/javascript" src="{{url_for('static', filename= 'js/jquery-csv.js')}}"></script>
+
+	<!-- Notify Plugin Import -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.js"></script>
+
+	<!-- bootstrap table imports -->
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.min.js"></script>
+
+	<!-- Latest compiled and minified Locales -->
+	<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/locale/bootstrap-table-en-US.min.js"></script>
+
+	<!-- bootstrap-Tables Plugins -->
+	<script src="https://rawgit.com/hhurz/tableExport.jquery.plugin/master/tableExport.js"></script>
+	<script src="https://rawgit.com/wenzhixin/bootstrap-table/master/src/extensions/export/bootstrap-table-export.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/extensions/filter-control/bootstrap-table-filter-control.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/extensions/toolbar/bootstrap-table-toolbar.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/extensions/sticky-header/bootstrap-table-sticky-header.js"></script>
+	{% block imports %}
+	{% endblock %}
+
+</body>
+</html>

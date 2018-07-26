@@ -1,0 +1,157 @@
+{% extends "tempheader.html" %}
+
+<html>
+<head><title>{% block title %}Animal List{% endblock %}</title>
+</head>
+<body>
+	
+	{% block main %}
+	<div id="Notification area"></div>
+	<h1>This is the Animal List page</h1>
+	
+	<div id="toolbar" class="btn-group">
+		<button type="button" id="UploadCSV" class="btn btn-default" >
+			<i class="glyphicon glyphicon-plus" ></i>
+		</button>
+	</div>
+	<table id="table"
+		data-search="true"
+		data-pagination="true"
+		data-show-refresh="true"
+		data-show-columns="true"
+		data-show-export="true"
+		data-filter-control="true"
+	>
+		<thead>
+			<tr>
+				<th data-field="state" data-checkbox="true" id="selectall"></th>
+				<th data-sortable="true" data-field="Animal_ID">Animal ID</th>
+				<th data-sortable="true" data-field="animalname" data-filter-control="input">Animal Name</th>
+				<th data-field="eartag">Ear Tag</th>
+				<th data-field="eid" class="w150">EID</th>
+				<th data-field="sire" class="w200">sire</th>
+				<th data-field="dam" class="w200">Dam</th>
+				<th data-field="DOB" class="w200">DOB</th>
+				<th data-field="Herd" class="w100" data-filter-control="select">Herd</th>
+				<th data-field="alternativeid">alternativeid</th>
+				<th data-field="animaltype">animaltype</th>
+				<th data-field="brand">brand</th>
+				<th data-field="brandlocation">brandlocation</th>
+				<th data-field="breed" class="w100">breed</th>
+				<th data-field="breeder" class="w200">breeder</th>
+				<th data-field="color">color</th>
+				<th data-field="comments">comments</th>
+				<th data-field="current_expt_no">current_expt_no</th>
+				<th data-field="currentframescore">currentframescore</th>
+				<th data-field="damframescore">damframescore</th>
+				<th data-field="dateacquired">dateacquired</th>
+				<th data-field="datedisposed">datedisposed</th>
+				<th data-field="disposalreason">disposalreason</th>
+				<th data-field="email_id" data-filter-control="select">email_id</th>
+				<th data-field="gender" data-filter-control="select">gender</th>
+				<th data-field="height">height</th>
+				<th data-field="herdnumberlocation">herdnumberlocation</th>
+				<th data-field="herdstatus">herdstatus</th>
+				<th data-field="hornstatus">hornstatus</th>
+				<th data-field="howacquired">howacquired</th>
+				<th data-field="howconceived">howconceived</th>
+				<th data-field="howdisposed">howdisposed</th>
+				<th data-field="includeinlookups">includeinlookups</th>
+				<th data-field="managementcode">managementcode</th>
+				<th data-field="ownerID" class="w200">ownerID</th>
+				<th data-field="pasturenumber">pasture number</th>
+				<th data-field="registration">registration</th>
+				<th data-field="sex">sex</th>
+				<th data-field="species">species</th>
+				<th data-field="springfall">springfall</th>
+				<th data-field="status">status</th>
+				<th data-field="tattooleft">tattooleft</th>
+				<th data-field="tattooright">tattooright</th>
+				<th data-field="weight">weight</th>	
+			</tr>
+		</thead>
+	</table>
+	
+	<button type="button" class="btn btn-primary btn-lg" id="Edit">Edit</button>
+	<button type="button" class="btn btn-secondary btn-lg" id="Delete">Delete</button>
+	<ul id="output"></ul>
+	
+	<div class="modal fade" id="AnimalEditModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-lg">
+		<div class="modal-content">
+		  <div class="modal-content">
+			  <div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Edit this Animal?</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				  <span aria-hidden="true">&times;</span>
+				</button>
+			  </div>
+			  <fieldset disabled>
+				  <div class="modal-body">
+					  <form class = "form-horizontal" style="margin-top:15px;">
+						<input type="text" name="Animal_Data" id="Animal_Data" value=""/>
+					  </form>
+				  </div>
+			  </fieldset>
+			  <div class="modal-footer">
+				<button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+				<button type="button" id = "Animal_Add_Modal_Yes" class="btn btn-primary">Yes</button>
+			  </div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+	<div class="modal fade" id="AnimalDeleteModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-lg">
+		<div class="modal-content">
+		  <div class="modal-content">
+			  <div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Delete this Animal?</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				  <span aria-hidden="true">&times;</span>
+				</button>
+			  </div>
+			  <fieldset disabled>
+				  <div class="modal-body">
+					  <h2 id="Delete_Animal"><h2>
+				  </div>
+			  </fieldset>
+			  <div class="modal-footer">
+				<button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+				<button type="button" id = "Delete_Yes" class="btn btn-primary" data-dismiss="modal">Yes</button>
+			  </div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+	<div class="modal fade" id="UploadCSVModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-lg">
+		<div class="modal-content">
+		  <div class="modal-content">
+			  <div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Want to Upload CSV?</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				  <span aria-hidden="true">&times;</span>
+				</button>
+			  </div>
+			  <div class="modal-body">
+				<div class="container" style="min-height:100% width:80%">
+					<input type="file" id="fileUpload"/>
+					<input type="button" id="upload" value="Upload" />
+				</div>
+				<div id="dvCSV"></div>
+			  </div>
+			  <div class="modal-footer">
+				<button type="button" id = "Upload_Done" class="btn btn-primary" data-dismiss="modal">Done?</button>
+			  </div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+	
+	{% endblock %}
+
+{% block animal %} class="panel-collapse collapse in" {% endblock %}
+{% block imports %} <script type = "text/javascript" src="{{url_for('static', filename= 'js/animallist.js')}}"></script>{% endblock %}
+</body>
+</html>

@@ -1,0 +1,30 @@
+{% extends "tempheader.html" %}
+
+<html>
+<head><title>{% block title %}Searchpage{% endblock %}</title></head>
+<body>
+
+{% block main %}
+<div class="row text-center" style="margin-bottom:20px;align:center;">
+  <img class="img-responsive" style="" src="/static/images/mainscreen.jpeg" alt="Chania" width="460" height="345">
+</div>
+
+<div class="row text-center">
+  <div class="col-xs-8 col-xs-offset-2" style="margin-bottom:50px;">
+	<div class="input-group" style="margin auto;">
+	  <span class="input-group-addon" name="searchradios">
+		  <input type="radio" name="identifier" value="animalname" checked="checked">Animal Name
+		  <input type="radio" name="identifier" value="cownumber">Animal Number
+		  <input type="radio" name="identifier" value="eid">EID
+		  <input type="radio" name="identifier" value="groupnumber">Herd Name
+		  <input type="radio" name="identifier" value="reportnumber">Report Number
+
+	  </span>
+	  <input type="text" class="form-control" id="cowSearch" name="cowsearch" placeholder="Animal Number / Herd Name">
+	  <span class="input-group-btn"><input type="submit" class="btn" value="Search" id ="search"></span>
+	</div><!-- /input-group -->
+  </div><!-- /.col-xs-8 -->
+</div><!-- /.row -->
+{% endblock %}
+</body>
+</html>

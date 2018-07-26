@@ -1,0 +1,289 @@
+{% extends "tempheader.html" %}
+
+<html>
+<head><title>{% block title %}Add Calf Reproduction{% endblock %}</title></head>
+<body>
+	
+	{% block main %}
+	<div id="Notification area"></div>
+	<h1>This is the Reproduction Add Calf page</h1>
+	<div class="form-group">
+		<button type="button" class="btn btn-primary" id="add_calf">Add Calf</button>
+		
+		<label for="date" class="col-xs-1 control-label" style="align:right;">Date</label>
+		<div class="col-xs-2">
+			<input type="text" id="date" class="date form-control" placeholder="YYYY-MM-DD">
+		</div><label for="animalname" class="col-xs-1 control-label">Animal Name</label>
+		<div class="col-xs-2">
+			<input type="text" id="animalname" class="form-control" placeholder="Animal Name" required>
+		</div>
+	</div>
+	<div class= "form-group">
+		<label for="breeding" class="control-label col-xs-1">Breeding</label>
+		<div class="col-xs-2">
+		  <select class="form-control" id="breeding">
+			<option></option>
+			<option selected="selected">0</option>
+			<option>Bull-1</option>
+			<option>Bull-2</option>
+			<option>Bull-3</option>
+			<option>Bull-4</option>
+			<option>Bull-5</option>
+			<option>Bull-6</option>
+			<option>Bull-7</option>
+		  </select>
+		</div>
+		<label for="pregnancy" class="col-xs-1 control-label">Pregnancy</label>
+		<div class="col-xs-2">
+		  <select class="form-control" id="pregnancy">
+			<option></option>
+			<option selected="selected">0</option>
+			<option>Pregnant</option>
+			<option>Open</option>
+		  </select>
+		</div>
+		<label for="pasturenumberreproduction" class="col-xs-1 control-label">Pasture Number Reproduction</label>
+		<div class="col-xs-2">
+			<input type="text" id="pasturenumberreproduction" class="form-control" placeholder="Pasture Number Reproduction">
+		</div>
+		<label for="siblingcode" class="control-label col-xs-1">Sibling Code</label>
+		<div class="col-xs-2">
+		  <select class="form-control" id="siblingcode">
+			<option></option>
+			<option selected="selected">0</option>
+			<option>Single</option>
+			<option>Twin</option>
+		  </select>
+		</div>
+	</div>
+	<br>
+	<hr width="50%" size="1" align="center">
+	<div class="form-group">
+		<label for="calfatside" class="col-xs-1 control-label">Calf at Side</label>
+		<div class="col-xs-2">
+			<input type="text" id="calfatside" class="form-control" placeholder="Calf at Side">
+		</div>
+		<label for="totalcalves" class="col-xs-1 control-label">Total Calves</label>
+		<div class="col-xs-2">
+			<input type="text" id="totalcalves" class="form-control" placeholder="Total Calves">
+		</div>
+		<label for="previouscalf" class="col-xs-1 control-label">Previous Calf</label>
+		<div class="col-xs-2">
+			<input type="text" id="previouscalf" class="form-control" placeholder="Previous Calf">
+		</div>
+		<label for="damagebirth" class="col-xs-1 control-label">Dam Age at Birth</label>
+		<div class="col-xs-2">
+			<input type="text" id="damageatbirth" class="form-control" placeholder="Dam Age at Birth">
+		</div>
+	</div>
+	<br>
+		<hr width="50%" size="1" align="center">
+	<div class="form-group">
+		<label for="currentcalf" class="col-xs-1 control-label">Current Calf</label>
+		<div class="col-xs-2">
+			<input type="text" id="currentcalf" class="form-control" placeholder="Current Calf">
+		</div>
+		<label for="calfdob" class="col-xs-1 control-label">Calf DOB</label>
+		<div class="col-xs-2">
+			<input type="text" id="calfdob" class="date form-control" name="date" placeholder="YYYY-MM-DD">
+		</div>
+		<label for="calfsex" class="col-xs-1 control-label">Calf Sex</label>
+		<div class="col-xs-2">
+		  <select class="form-control" id="calfsex">
+			<option></option>
+			<option selected="selected">0</option>
+			<option>Steer</option>
+			<option>Heifer</option>
+			<option>Bull</option>
+			<option>Cow</option>
+		  </select>
+		</div>
+		<label for="birthweight" class="col-xs-1 control-label">Calf Birth Weight</label>
+		<div class="col-xs-2">
+			<input type="text" id="calfbirthweight" class="form-control" placeholder="Birth Weight">
+		</div>
+	</div>
+	<br>
+	<hr width="50%" size="1" align="center">
+	<div class="form-group" style="min-width=100%">
+		<label for="damcalvingdisposition" class="col-xs-1 control-label">Dam Calving Disposition</label>
+		<div class="col-xs-2">
+			<select class="form-control" id="damcalvingdisposition">
+				<option></option>
+				<option selected="selected">0</option>
+				<option>1</option>
+				<option>2</option>
+				<option>3</option>
+				<option>4</option>
+				<option>5</option>
+			</select>
+		</div>
+		<label for="calvingease" class="col-xs-1 control-label">Calving Ease</label>
+		<div class="col-xs-2">
+			<select class="form-control" id="calvingease">
+				<option></option>
+				<option selected="selected">0</option>
+				<option>1</option>
+				<option>2</option>
+				<option>3</option>
+				<option>4</option>
+				<option>5</option>
+			</select>
+		</div>
+		<label for="udderscore" class="col-xs-1 control-label">Udder Score</label>
+		<div class="col-xs-2">
+			<input type="text" id="udderscore" class="form-control" placeholder="Udder Score">
+		</div>
+		<label for="conditionscorecalving" class="control-label col-xs-1">Condition Score Calving</label>
+		<div class="col-xs-2">
+			<input type="text" class="form-control" id="conditionscorecalving" placeholder="Condition Score Calving 2016">
+		</div>
+	</div>
+	<br>
+	<hr width="50%" size="1" align="center">
+	<div class="form-group">
+		<label for="hiphtweaning" class="control-label col-xs-1">Hip Ht Weaning</label>
+		<div class="col-xs-2">
+			<input type="text" class="form-control" id="hiphtweaning" placeholder="Hip Ht Weaning">
+		</div>
+		<label for="hiphtbreeding" class="control-label col-xs-1">Hip Ht Breeding</label>
+		<div class="col-xs-2">
+			<input type="text" class="form-control" id="hiphtbreeding" placeholder="Hip Ht Breeding">
+		</div>
+	</div>
+	<br>
+	<hr width="50%" size="1" align="center">
+	<h2>Cow Measurements</h2>
+	<div class="form-group">
+		<label for="damdisposition" class="col-xs-1 control-label">Dam Disposition</label>
+		<div class="col-xs-2">
+			<select class="form-control" id="damdisposition">
+				<option></option>
+				<option selected="selected">0</option>
+				<option>1</option>
+				<option>2</option>
+				<option>3</option>
+				<option>4</option>
+				<option>5</option>
+			</select>
+		</div>
+		<label for="cowframescore" class="col-xs-1 control-label">Cow Frame Score</label>
+		<div class="col-xs-2">
+			<fieldset disabled>
+				<input type="text" id="cowframescore" class="form-control" placeholder="Cow Frame Score">
+			</fieldset>
+		</div>
+		<label for="cowwtbreeding" class="col-xs-1 control-label">Cow Wt Breeding</label>
+		<div class="col-xs-2">
+				<input type="text" id="cowwtbreeding" class="form-control" placeholder="Cow Wt Breeding">
+		</div>
+		<label for="cowhtbreeding" class="col-xs-1 control-label">Cow Ht Breeding</label>
+		<div class="col-xs-2">
+				<input type="text" id="cowhtbreeding" class="form-control" placeholder="Cow Ht Breeding">
+		</div>
+	</div>
+	<br>
+	<hr width="50%" size="1" align="center">
+	<div class="form-group">
+		<label for="cowwtweaning" class="col-xs-1 control-label">Cow wt Weaning</label>
+		<div class="col-xs-2">
+				<input type="text" id="cowwtweaning" class="form-control" placeholder="Cow wt Weaning">
+		</div>
+		<label for="cowhtweaning" class="col-xs-1 control-label">Cow ht Weaning</label>
+		<div class="col-xs-2">
+				<input type="text" id="cowhtweaning" class="form-control" placeholder="Cow ht Weaning">
+		</div>
+		<label for="cowwtcalving" class="col-xs-1 control-label">Cow wt Calving</label>
+		<div class="col-xs-2">
+				<input type="text" id="cowwtcalving" class="form-control" placeholder="Cow wt Calving">
+		</div>
+		<label for="cowhtcalving" class="col-xs-1 control-label">Cow ht Calving</label>
+		<div class="col-xs-2">
+				<input type="text" id="cowhtcalving" class="form-control" placeholder="Cow ht Calving">
+		</div>
+	</div>
+	<br>
+	<hr width="50%" size="1" align="center">
+	<div class="form-group">
+		<label for="bcsweaning" class="col-xs-1 control-label">B.C.S Weaning</label>
+		<div class="col-xs-2">
+				<input type="text" id="bcsweaning" class="form-control" placeholder="B.C.S Weaning">
+		</div>
+		<label for="bcscalving" class="col-xs-1 control-label">B.C.S Calving</label>
+		<div class="col-xs-2">
+				<input type="text" id="bcscalving" class="form-control" placeholder="B.C.S Calving">
+		</div>
+		<label for="bcsbreeding" class="col-xs-1 control-label">B.C.S Breeding</label>
+		<div class="col-xs-2">
+				<input type="text" id="bcsbreeding" class="form-control" placeholder="B.C.S Breeding">
+		</div>
+	</div>
+	<br>
+	<hr width="50%" size="1" align="center">
+	<div class="form-group">
+		<label for="customcowwt" class="col-xs-1 control-label">Custom Cow wt</label>
+		<div class="col-xs-2">
+				<input type="text" id="customcowwt" class="form-control" placeholder="Custom Cow wt">
+		</div>
+		<label for="customcowht" class="col-xs-1 control-label">Custom Cow ht</label>
+		<div class="col-xs-2">
+				<input type="text" id="customcowht" class="form-control" placeholder="Custom Cow ht">
+		</div>
+	</div>
+	<br>
+	<hr width="50%" size="1" align="center">
+	<h2>Bull Measurements</h2>
+	<div class="form-group">
+		<label for="bulldisposition" class="col-xs-1 control-label">Bull Disposition</label>
+		<div class="col-xs-2">
+			<select class="form-control" id="bulldisposition">
+				<option></option>
+				<option selected="selected">0</option>
+				<option>1</option>
+				<option>2</option>
+				<option>3</option>
+				<option>4</option>
+				<option>5</option>
+			</select>
+		</div>
+		<label for="bullframescore" class="col-xs-1 control-label">Bull Frame Score</label>
+		<div class="col-xs-2">
+			<fieldset disabled>
+				<input type="text" id="bullframescore" class="form-control" placeholder="Bull Frame Score">
+			</fieldset>
+		</div>
+		<label for="bullwtprebreeding" class="col-xs-1 control-label">Bull Wt Pre-Breeding</label>
+		<div class="col-xs-2">
+				<input type="text" id="bullwtprebreeding" class="form-control" placeholder="Bull Wt Pre-Breeding">
+		</div>
+		<label for="bullhtprebreeding" class="col-xs-1 control-label">Bull Ht Pre-Breeding</label>
+		<div class="col-xs-2">
+				<input type="text" id="bullhtprebreeding" class="form-control" placeholder="Bull Ht Pre-Breeding">
+		</div>
+	</div>
+	<br>
+	<hr width="50%" size="1" align="center">
+	<div class="form-group">
+		<label for="fertility" class="col-xs-1 control-label">Fertility</label>
+		<div class="col-xs-2">
+				<input type="text" id="fertility" class="form-control" placeholder="Fertility">
+		</div>
+		<label for="mobility" class="col-xs-1 control-label">Mobility</label>
+		<div class="col-xs-2">
+				<input type="text" id="mobility" class="form-control" placeholder="Mobility">
+		</div>	
+		<label for="conc" class="col-xs-1 control-label">Conc.</label>
+		<div class="col-xs-2">
+				<input type="text" id="conc" class="form-control" placeholder="Conc.">
+		</div>
+		<label for="deadabnormal" class="col-xs-1 control-label">%Dead/Abnormal</label>
+		<div class="col-xs-2">
+				<input type="text" id="deadabnormal" class="form-control" placeholder="%Dead/Alive">
+		</div>
+	</div>					
+	{% endblock %}
+
+{% block Reproduction %} class="panel-collapse collapse in" {% endblock %}
+{% block imports %} <script type = "text/javascript" src="{{url_for('static', filename= 'js/reproduction_add_scripts.js')}}"></script>{% endblock %}
+</body>
+</html>

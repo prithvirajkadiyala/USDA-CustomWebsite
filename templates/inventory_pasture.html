@@ -1,0 +1,263 @@
+{% extends "tempheader.html" %}
+
+<html>
+<head><title>{% block title %}Pasture Management{% endblock %}</title></head>
+<body>
+	
+	{% block main %}
+	<div id="Notification area"></div>
+	<h1>This is the Pasture Management page</h1>
+	
+	<div class="form-group" style="margin-top:15px; margin-bottom:50px;">
+		<button type="button" class="btn btn-primary btn-lg" id="Add_New">Add New Entry</button>
+	</div>
+	<div id="toolbar" class="btn-group">
+		<button type="button" id="UploadCSV" class="btn btn-default" >
+			<i class="glyphicon glyphicon-plus" ></i>
+		</button>
+	</div>
+	<div class="container">
+	<table id="table"
+		data-search="true"
+		data-pagination="true"
+		data-show-refresh="true"
+		data-show-columns="true"
+		data-show-export="true"
+		data-filter-control="true"
+	>
+		<thead>
+			<tr>
+				<th data-field="state" data-checkbox="true" id="selectall"></th>
+				<th data-sortable="true" data-field="pasturenumber" data-filter-control="select">Pasture Number</th>
+				<th data-field="event_date" class="w200">Date</th>
+				<th data-field="qualityofburn">Quality of Burn</th>
+				<th data-field="chemicalname">Chemical Name</th>
+				<th data-field="pesticide_method">Herbicide Method</th>
+				<th data-field="applicationrate">Application Rate</th>
+				<th data-field="fertilizer_name">Fertilizer Name</th>
+				<th data-field="fertilizer_method">Fertilizer Method</th>
+				<th data-field="fertilizer_applicationrate">Fertilizer Application Rate</th>
+				<th data-field="comments">comments</th>
+				<th data-sortable="true" data-field="email_ID">email ID</th>
+			</tr>
+		</thead>
+	</table>
+	
+	<button type="button" class="btn btn-primary btn-lg" id="Edit">Edit</button>
+	<button type="button" class="btn btn-secondary btn-lg" id="Delete">Delete</button>
+	
+	<!-- Modal Expansion code -->
+	<div class="modal fade" id="PastureEditModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-lg">
+		<div class="modal-content">
+		  <div class="modal-content">
+			  <div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Edit this Pasture?</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				  <span aria-hidden="true">&times;</span>
+				</button>
+			  </div>
+			  <div class="modal-body">
+					<div class="form-group">
+						<label for="pasture_ID" class="control-label col-xs-1">Pasture ID</label>
+						<div class="col-xs-2">
+						  <input type="text" class="form-control" id="pasture_ID" placeholder="Pasture ID" disabled>
+						</div>
+						<label for="pasturenumber" class="control-label col-xs-1">Pasture Number</label>
+						<div class="col-xs-2">
+						  <input type="text" class="form-control" id="pasturenumber" placeholder="Pasture Number" disabled>
+						</div>
+						<label class="control-label col-xs-1" for="date">Date</label>
+						<div class="col-xs-2">
+						   <input class="date" id="date" name="date" placeholder="YYYY-MM-DD" type="text"/>
+						</div>
+					</div>
+					<br>
+					<div class="form-group">
+						<label for="comments" class="control-label col-xs-1" align="right">comments</label>
+						<div class="col-xs-8">
+							<input type="text" class="form-control" id="comments" placeholder="Comments">
+						</div>
+					</div>
+					<br>
+					<hr width="50%" size="3" align="center">
+					<h2>Burning</h2>
+					<div class="form-group">
+						<label for="qualityofburn" class="control-label col-xs-1">Quality of Burn</label>
+						<div class="col-xs-2">
+							<input type="text" class="form-control" id="qualityofburn" placeholder="Quality of Burn">
+						</div>
+					</div>
+					<br>
+					<hr width="50%" size="3" align="center">
+					<h2>Herbicide/Pesticide</h2>
+					<div class="form-group">
+						<label for="herbicidename" class="control-label col-xs-1">Herbicide Name</label>
+						<div class="col-xs-2">
+							<input type="text" class="form-control" id="herbicidename" placeholder="Chemical Name">
+						</div>
+						<label for="herbicidemethod" class="control-label col-xs-1">Herbicide Method</label>
+						<div class="col-xs-2">
+							<input type="text" class="form-control" id="herbicidemethod" placeholder="Herbicide method">
+						</div>
+						<label for="applicationrate" class="control-label col-xs-1">Application Rate</label>
+						<div class="col-xs-2">
+							<input type="text" class="form-control" id="applicationrate" placeholder="Application Rate">
+						</div>
+					</div>
+					<hr width="50%" size="3" align="center">
+					<h2>Fertilizer</h2>
+					<div class="form-group">
+						<label for="fertilizer_name" class="control-label col-xs-1">Fertilizer Name</label>
+						<div class="col-xs-2">
+							<input type="text" class="form-control" id="fertilizer_name" placeholder="Fertilizer Name">
+						</div>
+						<label for="fertilizer_method" class="control-label col-xs-1">Fertilizer Method</label>
+						<div class="col-xs-2">
+							<input type="text" class="form-control" id="fertilizer_method" placeholder="Fertilizer Method">
+						</div>
+						<label for="fertilizer_applicationrate" class="control-label col-xs-1">Application Rate</label>
+						<div class="col-xs-2">
+							<input type="text" class="form-control" id="fertilizer_applicationrate" placeholder="Application Rate">
+						</div>
+					</div>
+			  </div>
+			  <div class="modal-footer">
+				<button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+				<button type="button" id = "Edit_Pasture_Modal_Yes" class="btn btn-primary">Yes</button>
+			  </div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+	<div class="modal fade" id="PastureDeleteModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-lg">
+		<div class="modal-content">
+		  <div class="modal-content">
+			  <div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Delete Transactions for this Pasture?</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				  <span aria-hidden="true">&times;</span>
+				</button>
+			  </div>
+			  <fieldset disabled>
+				  <div class="modal-body">
+						<p>This Pasture?</p>
+					  <input type="text" class="form-control" id="pasturenumberDelete" placeholder="Pasture Number">
+					  
+						<p>This date?</p>
+					  <input type="text" class="form-control" id="DateDelete" placeholder="Date">
+				  </div>
+			  </fieldset>
+			  <div class="modal-footer">
+				<button type="button" class="btn btn-danger" id="Delete_No" data-dismiss="modal">No</button>
+				<button type="button" id = "Delete_Yes" class="btn btn-primary" data-dismiss="modal">Yes</button>
+			  </div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+	<div class="modal fade" id="UploadCSVModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-lg">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<h5 class="modal-title" id="exampleModalLabel">Do you want to Upload CSV?</h5>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			  <span aria-hidden="true">&times;</span>
+			</button>
+		  </div>
+		  <div class="modal-body">
+			<div class="container" style="min-height:100% width:80%">
+				<input type="file" id="fileUpload"/>
+				<input type="button" id="upload" value="Upload" />
+			</div>
+			<div id="dvCSV"></div>
+		  </div>
+		  <div class="modal-footer">
+			<button type="button" id="button_Done" class="btn btn-primary" data-dismiss="modal">Done</button>
+		  </div>
+		</div>
+	  </div>
+	</div>
+	<div class="modal fade" id="AddNewModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+		  <div class="modal-dialog modal-lg">
+			<div class="modal-content">
+			  <div class="modal-content">
+				  <div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Add New Entry</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					  <span aria-hidden="true">&times;</span>
+					</button>
+				  </div>
+				  <div class="modal-body">
+					  <div class="form-group">
+							<label for="pasturenumberadd" class="control-label col-xs-1">Pasture Number</label>
+							<div class="col-xs-2">
+							  <select class="form-control" id="pasturenumberadd"></select>
+							</div>
+							<label class="control-label col-xs-1" for="adddate">Date</label>
+							<div class="col-xs-2">
+							   <input class="date" id="adddate" name="date" placeholder="YYYY-MM-DD" type="text"/>
+							</div>
+							<label for="addcomments" class="control-label col-xs-1" align="right">comments</label>
+							<div class="col-xs-5">
+								<input type="text" class="form-control" id="addcomments" placeholder="Comments">
+							</div>
+						</div>
+						<br>
+						<hr width="50%" size="3" align="center">
+						<h2>Burning</h2>
+						<div class="form-group">
+							<label for="addqualityofburn" class="control-label col-xs-1">Quality of Burn</label>
+							<div class="col-xs-2">
+								<input type="text" class="form-control" id="addqualityofburn" placeholder="Quality of Burn">
+							</div>
+						</div>
+						<br>
+						<hr width="50%" size="3" align="center">
+						<h2>Herbicide/Pesticide</h2>
+						<div class="form-group">
+							<label for="addchemicalname" class="control-label col-xs-1">Herbicide Name</label>
+							<div class="col-xs-2">
+								<input type="text" class="form-control" id="addchemicalname" placeholder="Chemical Name">
+							</div>
+							<label for="addherbicidemethod" class="control-label col-xs-1">Herbicide Method</label>
+							<div class="col-xs-2">
+								<input type="text" class="form-control" id="addherbicidemethod" placeholder="Herbicide method">
+							</div>
+							<label for="addapplicationrate" class="control-label col-xs-1">Application Rate</label>
+							<div class="col-xs-2">
+								<input type="text" class="form-control" id="addapplicationrate" placeholder="Application Rate">
+							</div>
+						</div>
+						<hr width="50%" size="3" align="center">
+						<h2>Fertilizer</h2>
+						<div class="form-group">
+							<label for="addfertilizer_name" class="control-label col-xs-1">Fertilizer Name</label>
+							<div class="col-xs-2">
+								<input type="text" class="form-control" id="addfertilizer_name" placeholder="Fertilizer Name">
+							</div>
+							<label for="addfertilizer_method" class="control-label col-xs-1">Fertilizer Method</label>
+							<div class="col-xs-2">
+								<input type="text" class="form-control" id="addfertilizer_method" placeholder="Fertilizer Method">
+							</div>
+							<label for="addfertilizer_applicationrate" class="control-label col-xs-1">Application Rate</label>
+							<div class="col-xs-2">
+								<input type="text" class="form-control" id="addfertilizer_applicationrate" placeholder="Application Rate">
+							</div>
+						</div>
+				  </div>
+				  <div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+					<button type="button" id = "Add_Pasture_Confirm" class="btn btn-primary" data-dismiss="modal">Submit</button>
+				  </div>
+			  </div>
+			</div>
+		  </div>
+		</div>
+	{% endblock %}
+
+{% block Inventory %} class="panel-collapse collapse in" {% endblock %}
+{% block imports %} <script type = "text/javascript" src="{{url_for('static', filename= 'js/inventory_pasture_scripts.js')}}"></script>{% endblock %}
+</body>
+</html>
