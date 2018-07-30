@@ -3,14 +3,16 @@
 <html>
 <head><title>{% block title %}Update Experiment{% endblock %}</title></head>
 <body>
-	
+
 	{% block main %}
 	<div id="Notification area"></div>
-	<h1>This is the View/Update Experiment page</h1>
+	<h1>Update Experiment</h1>
+	<h5>Choose a herd to update values for selected attributes.</h5>
+	<h5>Download the data using export data option.</h5>
 		<div id="toolbar" class="btn-group">
-		<button type="button" id="UploadCSV" class="btn btn-default" >
+		<!--<button type="button" id="UploadCSV" class="btn btn-default" >
 			<i class="glyphicon glyphicon-plus" ></i>
-		</button>
+		</button>-->
 	</div>
 	<table id="table"
 		data-search="true"
@@ -26,17 +28,17 @@
 				<th data-field="name">Herd Name</th>
 				<th data-field="description">description</th>
 				<th data-field="create_date">Create Date</th>
-				<th data-field="AIDs">Animal IDs</th>
+				<!--<th data-field="AIDs">Animal IDs</th>-->
 				<th data-field="animalname">Animal names</th>
 				<th data-field="string">Attributes</th>
-				
+
 			</tr>
 		</thead>
 	</table>
-	
+
 	<button type="button" class="btn btn-primary btn-lg" id="Edit">Edit</button>
 	<button type="button" class="btn btn-danger btn-lg" id="Delete">Delete</button>
-	
+
 	<!-- Modal Expansion code -->
 	<div class="modal fade" id="ExperimentEditModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 	  <div class="modal-dialog modal-lg">
@@ -113,6 +115,6 @@
 	{% endblock %}
 
 {% block experiment %}class="panel-collapse collapse in" {% endblock %}
-{% block imports %} <script type = "text/javascript" src="{{url_for('static', filename= 'js/experiment_list_scripts.js')}}"></script>{% endblock %}
+{% block imports %} <script type = "text/javascript" src="{{url_for('static', filename= 'js/experiment_update_scripts.js')}}"></script>{% endblock %}
 </body>
 </html>

@@ -58,7 +58,7 @@ $('#Edit').click(function() {
 			error: function(response){
 				console.log(response);
 			}
-		});	
+		});
 	});
 	$.ajax({
 		url : '/api/test/',
@@ -78,7 +78,7 @@ $('#Edit').click(function() {
 		}
 	});
 
-  
+
 });
 $('#Animal_Add_Modal_Yes').click(function() {
 	var name= $('#Herd_Name').val();
@@ -92,14 +92,14 @@ $('#Animal_Add_Modal_Yes').click(function() {
 		name : name,
 		AID_string : animalstring,
 		create_date : create_date,
-		email : "test",
+		email : $("#email")[0].textContent,
 		string : globalstring,
 		description : globaldescription
 	}
 	var dataJson = JSON.stringify(data);
 	console.log(dataJson);
 	$.ajax({
-		url: '/api/herd/create/'+name+'/'+create_date,
+		url: '/api/herd/create/',
 		data: dataJson,
 		type: 'PATCH',
 		dataType: 'json',

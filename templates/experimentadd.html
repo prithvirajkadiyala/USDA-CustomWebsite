@@ -3,10 +3,12 @@
 <html>
 <head><title>{% block title %}Add Experiment{% endblock %}</title></head>
 <body>
-	
+
 	{% block main %}
 	<div id="Notification area"></div>
-	<h1>This is the Add Experiment page</h1>
+	<h1>Create new experiment</h1>
+	<h5>Select the herd which is created before,choose the attributes required for the experiment and then click Create!</h5>
+	<br>
 	<div class="container-fluid">
 		<div class="row-fluid">
 			<div class="col-xs-12">
@@ -25,20 +27,20 @@
 							<div class="form-control">
 								<h4 style="margin:0px auto; padding-bottom:5px;" align="center"><input type="checkbox"  class="selectallexperiment">Experiment</h4>
 								<br>
-									<input type="checkbox" class="groupaddinput3" id="sireframescore" value="input-sireframescore">Sire Frame Score<br> 
-									<input type="checkbox" class="groupaddinput3" id="weanheight" value="input-weanheight">Wean Height<br> 
-									<input type="checkbox" class="groupaddinput3" id="weanweight" value="input-weanweight">Wean Weight<br> 
-									<input type="checkbox" class="groupaddinput3" id="weandate" value="date-weandate">Wean Date<br> 
-									<input type="checkbox" class="groupaddinput3" id="birthweight" value="input-birthweight">Birth Weight<br>  
+									<input type="checkbox" class="groupaddinput3" id="sireframescore" value="input-sireframescore">Sire Frame Score<br>
+									<input type="checkbox" class="groupaddinput3" id="weanheight" value="input-weanheight">Wean Height<br>
+									<input type="checkbox" class="groupaddinput3" id="weanweight" value="input-weanweight">Wean Weight<br>
+									<input type="checkbox" class="groupaddinput3" id="weandate" value="date-weandate">Wean Date<br>
+									<input type="checkbox" class="groupaddinput3" id="birthweight" value="input-birthweight">Birth Weight<br>
 									<input type="checkbox" class="groupaddinput3" id="yearlingheight" value="input-yearlingheight">Yearling Height<br>
 									<input type="checkbox" class="groupaddinput3" id="yearlingweight" value="input-yearlingweight">Yearling Weight<br>
-									<input type="checkbox" class="groupaddinput3" id="yearlingdate" value="date-yearlingdate">Yearling Date<br> 
-									<input type="checkbox" class="groupaddinput3" id="customweight" value="input-customweight">Custom Weight<br> 
-									<input type="checkbox" class="groupaddinput3" id="customweightdate" value="date-customweightdate">Custom Weight Date<br> 
+									<input type="checkbox" class="groupaddinput3" id="yearlingdate" value="date-yearlingdate">Yearling Date<br>
+									<input type="checkbox" class="groupaddinput3" id="customweight" value="input-customweight">Custom Weight<br>
+									<input type="checkbox" class="groupaddinput3" id="customweightdate" value="date-customweightdate">Custom Weight Date<br>
 									<input type="checkbox" class="groupaddinput3" id="customheight" value="input-customheight">Custom Height<br>
 									<input type="checkbox" class="groupaddinput3" id="customheightdate" value="date-customheightdate">Custom Height Date<br>
-									<input type="checkbox" class="groupaddinput3" id="blockpen" value="input-blockpen">Block/Pen<br> 
-									<input type="checkbox" class="groupaddinput3" id="replicate" value="input-replicate">Replicate<br> 
+									<input type="checkbox" class="groupaddinput3" id="blockpen" value="input-blockpen">Block/Pen<br>
+									<input type="checkbox" class="groupaddinput3" id="replicate" value="input-replicate">Replicate<br>
 									<input type="checkbox" class="groupaddinput3" id="backfat" value="input-backfat">Back Fat<br>
 									<input type="checkbox" class="groupaddinput3" id="treatment" value="input-treatment">Treatment<br>
 									<input type="checkbox" class="groupaddinput3" id="adj205w" value="input-adj205w">Adj205w<br>
@@ -56,8 +58,8 @@
 			</div>
 		</div>
 	</div>
-	
-	
+
+
 	{% endblock %}
 
 {% block experiment %} class="panel-collapse collapse in" {% endblock %}

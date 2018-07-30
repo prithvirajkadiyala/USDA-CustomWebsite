@@ -3,11 +3,12 @@
 <html>
 <head><title>{% block title %}Pasture Management{% endblock %}</title></head>
 <body>
-	
+
 	{% block main %}
 	<div id="Notification area"></div>
-	<h1>This is the Pasture Management page</h1>
-	
+	<h1>Welcome to Pasture Management</h1>
+	<h5>Click on Add New Entry to add a new record</h5>
+	<h5>Select a record to edit or delete,download the data using export data option</h5>
 	<div class="form-group" style="margin-top:15px; margin-bottom:50px;">
 		<button type="button" class="btn btn-primary btn-lg" id="Add_New">Add New Entry</button>
 	</div>
@@ -42,10 +43,10 @@
 			</tr>
 		</thead>
 	</table>
-	
+
 	<button type="button" class="btn btn-primary btn-lg" id="Edit">Edit</button>
 	<button type="button" class="btn btn-secondary btn-lg" id="Delete">Delete</button>
-	
+
 	<!-- Modal Expansion code -->
 	<div class="modal fade" id="PastureEditModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 	  <div class="modal-dialog modal-lg">
@@ -144,7 +145,7 @@
 				  <div class="modal-body">
 						<p>This Pasture?</p>
 					  <input type="text" class="form-control" id="pasturenumberDelete" placeholder="Pasture Number">
-					  
+
 						<p>This date?</p>
 					  <input type="text" class="form-control" id="DateDelete" placeholder="Date">
 				  </div>

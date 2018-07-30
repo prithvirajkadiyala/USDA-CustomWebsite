@@ -3,11 +3,11 @@
 <html>
 <head><title>{% block title %}Inspection Report View{% endblock %}</title></head>
 <body>
-	
+
 	{% block main %}
 	<div id="Notification area"></div>
-	<h1>This is the View Inspection Reports page</h1>
-	
+	<h1>Inspection Report List</h1>
+
 	<table id="table"
 		data-search="true"
 		data-pagination="true"
@@ -19,57 +19,36 @@
 			<tr>
 				<th data-field="state" data-checkbox="true" id="selectall"></th>
 				<th data-sortable="true" data-field="pasture_ID">pasture_ID</th>
-				<th data-sortable="true" data-field="live_stock" data-filter-control="input">live_stock</th>
-				<th data-field="eartag">Ear Tag</th>
-				<th data-field="eid" class="w150">EID</th>
-				<th data-field="sire" class="w200">sire</th>
-				<th data-field="dam" class="w200">Dam</th>
-				<th data-field="DOB" class="w200">DOB</th>
-				<th data-field="Herd" class="w100" data-filter-control="select">Herd</th>
-				<th data-field="alternativeid">alternativeid</th>
-				<th data-field="animaltype">animaltype</th>
-				<th data-field="brand">brand</th>
-				<th data-field="brandlocation">brandlocation</th>
-				<th data-field="breed" class="w100">breed</th>
-				<th data-field="breeder" class="w200">breeder</th>
-				<th data-field="color">color</th>
+				<th data-sortable="true" data-field="general_appearance">General Appearance</th>
+				<th data-field="live_stock">Live Stock</th>
+				<th data-field="date">date</th>
+				<th data-field="animal_condition">animal_condition</th>
+				<th data-field="fencing">fencing</th>
+				<th data-field="access_to_food">access_to_food</th>
+				<th data-field="access_to_water">access_to_water</th>
+				<th data-field="cleaniness_of_water">cleaniness_of_water</th>
+				<th data-field="access_to_shelter">access_to_shelter</th>
 				<th data-field="comments">comments</th>
-				<th data-field="current_expt_no">current_expt_no</th>
-				<th data-field="currentframescore">currentframescore</th>
-				<th data-field="damframescore">damframescore</th>
-				<th data-field="dateacquired">dateacquired</th>
-				<th data-field="datedisposed">datedisposed</th>
-				<th data-field="disposalreason">disposalreason</th>
-				<th data-field="email_id" data-filter-control="select">email_id</th>
-				<th data-field="gender" data-filter-control="select">gender</th>
-				<th data-field="height">height</th>
-				<th data-field="herdnumberlocation">herdnumberlocation</th>
-				<th data-field="herdstatus">herdstatus</th>
-				<th data-field="hornstatus">hornstatus</th>
-				<th data-field="howacquired">howacquired</th>
-				<th data-field="howconceived">howconceived</th>
-				<th data-field="howdisposed">howdisposed</th>
-				<th data-field="includeinlookups">includeinlookups</th>
-				<th data-field="managementcode">managementcode</th>
-				<th data-field="ownerID" class="w200">ownerID</th>
-				<th data-field="pasturenumber">pasture number</th>
-				<th data-field="registration">registration</th>
-				<th data-field="sex">sex</th>
-				<th data-field="species">species</th>
-				<th data-field="springfall">springfall</th>
-				<th data-field="status">status</th>
-				<th data-field="tattooleft">tattooleft</th>
-				<th data-field="tattooright">tattooright</th>
-				<th data-field="weight">weight</th>	
+				<th data-field="pasture_major_deficiencies">Major_deficiencies</th>
+				<th data-field="pasture_minor_deficiencies" class="w100">Minor_deficiencies</th>
+				<th data-field="email_ID">email_ID</th>
+				<th data-field="builinding_number">builinding_number</th>
+				<th data-field="lighting">lighting</th>
+				<th data-field="housekeeping">housekeeping</th>
+				<th data-field="head_catch_condition">head_catch_condition</th>
+				<th data-field="non_slip_surface_evidence">non_slip_surface_evidence</th>
+				<th data-field="Pen_condition">Pen_condition</th>
+				<th data-field="container_disposal">container_disposal</th>
+				<th data-field="drug_storage">drug_storage</th>
 			</tr>
 		</thead>
 	</table>
-	
+
 	<button type="button" class="btn btn-primary btn-lg" id="Edit">Edit</button>
-	<button type="button" class="btn btn-secondary btn-lg" id="Delete">Delete</button>
+	<button type="button" class="btn btn-danger btn-lg" id="Delete">Delete</button>
 	</div>
-	
-	<p>Click on specific report to expand/View will be added soon</p>
+
+	<p>Click on specific report to expand/ View will be added soon</p>
 	{% endblock %}
 
 {% block Inspection %} class="panel-collapse collapse in" {% endblock %}

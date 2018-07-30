@@ -4,11 +4,13 @@
 <head><title>{% block title %}Animal List{% endblock %}</title>
 </head>
 <body>
-	
+
 	{% block main %}
 	<div id="Notification area"></div>
-	<h1>This is the Animal List page</h1>
-	
+	<h1>Animal List</h1>
+	<h5>Click on '+' icon to upload csv files.</h5>
+	<h5>Select a record to edit or delete,download the data using export data option</h5>
+
 	<div id="toolbar" class="btn-group">
 		<button type="button" id="UploadCSV" class="btn btn-default" >
 			<i class="glyphicon glyphicon-plus" ></i>
@@ -25,7 +27,7 @@
 		<thead>
 			<tr>
 				<th data-field="state" data-checkbox="true" id="selectall"></th>
-				<th data-sortable="true" data-field="Animal_ID">Animal ID</th>
+				<th data-sortable="true" data-field="Animal_ID">Database ID</th>
 				<th data-sortable="true" data-field="animalname" data-filter-control="input">Animal Name</th>
 				<th data-field="eartag">Ear Tag</th>
 				<th data-field="eid" class="w150">EID</th>
@@ -67,15 +69,15 @@
 				<th data-field="status">status</th>
 				<th data-field="tattooleft">tattooleft</th>
 				<th data-field="tattooright">tattooright</th>
-				<th data-field="weight">weight</th>	
+				<th data-field="weight">weight</th>
 			</tr>
 		</thead>
 	</table>
-	
+
 	<button type="button" class="btn btn-primary btn-lg" id="Edit">Edit</button>
-	<button type="button" class="btn btn-secondary btn-lg" id="Delete">Delete</button>
+	<button type="button" class="btn btn-danger btn-lg" id="Delete">Delete</button>
 	<ul id="output"></ul>
-	
+
 	<div class="modal fade" id="AnimalEditModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 	  <div class="modal-dialog modal-lg">
 		<div class="modal-content">
@@ -148,7 +150,7 @@
 		</div>
 	  </div>
 	</div>
-	
+
 	{% endblock %}
 
 {% block animal %} class="panel-collapse collapse in" {% endblock %}

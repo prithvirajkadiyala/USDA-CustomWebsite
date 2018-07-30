@@ -51,7 +51,7 @@ $('#Edit_Pasture_Modal_Yes').click(function() {
 	var json = {
 		pasturenumber : $("#pasturenumber").val(),
 		pasture_ID : $("#pasture_ID").val(),
-		email_ID : "test",
+		email_ID : $("#email")[0].textContent,
 		comments : $("#comments").val(),
 		qualityofburn : $("#qualityofburn").val(),
 		chemicalname : $("#herbicidename").val(),
@@ -78,7 +78,7 @@ $('#Edit_Pasture_Modal_Yes').click(function() {
 			$.notify("Data not saved", "danger");
 		}
 	});
-	setTimeout(location.reload(), 2000); 
+	setTimeout(location.reload(), 2000);
 });
 $('#Add_New').click(function() {
 	$("#AddNewModal").modal("show");
@@ -106,7 +106,7 @@ $('#Add_Pasture_Confirm').click(function() {
 		pasture_ID : res[0],
 		pasturenumber : res[1],
 		event_date : $('#adddate').val(),
-		email_id : "test" ,
+		email_id : $("#email")[0].textContent ,
 		comments : $('#addcomments').val(),
 		qualityofburn : $('#addqualityofburn').val(),
 		chemicalname : $('#addchemicalname').val(),
@@ -131,8 +131,8 @@ $('#Add_Pasture_Confirm').click(function() {
 			$.notify("Data not saved", "danger");
 		}
 	});
-	
-	// setTimeout(location.reload(), 2000); 
+
+	// setTimeout(location.reload(), 2000);
 });
 
 $('#Delete').click(function() {
@@ -197,11 +197,11 @@ $(function () {
 								},
 								error: function(response) {
 									console.log(response);
-									$.notify("Data Not saved", "error");					
+									$.notify("Data Not saved", "error");
 								}
 							});
 					});
-					
+
                     var table = $("<table />");
                     var rows = e.target.result.split("\n");
                     for (var i = 0; i < rows.length; i++) {

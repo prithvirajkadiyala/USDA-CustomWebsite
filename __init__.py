@@ -10,7 +10,7 @@ import mysql.connector
 
 from views import table_test, TableAnimalUpdate, TableAnimalAdd, \
     TableInventoryPasture, TableInventoryFormulary, TableHealthList, TableHerd, TableInventoryPastureHistory,\
-    TableHerdUniqueName, TableExperiment, TableHealthAdd, TableReproduction,Expt,TableInspection
+    TableHerdUniqueName, TableExperiment, TableHealthAdd, TableReproduction,Expt,TableInspection,Drug
 
 app = Flask(__name__)
 
@@ -52,6 +52,7 @@ api.add_resource(TableHerdUniqueName, '/api/herd/name/', endpoint="24")
 api.add_resource(TableInventoryFormulary, '/api/inventory/formulary/<Medicine_ID>')
 api.add_resource(TableInventoryFormulary, '/api/inventory/formulary/', endpoint="25")
 
+
 api.add_resource(TableExperiment, '/api/experiment/herd/<Animal_ID>')
 api.add_resource(TableExperiment, '/api/experiment/herd/', endpoint="26")
 
@@ -61,14 +62,17 @@ api.add_resource(TableHealthAdd, '/api/health/add/', endpoint="27")
 api.add_resource(TableHealthList, '/api/health/record/<Record_ID>')
 api.add_resource(TableHealthList, '/api/health/record/', endpoint="28")
 
-api.add_resource(TableReproduction, '/api/reproduction/record/')
+api.add_resource(TableReproduction, '/api/reproduction/record/<ID>')
 api.add_resource(TableReproduction, '/api/reproduction/record/', endpoint="29")
 
-api.add_resource(Expt, '/api/experiment/list/')
+api.add_resource(Expt, '/api/experiment/list/<Animal_ID>/<expt_date>')
 api.add_resource(Expt, '/api/experiment/list/', endpoint="30")
 
 api.add_resource(TableInspection, '/api/inspection/report/')
 api.add_resource(TableInspection, '/api/inspection/report/', endpoint="31")
+
+api.add_resource(Drug, '/api/formulary/drug/<drug>')
+api.add_resource(Drug, '/api/formulary/drug/', endpoint="32")
 
 #App Routes
 #These will reroute all the data through the webpage to its destinations
@@ -111,18 +115,57 @@ def login():
         cur = cnx.cursor(dictionary=True)
         cur.execute("SELECT * FROM login WHERE email_id=%s",(email,))
         user = cur.fetchone()
-        if len(user) > 0:
-            if sha256_crypt.verify(password, user["password"]):
-                session['name'] = user["first_name"]
-                session['email'] = user["email_id"]
-                session['logged_in'] = True
-                return render_template("home.html")
+        try:
+            if len(user) > 0:
+                try:
+                    if sha256_crypt.verify(password, user["password"]):
+                        session['name'] = user["first_name"]
+                        session['email'] = user["email_id"]
+                        session['logged_in'] = True
+                        return redirect(url_for('home'))
+                    else:
+                        flash("Error password and email don't match")
+                        return redirect(url_for('login'))
+                except ValueError:
+                    flash("Error password and email don't match")
+                    return redirect(url_for('login'))
             else:
-                return "Error password and email not match"
-        else:
-            return "Error user not found"
+                flash("Error user not found")
+                return redirect(url_for('login'))
+        except TypeError:
+            flash("Error user not found")
+            return redirect(url_for('login'))
     else:
         return render_template("login.html")
+
+
+@app.route('/ChangePassword', methods=['GET','POST'])
+@login_required
+def changepassword():
+    if request.method == 'POST':
+        email = session['email']
+        password = request.form['OldPassword'].encode('utf-8')
+        newpassword = request.form['NewPassword'].encode('utf-8')
+        cur = cnx.cursor(dictionary=True)
+        cur.execute("SELECT * FROM login WHERE email_id=%s",(email,))
+        user = cur.fetchone()
+        try:
+            if sha256_crypt.verify(password, user["password"]):
+                hashpassword = sha256_crypt.encrypt((str(newpassword)))
+                cur.execute("UPDATE login SET password = %s WHERE email_id=%s",(hashpassword,email,))
+                cnx.commit()
+                flash("Password Changed")
+                return redirect(url_for('changepassword'))
+            else:
+                flash("Error Old password is wrong")
+                return redirect(url_for('changepassword'))
+        except ValueError:
+            flash("Error Old password is wrong")
+            return redirect(url_for('changepassword'))
+        cur.close()
+        cnx.close()
+    else:
+        return render_template("Change_Password.html")
 
 @app.route("/logout")
 def logout():
@@ -131,6 +174,7 @@ def logout():
     return redirect(url_for('login'))
 
 @app.route('/tempsearchpage')
+@app.route('/')
 @login_required
 def home():
     return render_template("tempsearchpage.html")
@@ -146,6 +190,11 @@ def animaladd():
 @login_required
 def animallist():
     return render_template("animallist.html")
+
+@app.route('/UserInfo')
+@login_required
+def userinfo():
+    return render_template("userinfo.html")
 
 
 @app.route('/animal/update', methods=['GET','DELETE'])
@@ -164,6 +213,11 @@ def experimentadd():
 @login_required
 def experiment_list():
     return render_template("experiment_list.html")
+
+@app.route('/experiment/animal/update', methods=['GET','PATCH','DELETE'])
+@login_required
+def experiment_animal_update():
+    return render_template("experiment_animal_update.html")
 
 
 @app.route('/experiment/edit', methods=['GET', 'POST','PATCH','DELETE'])

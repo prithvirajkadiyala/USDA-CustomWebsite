@@ -3,11 +3,12 @@
 <html>
 <head><title>{% block title %}View Herd{% endblock %}</title></head>
 <body>
-	
+
 	{% block main %}
 	<div id="Notification area"></div>
-	<h1>This is the View Herd page</h1>
-	
+	<h1> Herd List</h1>
+	<h5>Edit herd to add or remove animals or click on delete to remove the herd</h5>
+
 	<div class="container">
 		<table id="table"
 			data-search="true"
@@ -43,7 +44,7 @@
 					  <fieldset disabled>
 						  <div class="row">
 								<input type="text" name="Herd_Name" id="Herd_Name" value=""/>
-								
+
 								<input type="text" name="create_date" id="create_date" value=""/>
 						  </div>
 					  </fieldset>
@@ -86,7 +87,7 @@
 			  <fieldset disabled>
 				  <div class="modal-body">
 						<input type="text" name="Delete_Name" id="Delete_Name" value=""/>
-						
+
 						<input type="text" name="Delete_Date" id="Delete_Date" value=""/>
 				  </div>
 			  </fieldset>

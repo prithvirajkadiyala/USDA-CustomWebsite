@@ -13,7 +13,7 @@ $("#Inspection_Submit").click(function(){
 		comments : $("#comments").val(),
 		pasture_major_deficiencies : $("#major_deficiencies").val(),
 		pasture_minor_deficiencies : $("#minor_deficiencies").val(),
-		email_ID : "test",
+		email_ID : $("#email")[0].textContent,
 		builinding_number : 0,
 		lighting : 0,
 		housekeeping : 0,
@@ -35,7 +35,7 @@ $("#Inspection_Submit").click(function(){
 		},
 		error: function(response) {
 			console.log(response);
-			$.notify("Data Not saved", "error");					
+			$.notify("Data Not saved", "error");
 		}
 	});
 });
@@ -48,12 +48,12 @@ $("#Inspection_Submit_Building").click(function(){
 		fencing : 0,
 		access_to_food : 0,
 		access_to_water : 0,
-		cleaniness_of_water : $("#housekeeping_cleanliness option:selected").text(),
+		cleanliness_of_water : 0,
 		access_to_shelter : 0,
 		comments : $("#iacuc2_comments").val(),
 		pasture_major_deficiencies : $("#iacuc_major2_deficiencies").val(),
 		pasture_minor_deficiencies : $("#iacuc_minor2_deficiencies").val(),
-		email_ID : "test",
+		email_ID : $("#email")[0].textContent,
 		builinding_number : $("#building_number").val(),
 		general_appearance : $("#general_appearance_building option:selected").text(),
 		lighting : $("#electrical_lighting option:selected").text(),
@@ -62,7 +62,7 @@ $("#Inspection_Submit_Building").click(function(){
 		head_catch_condition : $("#squeezechute_headcatch option:selected").text(),
 		non_slip_surface_evidence : $("#headcatch_exit option:selected").text(),
 		Pen_condition : $("#pen_condition option:selected").text(),
-		container_disposal : $("#sharp_disposal_containers option:selected").text(), 
+		container_disposal : $("#sharp_disposal_containers option:selected").text(),
 		drug_storage : $("#drug_storage option:selected").text()
 	};
 	var myJSON = JSON.stringify(data);
@@ -77,7 +77,7 @@ $("#Inspection_Submit_Building").click(function(){
 		},
 		error: function(response) {
 			console.log(response);
-			$.notify("Data Not saved", "error");					
+			$.notify("Data Not saved", "error");
 		}
 	});
 });

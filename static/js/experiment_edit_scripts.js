@@ -47,7 +47,7 @@ $(document).ready(function(){
 						toappend += "<script>$('#"+ each[1] +"').flatpickr({});</script>";
 						$(toappend).appendTo("#newfields");
 					}
-					else{	
+					else{
 						$("<label for="+ each[1] +" class='control-label col-xs-2'>"+each[1] +"</label><div class='col-xs-2'><input type='text' class='form-control' id="+ each[1] +" name="+ each[1] +"></div>").appendTo("#newfields");
 					}
 				}
@@ -68,7 +68,7 @@ $(document).ready(function(){
 						toappend += "<script>$('#"+ each[1] +"').flatpickr({});</script>";
 						$(toappend).appendTo("#newfields");
 					}
-					else{							
+					else{
 					$("<label for="+ each[1] +" class='control-label col-xs-2'>"+each[1] +"</label><div class='col-xs-2'><input type='text' class='form-control' id="+ each[1] +" name="+ each[1] +"></div>").appendTo("#newfields");
 					}
 				}
@@ -98,7 +98,7 @@ $(document).ready(function(){
 			console.log(response);
 		}
 	});
-	
+
 });
 function callexperiment(variable){
 	$.ajax({
@@ -108,49 +108,79 @@ function callexperiment(variable){
 		async: false,
 		success : function(data) {
 			console.log(data);
-			$('#animalname').val(data[0].animalname)
-			$('#Animal_ID').val(data[0].Animal_ID);
-			$('#adj205h').val(data[0].adj205h);
-			$('#adj205w').val(data[0].adj205w);
-			$('#adj365dht').val(data[0].adj365dht);
-			$('#adjyearlingh').val(data[0].adjyearlingh);
-			$('#adjyearlingw').val(data[0].adjyearlingw);
-			$('#ageatwean').val(data[0].ageatwean);
-			$('#ageatyearling').val(data[0].ageatyearling);
-			$('#animalname').val(data[0].animalname);
-			$('#animaltype').val(data[0].animaltype);
-			$('#backfat').val(data[0].backfat);
-			$('#bcsdifference').val(data[0].bcsdifference);
-			$('#bcsprevious').val(data[0].bcsprevious);
-			$('#bcsrecent').val(data[0].bcsrecent);
-			$('#birthweight').val(data[0].birthweight);
-			$('#birthweightadj').val(data[0].birthweightadj);
-			$('#blockpen').val(data[0].blockpen);
-			$('#currentwtcow').val(data[0].currentwtcow);
-			$('#currentwtheifer').val(data[0].currentwtheifer);
-			$('#customheight').val(data[0].customheight);
-			$('#customheightdate').val(StringToDate(data[0].customheightdate));
-			$('#customweight').val(data[0].customweight);
-			$('#customweightdate').val(StringToDate(data[0].customweightdate));
-			$('#damwtatwean').val(data[0].damwtatwean);
-			$('#expt_date').val(data[0].expt_date);
-			$('#replicate').val(data[0].replicate);
-			$('#sireframescore').val(data[0].sireframescore);
-			$('#treatment').val(data[0].treatment);
-			$('#weandate').val(StringToDate(data[0].weandate));
-			$('#weanframescore').val(data[0].weanframescore);
-			$('#weangpd').val(data[0].weangpd);
-			$('#weanheight').val(data[0].weanheight);
-			$('#weanwda').val(data[0].weanwda);
-			$('#weanweight').val(data[0].weanweight);
-			$('#weanweightdate').val(data[0].weanweightdate);
-			$('#yearlingdate').val(StringToDate(data[0].yearlingdate));
-			$('#yearlingframescore').val(data[0].yearlingframescore);
-			$('#yearlingheight').val(data[0].yearlingheight);
-			$('#yearlingweight').val(data[0].yearlingweight);
+			if(data == 0){
+			    $("#Animal_ID").val(variable);
+                $.ajax({
+					url : '/api/animal/add/'+variable,
+					type : 'GET',
+					dataType : 'json',
+					async: false,
+					success : function(results) {
+					 $("#animalname").val(results[0].animalname);
+					},
+					error: function(response){
+						console.log(response);
+					}
+				});
+			}
+			else{
+    			$('#animalname').val(data[0].animalname)
+    			$('#Animal_ID').val(data[0].Animal_ID);
+    			$('#adj205h').val(data[0].adj205h);
+    			$('#adj205w').val(data[0].adj205w);
+    			$('#adj365dht').val(data[0].adj365dht);
+    			$('#adjyearlingh').val(data[0].adjyearlingh);
+    			$('#adjyearlingw').val(data[0].adjyearlingw);
+    			$('#ageatwean').val(data[0].ageatwean);
+    			$('#ageatyearling').val(data[0].ageatyearling);
+    			$('#animalname').val(data[0].animalname);
+    			$('#animaltype').val(data[0].animaltype);
+    			$('#backfat').val(data[0].backfat);
+    			$('#bcsdifference').val(data[0].bcsdifference);
+    			$('#bcsprevious').val(data[0].bcsprevious);
+    			$('#bcsrecent').val(data[0].bcsrecent);
+    			$('#birthweight').val(data[0].birthweight);
+    			$('#birthweightadj').val(data[0].birthweightadj);
+    			$('#blockpen').val(data[0].blockpen);
+    			$('#currentwtcow').val(data[0].currentwtcow);
+    			$('#currentwtheifer').val(data[0].currentwtheifer);
+    			$('#customheight').val(data[0].customheight);
+    			$('#customheightdate').val(StringToDate(data[0].customheightdate));
+    			$('#customweight').val(data[0].customweight);
+    			$('#customweightdate').val(StringToDate(data[0].customweightdate));
+    			$('#damwtatwean').val(data[0].damwtatwean);
+    			$('#expt_date').val(data[0].expt_date);
+    			$('#replicate').val(data[0].replicate);
+    			$('#sireframescore').val(data[0].sireframescore);
+    			$('#treatment').val(data[0].treatment);
+    			$('#weandate').val(StringToDate(data[0].weandate));
+    			$('#weanframescore').val(data[0].weanframescore);
+    			$('#weangpd').val(data[0].weangpd);
+    			$('#weanheight').val(data[0].weanheight);
+    			$('#weanwda').val(data[0].weanwda);
+    			$('#weanweight').val(data[0].weanweight);
+    			$('#weanweightdate').val(data[0].weanweightdate);
+    			$('#yearlingdate').val(StringToDate(data[0].yearlingdate));
+    			$('#yearlingframescore').val(data[0].yearlingframescore);
+    			$('#yearlingheight').val(data[0].yearlingheight);
+    			$('#yearlingweight').val(data[0].yearlingweight);
+			}
 		},
 		error : function(response){
-			console.log(response)
+			console.log(response);
+            $("#Animal_ID").val(variable);
+            $.ajax({
+					url : '/api/animal/add/'+variable,
+					type : 'GET',
+					dataType : 'json',
+					async: false,
+					success : function(results) {
+					 $("#animalname").val(results[0].animalname);
+					},
+					error: function(response){
+						console.log(response);
+					}
+				});
 		}
 	});
 };
@@ -163,38 +193,112 @@ $("#experiment_update").click(function(){
 		dataType : 'json',
 		async: false,
 		success : function(data) {
-			console.log(data);
-			$("#newfields input").each(function(i,elem){
-				if(elem.value == ""){
-					data[0][elem.id] = null;
-				}
-				else{
-					data[0][elem.id] = elem.value;
-				}
-			});
-			var sendingdata = data[0]
-			sendingdata.expt_date = $("#create_date").val();
-			var myJSON = JSON.stringify(sendingdata);
-			$.ajax({
-				url : '/api/experiment/herd/',
-				type : 'POST',
-				data : myJSON,
-				dataType : 'json',
-				async: false,
-				success : function(response) {
-					console.log(response);
-					$.notify("Data Updated");
-				},
-				error : function(response){
-					console.log(response)
-					$.notify("Error", "danger");
-				}
-			});
+		    if(data == 0){
+		        var data = {
+               	    Animal_ID : $('#Animal_ID').val(),
+            		animalname : $('#animalname').val(),
+            		birthweight : 0,
+            		birthweightadj : 0,
+            		sireframescore : 0,
+            		bcsrecent : 0,
+            		bcsprevious : 0,
+            		bcsdifference : 0,
+            		damwtatwean : 0,
+            		expt_name : $('#expt_name').val(),
+            		weanheight : 0,
+            		weanweight : 0,
+            		weandate : "1960-07-07",
+            		weangpd : 0,
+            		weanhipht : 0,
+            		weanwda : 0,
+            		weanweightdate : "1960-07-07",
+            		adj205w : 0,
+            		adj205h : 0,
+            		weanframescore : 0,
+            		ageatwean : 0,
+            		yearlingweight : 0,
+            		yearlingheight : 0,
+            		yearlingdate : "1960-07-07",
+            		adjyearlingw : 0,
+            		adjyearlingh : 0,
+            		yearlingframescore : 0,
+            		ageatyearling : 0,
+            		currentwtcow : 0,
+            		adj365dht : 0,
+            		customweight : 0,
+            		customheight : 0,
+            		customweightdate : "1960-07-07",
+            		customheightdate : "1960-07-07",
+            		currentwtheifer : 0,
+            		backfat : 0,
+            		treatment : 0,
+            		blockpen : 0,
+            		replicate : 0,
+            		animaltype : 0,
+            		expt_date : $('#create_date').val(),
+            		email_id : $('#email')[0].textContent
+        		}
+        		$("#newfields input").each(function(i,elem){
+    				if(elem.value == ""){
+    					data[elem.id] = null;
+    				}
+    				else{
+    					data[elem.id] = elem.value;
+    				}
+    			});
+        		var myJSON = JSON.stringify(data);
+    			$.ajax({
+    				url : '/api/experiment/herd/',
+    				type : 'POST',
+    				data : myJSON,
+    				dataType : 'json',
+    				async: false,
+    				success : function(response) {
+    					console.log(response);
+    					$.notify("Data Updated");
+    				},
+    				error : function(response){
+    					console.log(response)
+    					$.notify("Error", "danger");
+    				}
+    			});
+		    }
+		    else{
+		        console.log(data);
+    			$("#newfields input").each(function(i,elem){
+    				if(elem.value == ""){
+    					data[0][elem.id] = null;
+    				}
+    				else{
+    					data[0][elem.id] = elem.value;
+    				}
+    			});
+    			var sendingdata = data[0];
+    			sendingdata.expt_date = $("#create_date").val();
+    			sendingdata.expt_name = $("#expt_name").val();
+    			var myJSON = JSON.stringify(sendingdata);
+    			$.ajax({
+    				url : '/api/experiment/herd/',
+    				type : 'POST',
+    				data : myJSON,
+    				dataType : 'json',
+    				async: false,
+    				success : function(response) {
+    					console.log(response);
+    					$.notify("Data Updated","info");
+    				},
+    				error : function(response){
+    					console.log(response)
+    					$.notify("Error", "danger");
+    				}
+    			});
+		    }
+
 		},
 		error : function(response){
 			console.log(response)
 		}
 	});
-	
+
 });
 

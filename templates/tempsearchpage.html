@@ -1,14 +1,29 @@
 {% extends "tempheader.html" %}
 
 <html>
-<head><title>{% block title %}Searchpage{% endblock %}</title></head>
+{% block style %}
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+{% endblock %}
+<head><title>{% block title %}Searchpage{% endblock %}</title>
+
+</head>
 <body>
-
+<style>
+h1 { color: #f2f2f2;}
+h3 {color:A2DEF7;}
+</style>
 {% block main %}
-<div class="row text-center" style="margin-bottom:20px;align:center;">
-  <img class="img-responsive" style="" src="/static/images/mainscreen.jpeg" alt="Chania" width="460" height="345">
-</div>
+<h1 align="center"> Welcome to USDA Barnyard</h1>
 
+<img src="/static/images/mainscreen.jpeg" alt="Paris" class="center">
+<br>
+<h4 align="center">"Research is at it's top speed,come on let's explore more..."</h4>
+<!--
 <div class="row text-center">
   <div class="col-xs-8 col-xs-offset-2" style="margin-bottom:50px;">
 	<div class="input-group" style="margin auto;">
@@ -22,9 +37,9 @@
 	  </span>
 	  <input type="text" class="form-control" id="cowSearch" name="cowsearch" placeholder="Animal Number / Herd Name">
 	  <span class="input-group-btn"><input type="submit" class="btn" value="Search" id ="search"></span>
-	</div><!-- /input-group -->
-  </div><!-- /.col-xs-8 -->
-</div><!-- /.row -->
+	</div>--><!-- /input-group -->
+  <!--</div> /.col-xs-8 -->
+<!--</div> /.row -->
 {% endblock %}
 </body>
 </html>

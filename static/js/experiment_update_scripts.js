@@ -1,16 +1,42 @@
 $(document).ready(function(){
 	$.ajax({
-		url : '/api/experiment/list/',
+		url : '/api/herd/create/',
 		type : 'GET',
 		dataType : 'json',
 		async: false,
 		success : function(data) {
 			$(data).each(function(i,elem){
-				elem.customheightdate = StringToDate(elem.customheightdate);
-				elem.customweightdate = StringToDate(elem.customweightdate);
-				elem.expt_date = StringToDate(elem.expt_date);
-				elem.weanweightdate = StringToDate(elem.weanweightdate);
-				elem.yearlingdate = StringToDate(elem.yearlingdate);
+				elem.create_date = StringToDate(elem.create_date);
+				var value = JSON.parse(elem.string);
+				var attributes = "";
+				$(value).each(function(i,elem){
+					var string = elem.split("-");
+					attributes += string[1];
+					attributes += " ,";
+				});
+				elem.string = attributes.replace(/,\s*$/, "");
+				
+				var AIDs = JSON.parse(elem.AID_string);
+				elem.AIDs = AIDs;
+				var animalnames = "";
+				$(AIDs).each(function(i,elem){
+					$.ajax({
+						url: '/api/animal/add/'+elem,
+						data: $('form').serialize(),
+						type: 'GET',
+						async: false,
+						success : function(response) {
+							animalnames += response[0].animalname;
+							animalnames += " ,";
+							
+						},
+						error: function(response){
+							console.log(response);
+						}
+					});	
+				});
+				var animalnameslist = animalnames.replace(/,\s*$/ , "");
+				elem.animalname = animalnameslist;
 			});
 			tablecall(data);
 		},
@@ -137,4 +163,3 @@ $(function () {
         }
     });
 });
-	

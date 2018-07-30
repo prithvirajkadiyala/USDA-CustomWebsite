@@ -1,0 +1,231 @@
+{% extends "tempheader.html" %}
+
+<html>
+<head><title>{% block title %}Experiment Animal Update{% endblock %}</title>
+
+</head>
+<body>
+
+	{% block main %}
+	<h3>Experiment animal update</h3>
+    <div class="row">
+    	<div class="col-xs-12">
+    		<div class="col-xs-4">
+    			<input type="text" class="form-control" id="SearchAnimal" placeholder="Animal Name">
+    		</div>
+    		<button type="button" id="SearchButton" class="btn btn-primary">Search</button>
+    		<span class="pull-right"><button type="button" class="btn btn-primary" id="Update_experiment_animal">Update Animal</button></span>
+    	</div>
+    </div>
+	<div class="form-group">
+	    <label for="animalname" class="control-label col-xs-1">Animal Name</label>
+		<div class="col-xs-2">
+			<input type="text" class="form-control" id="animalname" placeholder="Animal Name" disabled>
+		</div>
+		<label for="expt_name" class="control-label col-xs-1">Experiment Name</label>
+		<div class="col-xs-2">
+			<input type="text" class="form-control" id="expt_name" placeholder="Experiment Name" disabled>
+		</div>
+		<label for="dam" class="control-label col-xs-1">Dam</label>
+		<div class="col-xs-2">
+			<input type="text" class="form-control" id="damexperiment" placeholder="Dam" disabled>
+		</div>
+		<label for="sire" class="control-label col-xs-1">Sire</label>
+		<div class="col-xs-2">
+			<input type="text" class="form-control" id="sireexperiment" placeholder="Sire" disabled>
+		</div>
+	</div>
+	<hr width="50%" size="3" align="center">
+	<div class="form-group">
+		<label for="birthweight" class="control-label col-xs-1">Birth Weight</label>
+		<div class="col-xs-2">
+			<input type="text" class="form-control" id="birthweight" placeholder="Birth Weight">
+		</div>
+		<label for="birthweightadj" class="control-label col-xs-1">Birth Weight Adj</label>
+		<div class="col-xs-2">
+			<input type="text" class="form-control" id="birthweightadj" placeholder="Birth Weight Adj">
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="sireframescore" class="control-label col-xs-1">Sire Frame Score</label>
+		<div class="col-xs-2">
+			<input type="text" class="form-control" id="sireframescore" placeholder="Sire Frame Score">
+		</div>
+		<label class="control-label col-xs-1" for="date">D.O.B</label>
+		<div class="input-group col-xs-2">
+		   <input class="date form-control" id="dobexperiment" name="date" placeholder="YYYY-MM-DD" type="text">
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="bcsprevious" class="control-label col-xs-1">BCS Previous</label>
+		<div class="col-xs-2">
+			<input type="text" class="form-control" id="bcsprevious" placeholder="BCS Previous">
+		</div>
+		<label for="bcsdifference" class="control-label col-xs-1">BCS Difference</label>
+		<div class="col-xs-2">
+			<input type="text" class="form-control" id="bcsdifference" placeholder="BCS Difference">
+		</div>
+		<label for="bcsrecent" class="control-label col-xs-1">BCS Recent Date</label>
+		<div class="col-xs-2">
+			<input class="date form-control" id="bcsrecent" name="date" placeholder="MM/DD/YYYY" type="text">
+		</div>
+	</div>
+	<hr width="50%" size="3" align="center">
+	<div class="form-group">
+		<label for="damwtatwean" class="control-label col-xs-1">Dam Wt at Wean</label>
+		<div class="col-xs-2">
+			<input type="text" class="form-control" id="damwtatwean" placeholder="Dam Wt at Wean">
+		</div>
+		<label for="weanheight" class="control-label col-xs-1">Wean Height</label>
+		<div class="col-xs-2">
+			<input type="text" class="form-control" id="weanheight" placeholder="Wean Height">
+		</div>
+		<label for="weanweight" class="control-label col-xs-1">Wean Weight</label>
+		<div class="col-xs-2">
+			<input type="text" class="form-control" id="weanweight" placeholder="Wean Weight">
+		</div>
+		<label class="control-label col-xs-1" for="date">Wean Date</label>
+		<div class="input-group col-xs-2">
+		   <input class="date form-control" id="weandate" name="date" placeholder="YYYY-MM-DD" type="text"/>
+		</div>
+	</div>
+	<hr width="50%" size="3" align="center">
+	<div class="form-group">
+		<label for="weangpd" class="col-xs-1 control-label">Wean GPD</label>
+		<div class="col-xs-2">
+			<input type="text" id="weangpd" class="form-control" placeholder="Wean GPD">
+		</div>
+		<label for="weanhipht" class="col-xs-1 control-label">Wean Hip ht</label>
+		<div class="col-xs-2">
+			<input type="text" id="weanhipht" class="form-control" placeholder="Wean Hip ht">
+		</div>
+		<label for="weanwda" class="col-xs-1 control-label">Wean WDA</label>
+		<div class="col-xs-2">
+			<input type="text" id="weanwda" class="form-control" placeholder="Wean WDA">
+		</div>
+		<label for="weanweightdate" class="col-xs-1 control-label">Wean Weight Date</label>
+		<div class="input-group col-xs-2">
+		   <input class="date form-control" id="weanweightdate" name="date" placeholder="YYYY-MM-DD" type="text"/>
+		</div>
+	</div>
+	<hr width="50%" size="3" align="center">
+	<fieldset disabled>
+		<div class="form-group">
+			<label for="adjustedweight" class="col-xs-1 control-label">Adj 205d weight</label>
+			<div class="col-xs-2">
+				<input type="text" id="adj205w" class="form-control" placeholder="Adjusted Weight">
+			</div>
+			<label for="adjusted_height" class="col-xs-1 control-label">Adj 205d height</label>
+			<div class="col-xs-2">
+				<input type="text" id="adj205h" class="form-control" placeholder="Adjusted Height">
+			</div>
+			<label for="weanframescore" class="col-xs-1 control-label">Wean Frame Score</label>
+			<div class="col-xs-2">
+				<input type="text" id="weanframescore" class="form-control" placeholder="Wean Frame Score">
+			</div>
+			<label for="agewean" class="col-xs-1 control-label">Age at Wean</label>
+			<div class="col-xs-2">
+				<input type="text" id="ageatwean" class="form-control" placeholder="Age at Wean">
+			</div>
+		</div>
+	</fieldset>
+	<div class="form-group">
+		<label for="yearlingweight" class="control-label col-xs-1">Yearling Weight</label>
+		<div class="col-xs-2">
+			<input type="text" class="form-control" id="yearlingweight" placeholder="Yearling Weight">
+		</div>
+		<label for="yearlingheight" class="control-label col-xs-1">Yearling Height</label>
+		<div class="col-xs-2">
+			<input type="text" class="form-control" id="yearlingheight" placeholder="Yearling Height">
+		</div>
+		<label class="control-label col-xs-1" for="date">Yearling Date</label>
+		<div class="input-group col-xs-2">
+		   <input class="date form-control" id="yearlingdate" name="date" placeholder="YYYY-MM-DD" type="text"/>
+		</div>
+	</div>
+	<fieldset disabled>
+		<div class="form-group">
+			<label for="adjustedyearlingweight" class="col-xs-1 control-label">Adj Yearling weight</label>
+			<div class="col-xs-2">
+				<input type="text" id="adjyearlingw" class="form-control" placeholder="Adjusted Yearling Weight">
+			</div>
+			<label for="adjustedyearlingheight" class="col-xs-1 control-label">Adj Yearling height</label>
+			<div class="col-xs-2">
+				<input type="text" id="adjyearlingh" class="form-control" placeholder="Adjusted Yearling Height">
+			</div>
+			<label for="yearlingframescore" class="col-xs-1 control-label">Yearling Frame Score</label>
+			<div class="col-xs-2">
+				<input type="text" id="yearlingframescore" class="form-control" placeholder="Yearling Frame Score">
+			</div>
+			<label for="ageyearling" class="col-xs-1 control-label">Age at Yearling</label>
+			<div class="col-xs-2">
+				<input type="text" id="ageatyearling" class="form-control" placeholder="Age at Yearling">
+			</div>
+		</div>
+	</fieldset>
+	<div class="form-group">
+		<label for="currentwtcow" class="col-xs-1 control-label">Current Wt Cow</label>
+		<div class="col-xs-2">
+			<input type="text" id="currentwtcow" class="form-control" placeholder="Current Wt Cow">
+		</div>
+		<label for="adj365dht" class="col-xs-1 control-label">Adj 365d Height</label>
+		<div class="col-xs-2">
+			<input type="text" id="adj365dht" class="form-control" placeholder="Adj 365d Height">
+		</div>
+		<label for="customweight" class="col-xs-1 control-label">Custom Weight</label>
+		<div class="col-xs-2">
+			<input type="text" id="customweight" class="form-control" placeholder="Custom Weight">
+		</div>
+		<label class="control-label col-xs-1" for="date">Custom Weight Date</label>
+		<div class="input-group col-xs-2">
+		   <input class="date form-control" id="customweightdate" name="date" placeholder="YYYY-MM-DD" type="text"/>
+		</div>
+	</div>
+	<hr width="50%" size="3" align="center">
+	<div class="form-group">
+		<label for="currentwtheifer" class="col-xs-1 control-label">Current Wt Heifer</label>
+		<div class="col-xs-2">
+			<input type="text" id="currentwtheifer" class="form-control" placeholder="Current Wt Heifer">
+		</div>
+		<label for="customheight" class="col-xs-1 control-label">Custom Height</label>
+		<div class="col-xs-2">
+			<input type="text" id="customheight" class="form-control" placeholder="Custom Height">
+		</div>
+		<label class="control-label col-xs-1" for="customheightdate">Custom Height Date</label>
+		<div class="input-group col-xs-2">
+		   <input class="date form-control" id="customheightdate" name="date" placeholder="YYYY-MM-DD" type="text"/>
+		</div>
+	</div>
+	<hr width="50%" size="3" align="center">
+	<div class="form-group">
+		<label for="backfat" class="col-xs-1 control-label">Back Fat</label>
+		<div class="col-xs-2">
+			<input type="text" id="backfat" class="form-control" placeholder="Back Fat">
+		</div>
+		<label for="treatment" class="col-xs-1 control-label">Treatment</label>
+		<div class="col-xs-2">
+		  <select class="form-control" id="treatment">
+			<option></option>
+			<option>Steer</option>
+			<option>Heifer</option>
+			<option>Bull</option>
+			<option>Cow</option>
+		  </select>
+		</div>
+		<label for="blockpen" class="col-xs-1 control-label">Block/Pen</label>
+		<div class="col-xs-2">
+			<input type="text" id="blockpen" class="form-control" placeholder="Block/Pen">
+		</div>
+		<label for="replicate" class="col-xs-1 control-label">Replicate</label>
+		<div class="col-xs-2">
+			<input type="text" id="replicate" class="form-control" placeholder="Replicate">
+		</div>
+	</div>
+	{% endblock %}
+
+{% block experiment %} class="panel-collapse collapse in" {% endblock %}
+
+{% block imports %} <script type = "text/javascript" src="{{url_for('static', filename= 'js/experiment_animal_update_scripts.js')}}"></script> {% endblock %}
+
+</body>
+</html>

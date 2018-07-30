@@ -1,42 +1,17 @@
 $(document).ready(function(){
 	$.ajax({
-		url : '/api/herd/create/',
+		url : '/api/experiment/list/',
 		type : 'GET',
 		dataType : 'json',
 		async: false,
 		success : function(data) {
 			$(data).each(function(i,elem){
-				elem.create_date = StringToDate(elem.create_date);
-				var value = JSON.parse(elem.string);
-				var attributes = "";
-				$(value).each(function(i,elem){
-					var string = elem.split("-");
-					attributes += string[1];
-					attributes += " ,";
-				});
-				elem.string = attributes.replace(/,\s*$/, "");
-				
-				var AIDs = JSON.parse(elem.AID_string);
-				elem.AIDs = AIDs;
-				var animalnames = "";
-				$(AIDs).each(function(i,elem){
-					$.ajax({
-						url: '/api/animal/add/'+elem,
-						data: $('form').serialize(),
-						type: 'GET',
-						async: false,
-						success : function(response) {
-							animalnames += response[0].animalname;
-							animalnames += " ,";
-							
-						},
-						error: function(response){
-							console.log(response);
-						}
-					});	
-				});
-				var animalnameslist = animalnames.replace(/,\s*$/ , "");
-				elem.animalname = animalnameslist;
+				elem.customheightdate = StringToDate(elem.customheightdate);
+				elem.customweightdate = StringToDate(elem.customweightdate);
+				elem.expt_date = StringToDate(elem.expt_date);
+				elem.weanweightdate = StringToDate(elem.weanweightdate);
+				elem.yearlingdate = StringToDate(elem.yearlingdate);
+				elem.weandate = StringToDate(elem.weandate);
 			});
 			tablecall(data);
 		},
@@ -57,46 +32,45 @@ $(document).ready(function(){
 $('#Edit').click(function() {
   var log= $('#table').bootstrapTable('getSelections');
   console.log(log);
-  $("#name").val(log[0].name);
-  $("#ExperimentEditModal").modal("show");
-});
-$('#Edit_Experiment_Yes').click(function() {
-	var name= $('#name').val();
-		setTimeout(function() {
-		window.location.href = '/experiment/edit?herdname=' +name
-	}, 2000); 
+  var r = alertbox("Please click 'OK' if you want to Edit the following Animal\n'"+log[0].animalname +"'\nClick 'Cancel' if not");
+  if (r == 1){
+	  setTimeout(function() {
+    		window.location.href = '/experiment/animal/update?Animal_ID='+log[0].Animal_ID+'&date='+log[0].expt_date+'&animalname='+log[0].animalname
+    	}, 2000);
+	  }
+	 else{
+	     alert("Selected 'Cancel'");
+	 }
+
 });
 
 $('#Delete').click(function() {
-  var log= $('#table').bootstrapTable('getSelections');
-  console.log(log);
-  var result = alertbox("Please click 'OK' if you want to delete the following Herd\n'"+log[0].name +"' created on this date '"+ log[0].create_date +"'\nClick 'Cancel' if not");
-  if (r = 1){
-	  var data = {
-		  name : log[0].name,
-		  create_date : log[0].create_date
-	  }
-	  myJSON = JSON.stringify(data)
+    var log= $('#table').bootstrapTable('getSelections');
+    console.log(log);
+    var result = alertbox("Please click 'OK' if you want to delete the following Animal Record for \nAnimal\n'"+log[0].animalname +"' created on this date '"+ log[0].expt_date +"'\nClick 'Cancel' if not");
+    var Animal_ID = log[0].Animal_ID;
+    var expt_date = log[0].expt_date;
+    var data={
+        Animal_ID : Animal_ID,
+        expt_date : expt_date,
+        expt_ID : log[0].expt_ID
+    }
+    var myJSON = JSON.stringify(data);
 	$.ajax({
-		url: '/api/herd/create/',
+		url: '/api/experiment/herd/',
 		type: 'DELETE',
 		data : myJSON,
 		dataType: 'json',
-		success: function(response) {
-			console.log(response);
-			$.notify("Data Saved", "info");
-			setTimeout(function() {location.reload();}, 2000); 
+		success: function() {
+			$.notify("Data deleted", "info");
+			setTimeout(function() {location.reload();}, 2000);
 		},
 		error: function(response) {
 			console.log(response);
-			$.notify("Data Not saved", "error");					
+			$.notify("Data Not Deleted", "error");
 		}
-	});  
-  }
-  else{
-	alert("Not deleted");
-  }
-  
+	});
+
 });
 
 $('#button_Done').click(function() {
@@ -134,11 +108,11 @@ $(function () {
 								},
 								error: function(response) {
 									console.log(response);
-									$.notify("Data Not saved", "error");					
+									$.notify("Data Not saved", "error");
 								}
 							});
 					});
-					
+
                     var table = $("<table />");
                     var rows = e.target.result.split("\n");
                     for (var i = 0; i < rows.length; i++) {
@@ -163,4 +137,3 @@ $(function () {
         }
     });
 });
-	

@@ -32,7 +32,7 @@ $('#submit_button_pharma').click(function() {
 	var json = {
 		date : $('#adddate').val(),
 		drug : $('#adddrug').val(),
-		email_id:"test",
+		email_id:$("#email")[0].textContent,
 		vial_size : $('#addvialsize').val(),
 		Lot_no : $('#addlotno').val(),
 		expirydate : $('#addexpdate').val(),
@@ -83,7 +83,7 @@ $('#Edit_Pasture_Modal_Yes').click(function() {
 		Medicine_ID : log[0].Medicine_ID,
 		date : $("#date").val(),
 		drug : $("#drug").val(),
-		email_ID : "test",
+		email_ID : $("#email")[0].textContent,
 		Lot_no : $("#lotno").val(),
 		vial_size : $("#vialsize").val(),
 		expirydate : $("#expdate").val(),
@@ -129,7 +129,7 @@ $('#Delete').click(function() {
 		error: function(response){
 			$.notify("Not Deleted. Please contact IT");
 		}
-	});  
+	});
   }
   else{
 	alert("Not deleted");

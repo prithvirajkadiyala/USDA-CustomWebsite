@@ -3,10 +3,12 @@
 <html>
 <head><title>{% block title %}List Experiment{% endblock %}</title></head>
 <body>
-	
+
 	{% block main %}
 	<div id="Notification area"></div>
-	<h1>List Experiment</h1>
+	<h1>Experiment List</h1>
+	<h5>Click on '+' icon to upload csv files.</h5>
+	<h5>Select a record to edit or delete,download the data using export data option</h5>
 		<div id="toolbar" class="btn-group">
 		<button type="button" id="UploadCSV" class="btn btn-default" >
 			<i class="glyphicon glyphicon-plus" ></i>
@@ -23,7 +25,11 @@
 		<thead>
 			<tr>
 				<th data-field="state" data-checkbox="true"></th>
-				<th data-field="Animal_ID">Animal_ID</th>
+				<th data-field="Animal_ID" data-sortable="true">Database ID</th>
+				<th data-field="expt_date">expt_date</th>
+				<th data-field="expt_name">expt_name</th>
+				<th data-field="animalname">animalname</th>
+				<th data-field="animaltype">animaltype</th>
 				<th data-field="adj205h">adj205h</th>
 				<th data-field="adj205w">adj205w</th>
 				<th data-field="adj365dht">adj365dht</th>
@@ -31,8 +37,6 @@
 				<th data-field="adjyearlingw">adjyearlingw</th>
 				<th data-field="ageatwean">ageatwean</th>
 				<th data-field="ageatyearling">ageatyearling</th>
-				<th data-field="animalname">animalname</th>
-				<th data-field="animaltype">animaltype</th>
 				<th data-field="backfat">backfat</th>
 				<th data-field="bcsdifference">bcsdifference</th>
 				<th data-field="bcsprevious">bcsprevious</th>
@@ -48,8 +52,6 @@
 				<th data-field="customweightdate">customweightdate</th>
 				<th data-field="damwtatwean">damwtatwean</th>
 				<th data-field="email_id">email_id</th>
-				<th data-field="expt_date">expt_date</th>
-				<th data-field="expt_name">expt_name</th>
 				<th data-field="replicate">replicate</th>
 				<th data-field="sireframescore">sireframescore</th>
 				<th data-field="treatment">treatment</th>
@@ -63,63 +65,13 @@
 				<th data-field="yearlingdate">yearlingdate</th>
 				<th data-field="yearlingframescore">yearlingframescore</th>
 				<th data-field="yearlingheight">yearlingheight</th>
-				<th data-field="yearlingweight">yearlingweight</th>	
+				<th data-field="yearlingweight">yearlingweight</th>
 			</tr>
 		</thead>
 	</table>
-	
+
 	<button type="button" class="btn btn-primary btn-lg" id="Edit">Edit</button>
 	<button type="button" class="btn btn-danger btn-lg" id="Delete">Delete</button>
-	
-	<!-- Modal Expansion code -->
-	<div class="modal fade" id="ExperimentEditModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-	  <div class="modal-dialog modal-lg">
-		<div class="modal-content">
-		  <div class="modal-content">
-			  <div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel">Edit this Experiment?</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-				  <span aria-hidden="true">&times;</span>
-				</button>
-			  </div>
-			  <fieldset disabled>
-				  <div class="modal-body">
-						<p>This Experiment?</p>
-					  <input type="text" class="form-control" id="name" placeholder="Name">
-				  </div>
-			  </fieldset>
-			  <div class="modal-footer">
-				<button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
-				<button type="button" id = "Edit_Experiment_Yes" class="btn btn-primary">Yes</button>
-			  </div>
-		  </div>
-		</div>
-	  </div>
-	</div>
-	<div class="modal fade" id="ExperimentDeleteModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-	  <div class="modal-dialog modal-lg">
-		<div class="modal-content">
-		  <div class="modal-content">
-			  <div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel">Delete Transactions for this Pasture?</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-				  <span aria-hidden="true">&times;</span>
-				</button>
-			  </div>
-			  <fieldset disabled>
-				  <div class="modal-body">
-						<p>This Experiment?</p>
-					  <input type="text" class="form-control" id="nameDelete" placeholder="Experiment">
-				  </div>
-			  </fieldset>
-			  <div class="modal-footer">
-				<button type="button" class="btn btn-danger" id="Delete_No" data-dismiss="modal">No</button>
-				<button type="button" id = "Delete_Yes" class="btn btn-primary" data-dismiss="modal">Yes</button>
-			  </div>
-		  </div>
-		</div>
-	  </div>
-	</div>
 	<div class="modal fade" id="UploadCSVModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 	  <div class="modal-dialog modal-lg">
 		<div class="modal-content">
@@ -147,6 +99,6 @@
 	{% endblock %}
 
 {% block experiment %}class="panel-collapse collapse in" {% endblock %}
-{% block imports %} <script type = "text/javascript" src="{{url_for('static', filename= 'js/experiment_update_scripts.js')}}"></script>{% endblock %}
+{% block imports %} <script type = "text/javascript" src="{{url_for('static', filename= 'js/experiment_list_scripts.js')}}"></script>{% endblock %}
 </body>
 </html>

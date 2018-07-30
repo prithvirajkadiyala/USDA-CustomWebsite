@@ -10,15 +10,17 @@
 
 </head>
 <body>
-	
+
 	{% block main %}
 	<div id="Notification area"></div>
-	<h1>This is the Experiment page</h1>
+	<h1>Update your Experiment </h1>
+	<h5>Please select each animal ,enter expt date and update values for each attribute then click on Update!</h5>
+	<br>
 	<div class="container-fluid">
-		<div class="col-xs-3">  
+		<div class="col-xs-3">
 			<div style="margin-bottom:30px;max-height:400px;overflow-y:scroll;">
-				<h4 style="margin:0px auto; padding-bottom:5px;" align="center">AnimalID --> Animal Numbers</h4>
-				<ul id="animallist" class=" scrollable-menu">	
+				<h4 style="margin:0px auto; padding-bottom:5px;" align="center">Database ID --> Animal Numbers</h4>
+				<ul id="animallist" class=" scrollable-menu">
 					<li>All</li>
 				</ul>
 			</div>
@@ -28,11 +30,10 @@
 		</div>
 		<div class="col-xs-9">
 			<form id = "basicexperimentform">
-				<h3>Welcome to the edits page</h3>
 				<div class="form-group">
-					<label for="herdnumber" class="control-label col-xs-1">Herd Number</label>
+					<label for="expt_name" class="control-label col-xs-1">Expt Name</label>
 					<div class="col-xs-2">
-						<input type="text" class="form-control" id="herdnumber" name="herdnumber" placeholder="Herd Number">
+						<input type="text" class="form-control" id="expt_name" name="expt_name" placeholder="Expt Name">
 					</div>
 					<label for="herdname" class="control-label col-xs-1">Herd Name</label>
 					<div class="col-xs-2">
@@ -42,9 +43,9 @@
 					<div class="col-xs-2">
 						<input type="text" class="form-control" id="animalname" placeholder="Animal Name" disabled>
 					</div>
-					<label for="Animal_ID" class="control-label col-xs-1">Animal_ID</label>
+					<label for="Animal_ID" class="control-label col-xs-1">DB_ID</label>
 					<div class="col-xs-2">
-						<input type="text" class="form-control" id="Animal_ID" placeholder="Animal_ID" disabled>
+						<input type="text" class="form-control" id="Animal_ID" placeholder="Database_ID" disabled>
 					</div>
 				</div>
 				<br>
@@ -56,16 +57,15 @@
 					<div class="col-xs-2">
 						<input type="text" class="date form-control" id="create_date" placeholder="Create Date">
 					</div>
-					<label for="herddescription" class="control-label col-xs-1">Herd Description</label>
-					<div class="col-xs-6">
+					<label for="herddescription" class="control-label col-xs-2">Herd Description</label>
+					<div class="col-xs-4">
 						<input type="text" class="form-control" id="herddescription" placeholder="Herd Description">
 					</div>
 					<br>
 					<hr width="50%" size="3" align="center">
 				</div>
-				<h2>The created fields come here</h2>
 				<div id="newfields" class='form-group'>
-					
+
 				</div>
 			</form>
 		</div>

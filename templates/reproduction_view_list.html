@@ -3,11 +3,12 @@
 <html>
 <head><title>{% block title %}Calf List{% endblock %}</title></head>
 <body>
-	
+
 	{% block main %}
 	<div id="Notification area"></div>
-	<h1>Calf Records List</h1>
-	
+	<h1>Calf List</h1>
+	<h5>Select a record to edit or delete,download the data using export data option</h5>
+
 	<div class="container">
 		<table id="table"
 		data-search="true"
@@ -44,7 +45,7 @@
 					<div class="input-group col-xs-2">
 					   <input class="date" id="create_date" name="create_date" placeholder="YYYY-MM-DD" type="text"/>
 					</div>
-					
+
 				</div>
 				<hr width="50%" size="3" align="center">
 				<div class="form-group">
@@ -122,8 +123,8 @@
 		</div>
 	  </div>
 	</div>
-	</div>		
-	
+	</div>
+
 	{% endblock %}
 
 {% block Reproduction %} class="panel-collapse collapse in" {% endblock %}

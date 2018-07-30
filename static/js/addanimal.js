@@ -3,7 +3,7 @@ $(function () {
 		var animalname = $('#animalname').val();
 		var basic = {
 			animalname : $('#animalname').val(),
-			email_id : $('#animalnumber').val(),
+			email_id : $("#email")[0].textContent,
 			height: $('#height').val(),
 			weight : $('#weight').val(),
 			eartag : $('#eartag').val(),
@@ -77,14 +77,14 @@ $(function () {
 					$.notify("Data not saved", "danger");
 				}
 			});
-			
+
 			e.preventDefault();
 		});
 	});
-	
+
 $(document).ready(function(){
 	$('input').each( function(i,elem) {
-		
+
 		if(elem.placeholder=="YYYY-MM-DD")
 			elem.value = '1990-01-30';
 		else{

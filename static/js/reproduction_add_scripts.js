@@ -14,7 +14,7 @@ $("#add_calf").click(function(){
 			bcsbreeding : $('#bcsbreeding').val(),
 			bcscalving : $('#bcscalving').val(),
 			bcsweaning : $('#bcsweaning').val(),
-			email_id : "test",
+			email_id : $("#email")[0].textContent,
 			breeding : $('#breeding option:selected').text(),
 			bulldisposition : $('#bulldisposition option:selected').text(),
 			bullframescore : $('#bullframescore').val(),
@@ -69,5 +69,5 @@ $("#add_calf").click(function(){
 	});
 	setTimeout(function() {
 		location.reload();
-	}, 2000); 
+	}, 2000);
 });

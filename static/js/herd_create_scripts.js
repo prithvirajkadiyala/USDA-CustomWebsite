@@ -23,7 +23,7 @@ $('#CreateHerdButton').click(function(e) {
 	animals = JSON.stringify(animals);
 	var data={
 		name: herdname,
-		email_id : "test",
+		email_id : $("#email")[0].textContent,
 		description : herddescription,
 		create_date : create_date,
 		AID_string : animals,
@@ -39,7 +39,7 @@ $('#CreateHerdButton').click(function(e) {
 			console.log(response);
 			$.notify("Data Saved", "info");
 			setTimeout(location.reload(), 3000);
-			
+
 		},
 		error: function(error) {
 			console.log(error)

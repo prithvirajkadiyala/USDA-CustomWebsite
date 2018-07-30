@@ -80,15 +80,15 @@ $(document).ready(function(){
 				error: function(error) {
 					console.log(error);
 					$.notify("Animal Name doesnt exist", "danger");
-				}	
+				}
 			});
 		},
 		error: function(error) {
 			console.log(error);
 			$.notify("Animal Name doesnt exist", "danger");
-		}	
+		}
 	});
-	
+
 	});
 	$(function () {
 	$('#animal_update').click(function(e) {
@@ -96,7 +96,7 @@ $(document).ready(function(){
 		var basic = {
 			Animal_ID : Animal_ID,
 			animalname : $('#animalname').val(),
-			email_id : "test",
+			email_id : $("#email")[0].textContent,
 			height: $('#height').val(),
 			weight : $('#weight').val(),
 			eartag : $('#eartag').val(),
