@@ -21,7 +21,7 @@ class table_test(Resource):
         else:
             cursor = cnx.cursor(dictionary=True)
             #cursor.execute("SELECT * from animal_table")
-            cursor.execute("""SELECT a.Animal_ID,animalname,animaltype,eartag,eid,p.pasturenumber, weight,
+            cursor.execute("""SELECT a.sub_pasture,a.Animal_ID,animalname,animaltype,eartag,eid,p.pasturenumber, weight,
                                     height,gender,sex,breed,status,current_expt_no,Herd,breeder,currentframescore,
                                     damframescore,comments,species,a.email_id,brand,brandlocation,tattooleft,tattooright,
                                     alternativeid,registration,color,hornstatus,dam,sire,DOB,howacquired,dateacquired,
@@ -120,7 +120,7 @@ class TableAnimalUpdate(Resource):
                                                 damframescore=%(damframescore)s,comments=%(comments)s,species=%(species)s,email_id=%(email_id)s,brand=%(brand)s,brandlocation=%(brandlocation)s,tattooleft=%(tattooleft)s,tattooright=%(tattooright)s,
                                                 alternativeid=%(alternativeid)s,registration=%(registration)s,color=%(color)s,hornstatus=%(hornstatus)s,dam=%(dam)s,sire=%(sire)s,DOB=%(DOB)s,howacquired=%(howacquired)s,dateacquired=%(dateacquired)s,
                                                 howdisposed=%(howdisposed)s,datedisposed=%(datedisposed)s ,disposalreason=%(disposalreason)s ,herdnumberlocation=%(herdnumberlocation)s ,herdstatus=%(herdstatus)s ,
-                                                howconceived=%(howconceived)s, managementcode=%(managementcode)s ,ownerID=%(ownerID)s ,springfall=%(springfall)s ,includeinlookups=%(includeinlookups)s
+                                                howconceived=%(howconceived)s, managementcode=%(managementcode)s ,ownerID=%(ownerID)s ,springfall=%(springfall)s ,includeinlookups=%(includeinlookups)s,sub_pasture=%(sub_pasture)s
                                                 WHERE Animal_ID=%(Animal_ID)s""")
             try:
                 cursor.execute(update_animaldata,data)
@@ -197,7 +197,7 @@ class TableAnimalAdd(Resource):
                                     damframescore,comments,species,email_id,brand,brandlocation,tattooleft,tattooright,
                                     alternativeid,registration,color,hornstatus,dam,sire,DOB,howacquired,dateacquired,
                                     howdisposed,datedisposed ,disposalreason ,herdnumberlocation ,herdstatus ,
-                                    howconceived, managementcode ,ownerID ,springfall ,includeinlookups)
+                                    howconceived, managementcode ,ownerID ,springfall ,includeinlookups,sub_pasture)
                                     VALUES ( %(animalname)s, %(animaltype)s, %(eartag)s, %(eid)s, %(pasture_ID)s,
                                     %(weight)s, %(height)s, %(gender)s, %(sex)s, %(breed)s, %(status)s,
                                     %(current_expt_no)s, %(Herd)s,%(breeder)s, %(currentframescore)s, %(damframescore)s,
@@ -206,7 +206,7 @@ class TableAnimalAdd(Resource):
                                     %(dam)s, %(sire)s, %(DOB)s, %(howacquired)s,%(dateacquired)s, %(howdisposed)s,
                                     %(datedisposed)s, %(disposalreason)s,%(herdnumberlocation)s, %(herdstatus)s,
                                     %(howconceived)s, %(managementcode)s,%(ownerID)s, %(springfall)s,
-                                    %(includeinlookups)s)""")
+                                    %(includeinlookups)s,%(sub_pasture)s)""")
             try:
                 cursor.execute(insert_animaldata, data)
                 print >> sys.stderr,"here after execute"
@@ -298,7 +298,7 @@ class TableInventoryPastureHistory(Resource):
         else:
             cursor = cnx.cursor(dictionary=True)
             #cursor.execute("SELECT * from pasture_history")
-            cursor.execute("""SELECT fertilizer_name , event_date, qualityofburn,
+            cursor.execute("""SELECT fertilizer_name , event_date, qualityofburn,sub_pasture,
                                     fertilizer_applicationrate, chemicalname, applicationrate, pesticide_method,
                                     email_ID, pasturenumber, comments, fertilizer_method from pasture_history """)
             rows = cursor.fetchall()
@@ -330,11 +330,11 @@ class TableInventoryPastureHistory(Resource):
             print("here in pasture class from the API call")
             insert_animaldata = ("""INSERT INTO pasture_history (fertilizer_name , event_date, qualityofburn,
                                     fertilizer_applicationrate, chemicalname, applicationrate, pesticide_method,
-                                    pasture_ID, email_ID, pasturenumber, comments, fertilizer_method)
+                                    pasture_ID, email_ID, pasturenumber, comments, fertilizer_method,sub_pasture)
                                     VALUES( %(fertilizer_name)s,%(event_date)s,%(qualityofburn)s,
                                     %(fertilizer_applicationrate)s, %(chemicalname)s,%(applicationrate)s,
                                     %(pesticide_method)s, %(pasture_ID)s,%(email_id)s,%(pasturenumber)s,
-                                    %(comments)s,%(fertilizer_method)s )""")
+                                    %(comments)s,%(fertilizer_method)s,%(sub_pasture)s )""")
             try:
                 cursor.execute(insert_animaldata, data)
                 print >> sys.stderr,"here after execute in pasture"
@@ -374,7 +374,7 @@ class TableInventoryPastureHistory(Resource):
                                                 chemicalname=%(chemicalname)s, applicationrate=%(applicationrate)s,
                                                 fertilizer_method=%(fertilizer_method)s, pasture_ID =%(pasture_ID)s,
                                                 email_ID=%(email_ID)s,pasturenumber=%(pasturenumber)s,
-                                                comments=%(comments)s,pesticide_method=%(pesticide_method)s
+                                                comments=%(comments)s,pesticide_method=%(pesticide_method)s,sub_pasture=%(sub_pasture)s
                                                 WHERE pasturenumber =%(pasturenumber)s and event_date=%(event_date)s""")
             try:
                 cursor.execute(update_animaldata,data)
@@ -1184,9 +1184,9 @@ class TableReproduction(Resource):
                                      damframescore, comments, species, email_id, brand, brandlocation, tattooleft, tattooright,
                                      alternativeid, registration, color, hornstatus, dam, sire, DOB, howacquired, dateacquired,
                                      howdisposed, datedisposed, disposalreason, herdnumberlocation, herdstatus,
-                                     howconceived, managementcode, ownerID, springfall, includeinlookups)
+                                     howconceived, managementcode, ownerID, springfall, includeinlookups,sub_pasture)
                                      VALUES( %(animalname)s, '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0',%(email_id)s, '0', '0', '0',
-                                     '0', '0', '0', '0', '0', '0', '0',%(calfdob)s, '0', '1960-01-01', '0','1960-01-01', '0', '0', '0', '0', '0', '0', '0', '0')""")
+                                     '0', '0', '0', '0', '0', '0', '0',%(calfdob)s, '0', '1960-01-01', '0','1960-01-01', '0', '0', '0', '0', '0', '0', '0', '0','0')""")
 
 
 
@@ -1381,7 +1381,9 @@ class TableInspection(Resource):
         else:
             cursor = cnx.cursor(dictionary=True)
             # cursor.execute("select * from herd")
-            cursor.execute("""select * from inspection_report""")
+            cursor.execute("""select report_ID,p.pasturenumber,i.pasture_ID,general_appearance,live_stock,date,animal_condition,fencing,access_to_food,access_to_water,
+                                    cleaniness_of_water,i.email_ID,access_to_shelter,comments,pasture_major_deficiencies,pasture_minor_deficiencies,builinding_number,lighting,housekeeping,
+                                    head_catch_condition,non_slip_surface_evidence,Pen_condition,container_disposal,drug_storage,sub_pasture from inspection_report i,pasture p where i.pasture_ID=p.pasture_ID""")
             rows = cursor.fetchall()
             print >> sys.stderr,"Fetch Completed"
             cursor.close()
@@ -1410,10 +1412,48 @@ class TableInspection(Resource):
             print >> sys.stderr,"here in inspection add class from the API call"
             insert_animaldata = ("""INSERT INTO inspection_report (pasture_ID,general_appearance,live_stock,date,animal_condition,fencing,access_to_food,access_to_water,
                                     cleaniness_of_water,email_ID,access_to_shelter,comments,pasture_major_deficiencies,pasture_minor_deficiencies,builinding_number,lighting,housekeeping,
-                                    head_catch_condition,non_slip_surface_evidence,Pen_condition,container_disposal,drug_storage)
+                                    head_catch_condition,non_slip_surface_evidence,Pen_condition,container_disposal,drug_storage,sub_pasture)
                                      VALUES( %(pasture_ID)s,%(general_appearance)s,%(live_stock)s,%(date)s, %(animal_condition)s, %(fencing)s,%(access_to_food)s,%(access_to_water)s,
                                      %(cleaniness_of_water)s,%(email_ID)s,%(access_to_shelter)s,%(comments)s,%(pasture_major_deficiencies)s,%(pasture_minor_deficiencies)s,%(builinding_number)s,%(lighting)s,
-                                      %(housekeeping)s,%(head_catch_condition)s,%(non_slip_surface_evidence)s,%(Pen_condition)s,%(container_disposal)s,%(drug_storage)s)""")
+                                      %(housekeeping)s,%(head_catch_condition)s,%(non_slip_surface_evidence)s,%(Pen_condition)s,%(container_disposal)s,%(drug_storage)s,%(sub_pasture)s)""")
+
+            try:
+                cursor.execute(insert_animaldata, data)
+                print >> sys.stderr,"here after execute in inspection add"
+                cnx.commit()
+                return "Success", 201
+            except AttributeError as e:
+                print >> sys.stderr,e
+                raise errors.OperationalError("MySQL Connection not available.")
+            except mysql.connector.IntegrityError as err:
+                print >> sys.stderr,"Error: {}".format(err)
+                return None
+            finally:
+                cursor.close()
+                cnx.close()
+
+    def patch(self):
+        data=request.get_json(force=True)
+        print >> sys.stderr,data
+        for k, v in data.iteritems():
+            print >> sys.stderr, ("Code : {0} ==> Value : {1}".format(k, v))
+        try:
+            cnx = mysql.connector.connect(host="livebarn.mysql.pythonanywhere-services.com", user="livebarn", passwd="barnyard123$", db="livebarn$barnyard")
+
+        except mysql.connector.Error as err:
+            if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
+                print >> sys.stderr,"Something is wrong with your user name or password"
+            elif err.errno == errorcode.ER_BAD_DB_ERROR:
+                print >> sys.stderr,"Database does not exist"
+            else:
+                print >> sys.stderr,err
+        else:
+            cursor = cnx.cursor(dictionary=True)
+            print >> sys.stderr,"here in inspection patch method from the API call"
+            insert_animaldata = ("""Update inspection_report set pasture_ID=%(pasture_ID)s,general_appearance=%(general_appearance)s,live_stock=%(live_stock)s,date=%(date)s,animal_condition=%(animal_condition)s,fencing=%(fencing)s,access_to_food=%(access_to_food)s,access_to_water=%(access_to_water)s,
+                                    cleaniness_of_water=%(cleaniness_of_water)s,email_ID=%(email_ID)s,access_to_shelter=%(access_to_shelter)s,comments=%(comments)s,pasture_major_deficiencies=%(pasture_major_deficiencies)s,pasture_minor_deficiencies=%(pasture_minor_deficiencies)s,builinding_number=%(builinding_number)s,lighting=%(lighting)s,housekeeping=%(housekeeping)s,
+                                    head_catch_condition=%(head_catch_condition)s,non_slip_surface_evidence=%(non_slip_surface_evidence)s,Pen_condition=%(Pen_condition)s,container_disposal=%(container_disposal)s,drug_storage=%(drug_storage)s,sub_pasture=%(sub_pasture)s
+                                    where report_ID=%(report_ID)s""")
 
             try:
                 cursor.execute(insert_animaldata, data)

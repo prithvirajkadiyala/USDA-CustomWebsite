@@ -42,6 +42,7 @@ $(document).ready(function(){
 					$('#sex option:selected').text(response[0].sex);
 					$('#pasturenumber').val(response[0].pasture_ID);
 					$('#breed').val(response[0].breed);
+					$('#sub_pasture').val(response[0].sub_pasture);
 					$('#status option:selected').text(response[0].status);
 					$('#trial').val(response[0].current_expt_no);
 					$('#herd').val(response[0].herd);
@@ -103,6 +104,7 @@ $(document).ready(function(){
 			eid : $('#eid').val(),
 			sex : $('#sex option:selected').text(),
 			pasture_ID : $('#pasturenumber').val(),
+			sub_pasture : $('#sub_pasture').val(),
 			breed : $('#breed').val(),
 			status : $('#status option:selected').text(),
 			gender : $('#gender option:selected').text(),

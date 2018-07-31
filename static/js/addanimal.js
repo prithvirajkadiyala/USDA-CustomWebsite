@@ -10,6 +10,7 @@ $(function () {
 			eid : $('#eid').val(),
 			sex : $('#sex option:selected').text(),
 			pasture_ID : $('#pasturenumber').val(),
+			sub_pasture : $('#sub_pasture').val(),
 			breed : $('#breed').val(),
 			status : $('#status option:selected').text(),
 			gender : $('#gender option:selected').text(),

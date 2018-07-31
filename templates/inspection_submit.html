@@ -20,8 +20,18 @@
 					<div class="form-group">
 						<label for="pasture_number" class="control-label col-xs-1">Pasture Number</label>
 						<div class="col-xs-2">
-							<input type="text" class="form-control" id="pasture_number" placeholder="Pasture Number">
+						  <select class="form-control" id="pasture_number"></select>
 						</div>
+						<label for="sub_pasture" class="control-label col-xs-1">Sub Pasture</label>
+						<div class="col-xs-2">
+						  <input type="text "class="form-control" id="sub_pasture" placeholder="Sub Pasture">
+						</div>
+						<label class="control-label col-xs-1" for="date">Date Inspected</label>
+						<div class="input-group col-xs-2">
+						   <input class="date form-control" id="date" name="date" placeholder="MM/DD/YYYY" type="text"/>
+						</div>
+					</div>
+					<div class="form-group">
 						<label for="general_appearance" class="control-label col-xs-1">General Appearance</label>
 						<div class="col-xs-2">
 						  <select class="form-control" id="general_appearance">
@@ -38,12 +48,7 @@
 							<option>Absent</option>
 						  </select>
 						</div>
-						<label class="control-label col-xs-1" for="date">Date Inspected</label>
-						<div class="input-group col-xs-2">
-						   <input class="date form-control" id="date" name="date" placeholder="MM/DD/YYYY" type="text"/>
-						</div>
-					</div>
-					<div class="form-group">
+
 						<label for="animal_condition" class="control-label col-xs-1">Animal Condition</label>
 						<div class="col-xs-2">
 						  <select class="form-control" id="animal_condition">
@@ -53,6 +58,8 @@
 							<option>Excellent</option>
 						  </select>
 						</div>
+					</div>
+					<div class="form-group">
 						<label for="fencing" class="control-label col-xs-1">Fencing</label>
 						<div class="col-xs-2">
 						  <select class="form-control" id="fencing">
@@ -130,6 +137,10 @@
 							<div class="col-xs-2">
 								<input type="text" class="form-control" id="building_number" placeholder="Building Number">
 							</div>
+							<label class="control-label col-xs-2" for="date">Date Inspected</label>
+							<div class="input-group col-xs-2">
+							   <input class="date form-control" id="date_building" name="date" placeholder="MM/DD/YYYY" type="text"/>
+							</div>
 							<label for="general_appearance_building" class="control-label col-xs-2">General Appearance</label>
 							<div class="col-xs-2">
 							  <select class="form-control" id="general_appearance_building">
@@ -158,10 +169,6 @@
 								<option>Good</option>
 								<option>Excellent</option>
 							  </select>
-							</div>
-							<label class="control-label col-xs-2" for="date">Date Inspected</label>
-							<div class="input-group col-xs-2">
-							   <input class="date form-control" id="date_building" name="date" placeholder="MM/DD/YYYY" type="text"/>
 							</div>
 							<label for="housekeeping_cleanliness" class="control-label col-xs-2">Housekeeping or Cleanliness</label>
 							<div class="col-xs-2">
@@ -236,6 +243,7 @@
 				</div>
 			</div>
 		</div>
+	</form>
 	{% endblock %}
 
 {% block Inspection %} class="panel-collapse collapse in" {% endblock %}

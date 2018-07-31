@@ -1,6 +1,26 @@
+$(document).ready(function(){
+   $.ajax({
+		url : '/api/inventory/pasture/',
+		type : 'GET',
+		dataType : 'json',
+		async: false,
+		success : function(data) {
+			console.log(data);
+			$(data).each(function(j,elem){
+				$("<option value='"+elem.pasture_ID+"-"+elem.pasturenumber+"'> "+elem.pasture_ID+" - "+elem.pasturenumber+"</option>").appendTo("#pasture_number");
+			});
+		},
+		error: function(response){
+			console.log(response);
+		}
+	});
+});
+
 $("#Inspection_Submit").click(function(){
+    var pasture_ID= $('#pasture_number').val();
+	var res = pasture_ID.split("-");
 	var data = {
-		pasture_ID : $("#pasture_number").val(),
+		pasture_ID : res[0],
 		general_appearance : $("#general_appearance option:selected").text(),
 		live_stock : $("#livestock option:selected").text(),
 		date : $("#date").val(),
@@ -14,6 +34,7 @@ $("#Inspection_Submit").click(function(){
 		pasture_major_deficiencies : $("#major_deficiencies").val(),
 		pasture_minor_deficiencies : $("#minor_deficiencies").val(),
 		email_ID : $("#email")[0].textContent,
+		sub_pasture : $("#sub_pasture").val(),
 		builinding_number : 0,
 		lighting : 0,
 		housekeeping : 0,
@@ -43,12 +64,13 @@ $("#Inspection_Submit").click(function(){
 $("#Inspection_Submit_Building").click(function(){
 	var data = {
 		pasture_ID : 0,
+		sub_pasture : 0,
 		live_stock : 0,
 		animal_condition : 0,
 		fencing : 0,
 		access_to_food : 0,
 		access_to_water : 0,
-		cleanliness_of_water : 0,
+		cleaniness_of_water : 0,
 		access_to_shelter : 0,
 		comments : $("#iacuc2_comments").val(),
 		pasture_major_deficiencies : $("#iacuc_major2_deficiencies").val(),

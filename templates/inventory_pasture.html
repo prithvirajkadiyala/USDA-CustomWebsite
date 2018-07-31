@@ -30,6 +30,7 @@
 			<tr>
 				<th data-field="state" data-checkbox="true" id="selectall"></th>
 				<th data-sortable="true" data-field="pasturenumber" data-filter-control="select">Pasture Number</th>
+				<th data-field="sub_pasture">Sub pasture</th>
 				<th data-field="event_date" class="w200">Date</th>
 				<th data-field="qualityofburn">Quality of Burn</th>
 				<th data-field="chemicalname">Chemical Name</th>
@@ -76,10 +77,15 @@
 					<br>
 					<div class="form-group">
 						<label for="comments" class="control-label col-xs-1" align="right">comments</label>
-						<div class="col-xs-8">
+						<div class="col-xs-4">
 							<input type="text" class="form-control" id="comments" placeholder="Comments">
 						</div>
+						<label for="sub_pasture" class="control-label col-xs-1" align="left">Sub Pasture</label>
+						<div class="col-xs-2">
+							<input type="text" class="form-control" id="sub_pasture" placeholder="sub pasture">
+						</div>
 					</div>
+
 					<br>
 					<hr width="50%" size="3" align="center">
 					<h2>Burning</h2>
@@ -200,10 +206,16 @@
 							<div class="col-xs-2">
 							   <input class="date" id="adddate" name="date" placeholder="YYYY-MM-DD" type="text"/>
 							</div>
+
 							<label for="addcomments" class="control-label col-xs-1" align="right">comments</label>
 							<div class="col-xs-5">
 								<input type="text" class="form-control" id="addcomments" placeholder="Comments">
-							</div>
+
+						    </div>
+							<label for="add_sub_pasture" class="control-label col-xs-1" align="left">Sub Pasture</label>
+						        <div class="col-xs-2">
+							    <input type="text" class="form-control" id="add_sub_pasture" placeholder="sub pasture">
+							    </div>
 						</div>
 						<br>
 						<hr width="50%" size="3" align="center">

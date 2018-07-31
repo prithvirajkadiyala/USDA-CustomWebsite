@@ -32,6 +32,7 @@ $('#Edit').click(function() {
   console.log(log);
   $("#pasture_ID").val(log[0].pasture_ID);
   $("#pasturenumber").val(log[0].pasturenumber);
+  $("#sub_pasture").val(log[0].sub_pasture);
   $("#date").val(StringToDate(log[0].event_date));
   $("#comments").val(log[0].comments);
   $("#herbicidename").val(log[0].chemicalname);
@@ -51,6 +52,7 @@ $('#Edit_Pasture_Modal_Yes').click(function() {
 	var json = {
 		pasturenumber : $("#pasturenumber").val(),
 		pasture_ID : $("#pasture_ID").val(),
+		sub_pasture:$("#sub_pasture").val(),
 		email_ID : $("#email")[0].textContent,
 		comments : $("#comments").val(),
 		qualityofburn : $("#qualityofburn").val(),
@@ -105,6 +107,7 @@ $('#Add_Pasture_Confirm').click(function() {
 	var json = {
 		pasture_ID : res[0],
 		pasturenumber : res[1],
+		sub_pasture: $("#add_sub_pasture").val(),
 		event_date : $('#adddate').val(),
 		email_id : $("#email")[0].textContent ,
 		comments : $('#addcomments').val(),
