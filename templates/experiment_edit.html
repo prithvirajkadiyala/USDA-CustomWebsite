@@ -21,7 +21,7 @@
 			<div style="margin-bottom:30px;max-height:400px;overflow-y:scroll;">
 				<h4 style="margin:0px auto; padding-bottom:5px;" align="center">Database ID --> Animal Numbers</h4>
 				<ul id="animallist" class=" scrollable-menu">
-					<li>All</li>
+					<li><a id="ALL_CHANGES">All</li>
 				</ul>
 			</div>
 			<div>
@@ -69,6 +69,74 @@
 				</div>
 			</form>
 		</div>
+	</div>
+	<div class="modal fade" id="Update_Parameters" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-lg">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<h5 class="modal-title" id="exampleModalLabel">Update Parameters</h5>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			  <span aria-hidden="true">&times;</span>
+			</button>
+		  </div>
+		  <div class="modal-body">
+		   <div class="container">
+				<h4><input type="checkbox"  class="selectallexperiment">Experiment</h4>
+				<br>
+					<input type="checkbox" class="groupaddinput3" value="input-sireframescore">Sire Frame Score<br>
+					<input type="checkbox" class="groupaddinput3" value="input-weanheight">Wean Height<br>
+					<input type="checkbox" class="groupaddinput3" value="input-weanweight">Wean Weight<br>
+					<input type="checkbox" class="groupaddinput3" value="date-weandate">Wean Date<br>
+					<input type="checkbox" class="groupaddinput3" value="input-birthweight">Birth Weight<br>
+					<input type="checkbox" class="groupaddinput3" value="input-yearlingheight">Yearling Height<br>
+					<input type="checkbox" class="groupaddinput3" value="input-yearlingweight">Yearling Weight<br>
+					<input type="checkbox" class="groupaddinput3" value="date-yearlingdate">Yearling Date<br>
+					<input type="checkbox" class="groupaddinput3" value="input-customweight">Custom Weight<br>
+					<input type="checkbox" class="groupaddinput3" value="date-customweightdate">Custom Weight Date<br>
+					<input type="checkbox" class="groupaddinput3" value="input-customheight">Custom Height<br>
+					<input type="checkbox" class="groupaddinput3" value="date-customheightdate">Custom Height Date<br>
+					<input type="checkbox" class="groupaddinput3" value="input-blockpen">Block/Pen<br>
+					<input type="checkbox" class="groupaddinput3" value="input-replicate">Replicate<br>
+					<input type="checkbox" class="groupaddinput3" value="input-backfat">Back Fat<br>
+					<input type="checkbox" class="groupaddinput3" value="input-treatment">Treatment<br>
+					<input type="checkbox" class="groupaddinput3" value="input-adj205w">Adj205w<br>
+					<input type="checkbox" class="groupaddinput3" value="input-adj205h">Adj205h<br>
+					<input type="checkbox" class="groupaddinput3" value="input-weanframescore">Wean Frame Score<br>
+					<input type="checkbox" class="groupaddinput3" value="input-ageatwean">Age at Wean<br>
+					<input type="checkbox" class="groupaddinput3" value="input-adjyearlingw">Adj Yearling Weight<br>
+					<input type="checkbox" class="groupaddinput3" value="input-adjyearlingh">Adj Yearling Height<br>
+					<input type="checkbox" class="groupaddinput3" value="input-yearlingframescore">Yearling Frame Score<br>
+					<input type="checkbox" class="groupaddinput3" value="input-ageatyearling">Age at Yearling<br>
+		        </div>
+		    <div class="modal-footer">
+			<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+			<button type="button" id = "Update_Yes" class="btn btn-primary" data-dismiss="modal">Update</button>
+		  </div>
+	    </div>
+	  </div>
+	 </div>
+	</div>
+	<div class="modal fade" id="All_Updates" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-lg">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<h5 class="modal-title" id="exampleModalLabel">Update Parameters</h5>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			  <span aria-hidden="true">&times;</span>
+			</button>
+		  </div>
+		  <div class="modal-body">
+                <div id="allupdatefields">
+
+				</div>
+		  </div>
+	      <div class="modal-footer">
+			<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+			<button type="button" id = "Update_Yes" class="btn btn-primary" data-dismiss="modal">Update</button>
+		  </div>
+	    </div>
+	  </div>
+	 </div>
 	</div>
 	{% endblock %}
 

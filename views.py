@@ -807,7 +807,7 @@ class TableHerd(Resource):
                return err
         else:
             cursor = cnx.cursor(dictionary=True)
-            update_data=("""UPDATE herds SET AID_string=%(AID_string)s, description=%(description)s, name=%(name)s,
+            update_data=("""UPDATE herds SET AID_string=%(AID_string)s, description=%(description)s, name=%(name)s,end_date=%(end_date)s,
                                      create_date=%(create_date)s where name=%(name)s and create_date=%(create_date)s""")
             #cursor.execute(update_data,data)
             try:

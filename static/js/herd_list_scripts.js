@@ -83,6 +83,7 @@ $('#Edit').click(function() {
 $('#Animal_Add_Modal_Yes').click(function() {
 	var name= $('#Herd_Name').val();
 	var create_date = $('#create_date').val();
+	var end_date = $('#end_date').val();
 	var animals = [];
 	$('select#search_to option').each(function(i,pageelement){
 		animals.push(pageelement.value);
@@ -92,6 +93,7 @@ $('#Animal_Add_Modal_Yes').click(function() {
 		name : name,
 		AID_string : animalstring,
 		create_date : create_date,
+		end_date : end_date,
 		email : $("#email")[0].textContent,
 		string : globalstring,
 		description : globaldescription

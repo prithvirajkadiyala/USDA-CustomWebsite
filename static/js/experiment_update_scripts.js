@@ -1,3 +1,45 @@
+$('.selectallexperiment').click(function() {
+    if ($(this).is(':checked')) {
+        $('.groupaddinput3').attr('checked', true);
+    } else {
+        $('.groupaddinput3').attr('checked', false);
+    }
+});
+
+$('#Update_Yes').click(function(){
+    var log= $('#table').bootstrapTable('getSelections');
+	var name =log[0].name;
+	var jsonattributes = [];
+	var newattributes;
+	$(".groupaddinput3").each(function(i, elem){
+		if($(this).is(":checked")){
+			newattributes = $(elem).val();
+			jsonattributes.push(newattributes);
+		}
+	});
+	var string = JSON.stringify(jsonattributes);
+	var json = {
+		name : name,
+		string : string
+	}
+	var myJSON = JSON.stringify(json);
+	$.ajax({
+		url: '/api/herd/name/',
+		data: myJSON,
+		datatype: 'json',
+		type: 'PATCH',
+		success: function(response) {
+			console.log(response);
+			alert("Data Saved", "info");
+			setTimeout(function() {location.reload()}, 2000);
+		},
+		error: function(error) {
+			console.log(error)
+			$.notify("Data not saved", "danger");
+		}
+	});
+});
+
 $(document).ready(function(){
 	$.ajax({
 		url : '/api/herd/create/',
@@ -12,10 +54,10 @@ $(document).ready(function(){
 				$(value).each(function(i,elem){
 					var string = elem.split("-");
 					attributes += string[1];
-					attributes += " ,";
+					attributes += ",";
 				});
 				elem.string = attributes.replace(/,\s*$/, "");
-				
+
 				var AIDs = JSON.parse(elem.AID_string);
 				elem.AIDs = AIDs;
 				var animalnames = "";
@@ -28,12 +70,12 @@ $(document).ready(function(){
 						success : function(response) {
 							animalnames += response[0].animalname;
 							animalnames += " ,";
-							
+
 						},
 						error: function(response){
 							console.log(response);
 						}
-					});	
+					});
 				});
 				var animalnameslist = animalnames.replace(/,\s*$/ , "");
 				elem.animalname = animalnameslist;
@@ -54,6 +96,22 @@ $(document).ready(function(){
 	};
 });
 
+
+$('#Change').click(function() {
+    var log = $('#table').bootstrapTable('getSelections');
+    if(log == 0){
+        alert("Please select an experiment first");
+    }
+    else{
+        var ids = log[0].string;
+        var units = ids.split(",");
+        $(units).each(function(i,elem){
+        	document.getElementById(elem).checked=true;
+        });
+        $("#Update_Parameters").modal("show");
+    }
+});
+
 $('#Edit').click(function() {
   var log= $('#table').bootstrapTable('getSelections');
   console.log(log);
@@ -64,7 +122,7 @@ $('#Edit_Experiment_Yes').click(function() {
 	var name= $('#name').val();
 		setTimeout(function() {
 		window.location.href = '/experiment/edit?herdname=' +name
-	}, 2000); 
+	}, 2000);
 });
 
 $('#Delete').click(function() {
@@ -85,18 +143,18 @@ $('#Delete').click(function() {
 		success: function(response) {
 			console.log(response);
 			$.notify("Data Saved", "info");
-			setTimeout(function() {location.reload();}, 2000); 
+			setTimeout(function() {location.reload();}, 2000);
 		},
 		error: function(response) {
 			console.log(response);
-			$.notify("Data Not saved", "error");					
+			$.notify("Data Not saved", "error");
 		}
-	});  
+	});
   }
   else{
 	alert("Not deleted");
   }
-  
+
 });
 
 $('#button_Done').click(function() {
@@ -134,11 +192,11 @@ $(function () {
 								},
 								error: function(response) {
 									console.log(response);
-									$.notify("Data Not saved", "error");					
+									$.notify("Data Not saved", "error");
 								}
 							});
 					});
-					
+
                     var table = $("<table />");
                     var rows = e.target.result.split("\n");
                     for (var i = 0; i < rows.length; i++) {

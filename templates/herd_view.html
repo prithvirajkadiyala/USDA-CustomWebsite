@@ -23,6 +23,8 @@
 					<th data-sortable="true" data-field="name" data-filter-control="select">Herd Name</th>
 					<th data-sortable="true" data-field="description">Description</th>
 					<th data-field="create_date">Create Date</th>
+					<th data-field="end_date">End Date</th>
+					<th data-field="comments">Comments</th>
 				</tr>
 			</thead>
 		</table>
@@ -46,10 +48,19 @@
 								<input type="text" name="Herd_Name" id="Herd_Name" value=""/>
 
 								<input type="text" name="create_date" id="create_date" value=""/>
+
 						  </div>
 					  </fieldset>
+					  <div class="enddate">
+					  <label class="control-label col-xs-2" for="end_date">End Date</label>
+				                <div class="input-group col-xs-2">
+				                     <input class="date" id="end_date" placeholder="YYYY-MM-DD" type="text">
+				                </div>
+				      </div>
+				      <br>
 					<div class="row">
 						<div class="col-xs-5">
+
 							<select name="from[]" id="search" class="form-control" size="10" multiple="multiple">
 							</select>
 						</div>

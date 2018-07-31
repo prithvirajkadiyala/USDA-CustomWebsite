@@ -10,9 +10,6 @@
 	<h5>Choose a herd to update values for selected attributes.</h5>
 	<h5>Download the data using export data option.</h5>
 		<div id="toolbar" class="btn-group">
-		<!--<button type="button" id="UploadCSV" class="btn btn-default" >
-			<i class="glyphicon glyphicon-plus" ></i>
-		</button>-->
 	</div>
 	<table id="table"
 		data-search="true"
@@ -20,15 +17,13 @@
 		data-show-refresh="true"
 		data-show-columns="true"
 		data-show-export="true"
-		data-filter-control="true"
-	>
+		data-filter-control="true">
 		<thead>
 			<tr>
 				<th data-field="state" data-checkbox="true"></th>
 				<th data-field="name">Herd Name</th>
 				<th data-field="description">description</th>
 				<th data-field="create_date">Create Date</th>
-				<!--<th data-field="AIDs">Animal IDs</th>-->
 				<th data-field="animalname">Animal names</th>
 				<th data-field="string">Attributes</th>
 
@@ -37,6 +32,7 @@
 	</table>
 
 	<button type="button" class="btn btn-primary btn-lg" id="Edit">Edit</button>
+	<button type="button" class="btn btn-warning btn-lg" id="Change">Change Parameters</button>
 	<button type="button" class="btn btn-danger btn-lg" id="Delete">Delete</button>
 
 	<!-- Modal Expansion code -->
@@ -111,6 +107,52 @@
 		  </div>
 		</div>
 	  </div>
+	</div>
+	<div class="modal fade" id="Update_Parameters" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-lg">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<h5 class="modal-title" id="exampleModalLabel">Update Parameters</h5>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			  <span aria-hidden="true">&times;</span>
+			</button>
+		  </div>
+		  <div class="modal-body">
+		   <div class="container">
+				<h4><input type="checkbox"  class="selectallexperiment">Experiment</h4>
+				<br>
+					<input type="checkbox" class="groupaddinput3" id="sireframescore" value="input-sireframescore">Sire Frame Score<br>
+					<input type="checkbox" class="groupaddinput3" id="weanheight" value="input-weanheight">Wean Height<br>
+					<input type="checkbox" class="groupaddinput3" id="weanweight" value="input-weanweight">Wean Weight<br>
+					<input type="checkbox" class="groupaddinput3" id="weandate" value="date-weandate">Wean Date<br>
+					<input type="checkbox" class="groupaddinput3" id="birthweight" value="input-birthweight">Birth Weight<br>
+					<input type="checkbox" class="groupaddinput3" id="yearlingheight" value="input-yearlingheight">Yearling Height<br>
+					<input type="checkbox" class="groupaddinput3" id="yearlingweight" value="input-yearlingweight">Yearling Weight<br>
+					<input type="checkbox" class="groupaddinput3" id="yearlingdate" value="date-yearlingdate">Yearling Date<br>
+					<input type="checkbox" class="groupaddinput3" id="customweight" value="input-customweight">Custom Weight<br>
+					<input type="checkbox" class="groupaddinput3" id="customweightdate" value="date-customweightdate">Custom Weight Date<br>
+					<input type="checkbox" class="groupaddinput3" id="customheight" value="input-customheight">Custom Height<br>
+					<input type="checkbox" class="groupaddinput3" id="customheightdate" value="date-customheightdate">Custom Height Date<br>
+					<input type="checkbox" class="groupaddinput3" id="blockpen" value="input-blockpen">Block/Pen<br>
+					<input type="checkbox" class="groupaddinput3" id="replicate" value="input-replicate">Replicate<br>
+					<input type="checkbox" class="groupaddinput3" id="backfat" value="input-backfat">Back Fat<br>
+					<input type="checkbox" class="groupaddinput3" id="treatment" value="input-treatment">Treatment<br>
+					<input type="checkbox" class="groupaddinput3" id="adj205w" value="input-adj205w">Adj205w<br>
+					<input type="checkbox" class="groupaddinput3" id="adj205h" value="input-adj205h">Adj205h<br>
+					<input type="checkbox" class="groupaddinput3" id="weanframescore" value="input-weanframescore">Wean Frame Score<br>
+					<input type="checkbox" class="groupaddinput3" id="ageatwean" value="input-ageatwean">Age at Wean<br>
+					<input type="checkbox" class="groupaddinput3" id="adjyearlingw" value="input-adjyearlingw">Adj Yearling Weight<br>
+					<input type="checkbox" class="groupaddinput3" id="adjyearlingh" value="input-adjyearlingh">Adj Yearling Height<br>
+					<input type="checkbox" class="groupaddinput3" id="yearlingframescore" value="input-yearlingframescore">Yearling Frame Score<br>
+					<input type="checkbox" class="groupaddinput3" id="ageatyearling" value="input-ageatyearling">Age at Yearling<br>
+		        </div>
+		    <div class="modal-footer">
+			<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+			<button type="button" id = "Update_Yes" class="btn btn-primary" data-dismiss="modal">Update</button>
+		  </div>
+	    </div>
+	  </div>
+	 </div>
 	</div>
 	{% endblock %}
 
