@@ -94,6 +94,7 @@ $('#Edit').click(function() {
 				if($('select#Medical_ID option[value="'+elem.drug+'"]').length >0){
 					if(elem.drug == log[0].drug){
 						document.getElementById('Medical_ID').value =elem.drug;
+
 					}
 				}
 				else{

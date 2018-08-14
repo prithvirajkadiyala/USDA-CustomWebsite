@@ -34,10 +34,12 @@ $('#CreateHerdButton').click(function(e) {
 		url: '/api/herd/create/',
 		data: myJSON,
 		datatype: 'json',
-		type: 'POST',
+		type: 'POST'
+		async: false,
 		success: function(response) {
 			console.log(response);
-			$.notify("Data Saved", "info");
+			$.notify("Data Saved", "info")
+			alert("Herd Created");
 			setTimeout(location.reload(), 3000);
 
 		},
@@ -45,7 +47,8 @@ $('#CreateHerdButton').click(function(e) {
 			console.log(error)
 			$.notify("Data not saved", "danger");
 		}
-	});
+	})
+	location.reload();
 });
 
 

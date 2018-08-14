@@ -22,41 +22,48 @@ $(document).ready(function(){
 			console.log(error);
 			$.notify("Group number doesnt exist", "danger");
 		}
-	});	
+	});
 });
 
 $('#create_experiment').click(function(){
 	var name = $('#name').val();
-	var jsonattributes = [];	
-	var newattributes;	
+	var jsonattributes = [];
+	var newattributes;
 	$(".groupaddinput3").each(function(i, elem){
 		if($(this).is(":checked")){
 			newattributes = $(elem).val();
 			jsonattributes.push(newattributes);
 		}
+
 	});
 	var string = JSON.stringify(jsonattributes);
-	var json = {
-		name : name,
-		string : string
+	if (string == "[]"){
+	    alert("Please select some attributes");
 	}
-	var myJSON = JSON.stringify(json);
-	$.ajax({
-		url: '/api/herd/name/',
-		data: myJSON,
-		datatype: 'json',
-		type: 'PATCH',
-		success: function(response) {
-			console.log(response);
-			alert("Data Saved", "info");
-			setTimeout(function() {
-				window.location.href = '/experiment/edit?herdname='+name
-			}, 2000); 
-		},
-		error: function(error) {
-			console.log(error)
-			$.notify("Data not saved", "danger");
-		}
-	});
+	else{
+	    var json = {
+    		name : name,
+    		string : string
+    	}
+    	var myJSON = JSON.stringify(json);
+    	$.ajax({
+    		url: '/api/herd/name/',
+    		data: myJSON,
+    		datatype: 'json',
+    		type: 'PATCH',
+    		success: function(response) {
+    			console.log(response);
+    			alert("Data Saved", "info");
+    			setTimeout(function() {
+    				window.location.href = '/experiment/edit?herdname='+name
+    			}, 2000);
+    		},
+    		error: function(error) {
+    			console.log(error)
+    			$.notify("Data not saved", "danger");
+    		}
+    	});
+	}
+
 });
 

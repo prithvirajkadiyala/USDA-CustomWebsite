@@ -8,7 +8,9 @@ $(document).ready(function(){
 			console.log(data);
 			$(data).each(function(i,elem){
 				elem.date = StringToDate(elem.date);
+				elem.total = elem.cow_count+elem.bull_count+elem.calf_count;
 			});
+
 			tablecall(data);
 		},
 		error: function(response){
@@ -36,7 +38,7 @@ var columns = [
     "rowspan": 2
   }, {
     "title": "Pasture",
-    "colspan": 10,
+    "colspan": 14,
     "rowspan": 1
   }, {
     "field": "comments",
@@ -71,6 +73,26 @@ var columns = [
   }, {
     "field": "sub_pasture",
     "title": "Sub Pasture",
+    "colspan": 1,
+    "rowspan": 1
+  }, {
+    "field": "total",
+    "title": "Total Animals",
+    "colspan": 1,
+    "rowspan": 1
+  }, {
+    "field": "cow_count",
+    "title": "Cows",
+    "colspan": 1,
+    "rowspan": 1
+  }, {
+    "field": "bull_count",
+    "title": "Bulls",
+    "colspan": 1,
+    "rowspan": 1
+  }, {
+    "field": "calf_count",
+    "title": "Calves",
     "colspan": 1,
     "rowspan": 1
   }, {
@@ -190,6 +212,9 @@ $('#Edit').click(function() {
 	    var string = log[0].pasture_ID +"-"+log[0].pasturenumber
 		document.getElementById('pasture_number').value = string;
         $("#sub_pasture").val(log[0].sub_pasture);
+        $("#cows").val(log[0].cow_count);
+        $("#bulls").val(log[0].bull_count);
+        $("#calf").val(log[0].calf_count);
         $("#general_appearance option:selected").text(log[0].general_appearance);
         $("#livestock option:selected").text(log[0].live_stock);
         $("#date").val(StringToDate(log[0].date));
@@ -226,6 +251,9 @@ $("#Inspection_Submit").click(function(){
 	var data = {
 		pasture_ID : res[0],
 		report_ID : log[0].report_ID,
+		cow_count : $("#cows").val(),
+		bull_count : $("#bulls").val(),
+		calf_count : $("#calf").val(),
 		general_appearance : $("#general_appearance option:selected").text(),
 		live_stock : $("#livestock option:selected").text(),
 		date : $("#date").val(),
@@ -272,6 +300,9 @@ $("#Inspection_Submit_Building").click(function(){
 		pasture_ID : 0,
 		report_ID : log[0].report_ID,
 		sub_pasture : 0,
+		cow_count : 0,
+		bull_count : 0,
+		calf_count : 0,
 		live_stock : 0,
 		animal_condition : 0,
 		fencing : 0,

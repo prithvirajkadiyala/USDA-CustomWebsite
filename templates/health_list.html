@@ -37,7 +37,9 @@
 		</table>
 		<br>
 		<button type="button" class="btn btn-primary btn-lg" id="Edit">Edit</button>
+		{% if session['roles'] == "ADMIN" %}
 		<button type="button" class="btn btn-danger btn-lg" id="Delete">Delete</button>
+		{% endif %}
 		<div class="modal fade" id="HealthEditModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 		  <div class="modal-dialog modal-lg">
 			<div class="modal-content">

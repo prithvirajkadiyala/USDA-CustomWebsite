@@ -95,17 +95,17 @@ def register():
     else:
         print >> sys.stderr, 'Registering...'
         name = request.form['name']
+        last_name = request.form['last_name']
         email = request.form['email']
+        roles = request.form['roles']
+        registered_at = request.form['registered_at']
         password = sha256_crypt.encrypt((str(request.form['password'])))
         cur = cnx.cursor(dictionary=True)
-        cur.execute("INSERT INTO login (first_name, email_id, password) VALUES (%s,%s,%s)",(name,email,password,))
+        cur.execute("INSERT INTO login (first_name,last_name, email_id, password,roles,registered_at) VALUES (%s,%s,%s,%s,%s)",(name,last_name,email,password,roles,registered_at,))
         print("here after execute")
         cnx.commit()
-        session['name'] = request.form['name']
-        session['email'] = request.form['email']
-        session['logged_in'] = True
         print >> sys.stderr, 'Returning...'
-        return redirect(url_for('home'))
+        return "Success", 201
 
 @app.route('/login',methods=["GET","POST"])
 def login():
@@ -115,12 +115,14 @@ def login():
         cur = cnx.cursor(dictionary=True)
         cur.execute("SELECT * FROM login WHERE email_id=%s",(email,))
         user = cur.fetchone()
+        print >> sys.stderr, user
         try:
             if len(user) > 0:
                 try:
                     if sha256_crypt.verify(password, user["password"]):
                         session['name'] = user["first_name"]
                         session['email'] = user["email_id"]
+                        session['roles'] = user["roles"]
                         session['logged_in'] = True
                         return redirect(url_for('home'))
                     else:
@@ -166,6 +168,11 @@ def changepassword():
         cnx.close()
     else:
         return render_template("Change_Password.html")
+
+@app.route('/user/list', methods=["GET", "POST","PATCH","DELETE"])
+@login_required
+def user():
+    return render_template("userlist.html")
 
 @app.route("/logout")
 def logout():

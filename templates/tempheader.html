@@ -247,6 +247,7 @@ ul.list-group  li a:hover, ul li a:focus {
           <li><a href="/ChangePassword">Change Password</a></li>
         </ul>
       </li>
+      <li><a>{{session['roles']}}</a></li>
       <li><a href="/logout"> <span class="glyphicon glyphicon-log-out"></span> Signout &nbsp;</a></li>
       {% else %}
       <li><a href="/register"> <span class="glyphicon glyphicon-user"></span> Register &nbsp;</a></li>
@@ -360,6 +361,19 @@ ul.list-group  li a:hover, ul li a:focus {
             </ul>
           </div>
         </div>
+        {% if session['roles'] == "ADMIN" or session['roles'] == "SUPERUSER" %}
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title"> <a data-toggle="collapse" data-parent="#accordion" href="#collapseNine"><span class="glyphicon glyphicon-user"></span>User Management<span class="caret"></span></a></h4>
+          </div>
+          <div id="collapseNine" {% block User %} class="panel-collapse collapse" {% endblock %}>
+            <ul class="list-group">
+              <li><a class="navlink" href="/user/list">Users List</a></li>
+              <li><a class="navlink" href="/user/add">Add User</a></li>
+            </ul>
+          </div>
+        </div>
+        {% endif %}
       </div>
     </div>
   </div>

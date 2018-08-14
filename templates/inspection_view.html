@@ -7,6 +7,8 @@
 	{% block main %}
 	<div id="Notification area"></div>
 	<h1>Inspection Report List</h1>
+	<h5>Select a record to edit and also download the data using export data option</h5>
+
 
 	<table id="table"
 		data-search="true"
@@ -52,6 +54,20 @@
                     						   <input class="date form-control" id="date" name="date" placeholder="MM/DD/YYYY" type="text"/>
                     						</div>
                     					</div>
+                    					<div class="form-group">
+                    				        <label for="bulls" class="control-label col-xs-1">Bulls</label>
+                    				        <div class="col-xs-2">
+                    						  <input type="text "class="form-control" id="bulls" placeholder="Bulls">
+                    						</div>
+                    						<label for="cows" class="control-label col-xs-1">Cows</label>
+                    				        <div class="col-xs-2">
+                    						  <input type="text "class="form-control" id="cows" placeholder="Cows">
+                    						</div>
+                    						<label for="calf" class="control-label col-xs-1">Calf</label>
+                    				        <div class="col-xs-2">
+                    						  <input type="text "class="form-control" id="calf" placeholder="Calf">
+                    						</div>
+                    				    </div>
                     					<div class="form-group">
                     						<label for="general_appearance" class="control-label col-xs-1">General Appearance</label>
                     						<div class="col-xs-2">
@@ -277,7 +293,7 @@
 		</div>
 	</div>
 
-	<p>Click on specific report to expand/ View will be added soon</p>
+
 	{% endblock %}
 
 {% block Inspection %} class="panel-collapse collapse in" {% endblock %}

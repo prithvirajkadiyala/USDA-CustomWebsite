@@ -45,7 +45,7 @@ $('#Edit').click(function() {
   if (r = 1){
 	setTimeout(function() {
 		window.location.href = '/animal/update?animalname=' + log[0].animalname
-	}, 2000); 
+	}, 2000);
   }
   else{
 	alert("Not Edited");
@@ -71,7 +71,7 @@ $('#Delete').click(function() {
 	});
 	setTimeout(function() {
 		location.reload();
-	}, 2000); 
+	}, 2000);
   }
   else{
 	alert("Not Deleted");
@@ -93,28 +93,87 @@ $(function () {
         if (regex.test($("#fileUpload").val().toLowerCase())) {
             if (typeof (FileReader) != "undefined") {
                 var reader = new FileReader();
+                var update;
                 reader.onload = function (e) {
-					var data=$.csv.toObjects(e.target.result);
-					console.log(data);
-					$(data).each(function(i, elem){
-							var dataJson = JSON.stringify(elem);
-							console.log(dataJson);
-							$.ajax({
-								url: '/api/animal/add/',
-								data: dataJson,
-								type: 'post',
-								dataType: 'json',
-								success: function(response) {
-									console.log(response);
-									$.notify("Data Saved", "info");
-								},
-								error: function(response) {
-									console.log(response);
-									$.notify("Data Not saved", "error");					
-								}
-							});
-					});
-					
+					var UploadedFile=$.csv.toObjects(e.target.result);
+					console.log(UploadedFile);
+					$.ajax({
+            		url : '/api/test/',
+            		type : 'GET',
+            		dataType : 'json',
+            		async: false,
+            		success : function(data) {
+            			console.log(data);
+            			$(UploadedFile).each(function(i, elem){
+            			    $(data).each(function(j,element){
+            			        if(element.animalname == elem.animalname){
+                                    $.each(elem, function(k, v) {
+                                        element[k] = elem[k];
+                                        console.log(element[k]);
+                                        console.log(elem[k]);
+                                    });
+                                    element["email_id"]= $("#email")[0].textContent;
+                                    element["pasture_ID"] = null;
+                                    var dataJson = JSON.stringify(element);
+        							console.log(element);
+        							$.ajax({
+                        				url: '/api/animal/update/'+element.Animal_ID,
+                        				data: dataJson,
+                        				datatype: 'json',
+                        				type: 'PATCH',
+                        				success: function(response) {
+                        					console.log(response);
+                        					$.notify("Data Saved", "info");
+                        				},
+                        				error: function(error) {
+                        					console.log(error)
+                        					$.notify("Data not saved", "danger");
+                        				}
+                        			});
+                        		update=true;
+                        		return true;
+
+            			        }
+    					    });
+    					    if(update == 1){
+    					        update = false;
+    					        return true;
+    					    }
+    					    else{
+    					        var element = data[0];
+        					    $.each(element, function(k, v) {
+                                    if(elem[k]){
+                                        element[k] = elem[k];
+                                    }
+                                    else{
+                                        element[k] = null;
+                                    }
+                                    console.log(element[k]);
+                                });
+                                element["pasture_ID"]= null;
+    							var dataJson = JSON.stringify(element);
+    							console.log(dataJson);
+    							$.ajax({
+    								url: '/api/animal/add/',
+    								data: dataJson,
+    								type: 'post',
+    								dataType: 'json',
+    								success: function(response) {
+    									console.log(response);
+    									$.notify("Data Saved", "info");
+    								},
+    								error: function(response) {
+    									console.log(response);
+    									$.notify("Data Not saved", "error");
+    								}
+    							});
+    					    }
+            			});
+            		},
+            		error: function(response){
+            			console.log(response);
+            		}
+            	});
                     var table = $("<table />");
                     var rows = e.target.result.split("\n");
                     for (var i = 0; i < rows.length; i++) {
