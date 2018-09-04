@@ -18,28 +18,78 @@ h1 { color: #f2f2f2;}
 h3 {color:A2DEF7;}
 </style>
 {% block main %}
-<h1 align="center"> Welcome to USDA Barnyard</h1>
+<!--<h1 align="center"> Welcome to USDA Barnyard</h1>-->
 
-<img src="/static/images/mainscreen.jpeg" alt="Paris" class="center">
+<div class="container">
+  <h2 align="center"><strong><span style='color: blue'>G</span>razinglands <span style='color: blue'>R</span>esearch <span style='color: blue'>L</span>aboratory - <span style='color: blue'>W</span>eb-based <span style='color: blue'>A</span>nimal <span style='color: blue'>M</span>anagement <span style='color: blue'>S</span>ystem <br>(GRL-WAMS)<strong></h2>
+  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+      <div class="item active">
+        <img src="/static/images/la.jpg" alt="Los Angeles" style="width:100%;height:80%;">
+      </div>
+
+      <div class="item">
+        <img src="/static/images/chicago.jpg" alt="Chicago" style="width:80%;height:80%;">
+      </div>
+
+      <div class="item">
+        <img src="/static/images/ny.jpg" alt="New york" style="width:80%;height:80%;">
+      </div>
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+</div>
 <br>
-<h4 align="center">"Research is at it's top speed,come on let's explore more..."</h4>
-<!--
-<div class="row text-center">
-  <div class="col-xs-8 col-xs-offset-2" style="margin-bottom:50px;">
-	<div class="input-group" style="margin auto;">
-	  <span class="input-group-addon" name="searchradios">
-		  <input type="radio" name="identifier" value="animalname" checked="checked">Animal Name
-		  <input type="radio" name="identifier" value="cownumber">Animal Number
-		  <input type="radio" name="identifier" value="eid">EID
-		  <input type="radio" name="identifier" value="groupnumber">Herd Name
-		  <input type="radio" name="identifier" value="reportnumber">Report Number
+ <div class="panel panel-primary"style="position: relative;
+    left: 20px;width:30%">
+      <div class="panel-heading">Upcoming Events & News! </div>
+      <div class="panel-body" id="usdaevents">
+          <a><ul>Soil Testing</ul></a><br>
+          <a><ul>Experiment on grazing animals</ul></a><br>
+      </div>
+    </div>
+    <form class="form-inline" onsubmit="openModal()" id="myForm">
+    <button type="submit" align="right;" class="btn btn-primary">Add Event</button>
+  	<script type = "text/javascript" src="{{url_for('static', filename= 'js/temppage.js')}}"></script>
+</form>
 
-	  </span>
-	  <input type="text" class="form-control" id="cowSearch" name="cowsearch" placeholder="Animal Number / Herd Name">
-	  <span class="input-group-btn"><input type="submit" class="btn" value="Search" id ="search"></span>
-	</div>--><!-- /input-group -->
-  <!--</div> /.col-xs-8 -->
-<!--</div> /.row -->
+<div class="modal fade" tabindex="-1" role="dialog" id="myModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Enter new Event</h4>
+      </div>
+      <div class="modal-body">
+        <textarea rows="4" cols="50" id="eventtext"></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="saveevent()">Save changes</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!--<h4 align="center">"Research is at it's top speed,come on let's explore more..."</h4>-->
+
 {% endblock %}
 </body>
 </html>
