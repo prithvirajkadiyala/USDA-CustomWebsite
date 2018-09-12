@@ -42,7 +42,7 @@ $('#Edit').click(function() {
   var log= $('#table').bootstrapTable('getSelections');
   console.log(log);
   var result = alertbox("Please click 'OK' if you want to EDIT the following animal\n'"+log[0].Animal_ID +"' named as '"+ log[0].animalname +"'\nClick 'Cancel' if not");
-  if (r = 1){
+  if (result == 1){
 	setTimeout(function() {
 		window.location.href = '/animal/update?animalname=' + log[0].animalname
 	}, 2000);

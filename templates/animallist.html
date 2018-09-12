@@ -2,16 +2,42 @@
 
 <html>
 <head><title>{% block title %}Animal List{% endblock %}</title>
+{% block style %}
+
+#table{
+    border-radius: 25px;
+    background: url(paper.gif);
+    background-position: left top;
+    background-repeat: repeat;
+    background-color:#E3E3AB;
+    border-radius: 25px;
+    padding: 20px;
+    width: 200px;
+    height: 150px;
+    border:5px solid black;
+    color:black;
+}
+
+.no-filter-control{
+border-bottom: 2px solid black;
+}
+
+tr,th, td {
+    border: 1px solid black;
+
+}
+
+{% endblock %}
 </head>
 <body>
 
 	{% block main %}
 	<div id="Notification area"></div>
-	<h1>Animal List</h1>
-	<h5>Click on '+' icon to upload csv files.</h5>
-	<h5>Select a record to edit or delete,download the data using export data option</h5>
+<center style="font-size:40px;color:blue;font-weight: bold;">Animal List</center>
+	<h5 style="font-weight: bold;">Click on '+' icon to upload csv files.</h5>
+	<h5 style="font-weight: bold;">Select a record to edit or delete,download the data using export data option</h5>
 
-	<div id="toolbar" class="btn-group">
+	<div id="toolbar" class="btn-group" >
 		<button type="button" id="UploadCSV" class="btn btn-default" >
 			<i class="glyphicon glyphicon-plus" ></i>
 		</button>
@@ -21,55 +47,59 @@
 		data-pagination="true"
 		data-show-refresh="true"
 		data-show-columns="true"
+		data-click-to-select="true"
 		data-show-export="true"
 		data-filter-control="true"
 	>
-		<thead>
+		<thead >
 			<tr>
 				<th data-field="state" data-checkbox="true" id="selectall"></th>
 				<th data-sortable="true" data-field="Animal_ID">Database ID</th>
-				<th data-sortable="true" data-field="animalname" data-filter-control="input">Animal Name</th>
+				<th data-sortable="true" data-field="animalname" >Animal Name</th>
 				<th data-field="eartag">Ear Tag</th>
 				<th data-field="eid" class="w150">EID</th>
-				<th data-field="sire" class="w200">sire</th>
+				<th data-field="sire" class="w200">Sire</th>
 				<th data-field="dam" class="w200">Dam</th>
 				<th data-field="DOB" class="w200">DOB</th>
 
-				<th data-field="alternativeid">alternativeid</th>
-				<th data-field="animaltype">animaltype</th>
-				<th data-field="brand">brand</th>
-				<th data-field="brandlocation">brandlocation</th>
-				<th data-field="breed" class="w100">breed</th>
-				<th data-field="breeder" class="w200">breeder</th>
-				<th data-field="color">color</th>
-				<th data-field="comments">comments</th>
-				<th data-field="current_expt_no">current_expt_no</th>
+				<th data-field="alternativeid">Alternative ID</th>
+				<th data-field="animaltype">Animal type</th>
+				<th data-field="brand">Brand</th>
+				<th data-field="brandlocation">Brandlocation</th>
+				<th data-field="breed" class="w100">Breed</th>
+				<th data-field="breeder" class="w200">Breeder</th>
+				<th data-field="color">Color</th>
+				<th data-field="comments">Comment</th>
 
-				<th data-field="dateacquired">dateacquired</th>
-				<th data-field="datedisposed">datedisposed</th>
-				<th data-field="disposalreason">disposalreason</th>
 
-				<th data-field="gender" data-filter-control="select">gender</th>
+				<th data-field="dateacquired">Date acquired</th>
+				<th data-field="datedisposed">Date disposed</th>
+				<th data-field="disposalreason">Disposal reason</th>
 
-				<th data-field="herdnumberlocation">herdnumberlocation</th>
-				<th data-field="herdstatus">herdstatus</th>
-				<th data-field="hornstatus">hornstatus</th>
-				<th data-field="howacquired">howacquired</th>
-				<th data-field="howconceived">howconceived</th>
-				<th data-field="howdisposed">howdisposed</th>
-				<th data-field="includeinlookups">includeinlookups</th>
-				<th data-field="managementcode">managementcode</th>
-				<th data-field="ownerID" class="w200">ownerID</th>
+				<th data-field="gender" >Gender</th>
 
-				<th data-field="registration">registration</th>
-				<th data-field="sex">sex</th>
-				<th data-field="species">species</th>
-				<th data-field="springfall">springfall</th>
-				<th data-field="status">status</th>
-				<th data-field="tattooleft">tattooleft</th>
-				<th data-field="tattooright">tattooright</th>
-                <th data-field="email_id" data-filter-control="select">email_id</th>
+				<th data-field="herdnumberlocation">Herd#</th>
+				<th data-field="herdstatus">Herd status</th>
+				<th data-field="hornstatus">Horn status</th>
+				<th data-field="howacquired">How acquired</th>
+				<th data-field="howconceived">How conceived</th>
+				<th data-field="howdisposed">How disposed</th>
+				<th data-field="includeinlookups">Include-in-lookups</th>
+				<th data-field="managementcode">Management code</th>
+				<th data-field="ownerID" class="w200">OwnerID</th>
+
+				<th data-field="registration">Registration</th>
+				<th data-field="sex">Sex</th>
+				<th data-field="species">Species</th>
+				<th data-field="springfall">Springfall</th>
+				<th data-field="status">Status</th>
+				<th data-field="tattooleft">Tattoo-left</th>
+				<th data-field="tattooright">Tattoo-right</th>
+                <th data-field="email_id" >Email ID</th>
 				<!--<th data-field="pasturenumber">pasture number</th>
+				data-filter-control="input"
+				data-filter-control="select"
+				<th data-field="current_expt_no">current_expt_no</th>
 				<th data-field="sub_pasture">Sub pasture</th>
 				<th data-field="weight">weight</th>
 				<th data-field="currentframescore">currentframescore</th>
@@ -80,8 +110,8 @@
 		</thead>
 	</table>
 
-	<button type="button" class="btn btn-primary btn-lg" id="Edit">Edit</button>
-	<button type="button" class="btn btn-danger btn-lg" id="Delete">Delete</button>
+	<button type="button" class="btn btn-primary btn-lg" id="Edit" >Edit</button>
+	<button type="button" class="btn btn-danger btn-lg" id="Delete" >Delete</button>
 	<ul id="output"></ul>
 
 	<div class="modal fade" id="AnimalEditModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">

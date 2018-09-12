@@ -8,20 +8,19 @@
     margin-right: auto;
     width: 50%;
 }
+
+h1 { color: #f2f2f2;}
+h3 { color: #A2DEF7; }
 {% endblock %}
 <head><title>{% block title %}Searchpage{% endblock %}</title>
 
 </head>
 <body>
-<style>
-h1 { color: #f2f2f2;}
-h3 {color:A2DEF7;}
-</style>
 {% block main %}
 <!--<h1 align="center"> Welcome to USDA Barnyard</h1>-->
 
 <div class="container">
-  <h2 align="center"><strong><span style='color: blue'>G</span>razinglands <span style='color: blue'>R</span>esearch <span style='color: blue'>L</span>aboratory - <span style='color: blue'>W</span>eb-based <span style='color: blue'>A</span>nimal <span style='color: blue'>M</span>anagement <span style='color: blue'>S</span>ystem <br>(GRL-WAMS)<strong></h2>
+  <!--<h2 align="center"><strong><span style='color: blue'>G</span>razinglands <span style='color: blue'>R</span>esearch <span style='color: blue'>L</span>aboratory - <span style='color: blue'>W</span>eb-based <span style='color: blue'>A</span>nimal <span style='color: blue'>M</span>anagement <span style='color: blue'>S</span>ystem <br>(GRL-WAMS)<strong></h2>-->
   <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
@@ -55,21 +54,21 @@ h3 {color:A2DEF7;}
       <span class="sr-only">Next</span>
     </a>
   </div>
-</div>
-<br>
- <div class="panel panel-primary"style="position: relative;
-    left: 20px;width:30%">
-      <div class="panel-heading">Upcoming Events & News! </div>
+  <div class="panel panel-primary" style="width:50%;margin-top: 20px;">
+      <div class="panel-heading" style="background-color:#FFC300 !important;">Upcoming Events &amp; News! </div>
       <div class="panel-body" id="usdaevents">
           <a><ul>Soil Testing</ul></a><br>
           <a><ul>Experiment on grazing animals</ul></a><br>
       </div>
     </div>
     <form class="form-inline" onsubmit="openModal()" id="myForm">
-    <button type="submit" align="right;" class="btn btn-primary">Add Event</button>
-  	<script type = "text/javascript" src="{{url_for('static', filename= 'js/temppage.js')}}"></script>
-</form>
+        <button type="submit" align="right;" class="btn btn-primary">Add Event</button>
+      	<script type = "text/javascript" src="{{url_for('static', filename= 'js/temppage.js')}}"></script>
+    </form>
+</div>
+<div class="container">
 
+</div>
 <div class="modal fade" tabindex="-1" role="dialog" id="myModal">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
