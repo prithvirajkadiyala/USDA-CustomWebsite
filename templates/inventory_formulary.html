@@ -1,16 +1,50 @@
 {% extends "tempheader.html" %}
 
 <html>
-<head><title>{% block title %}Formulary Inventory{% endblock %}</title></head>
+<head><title>{% block title %}Formulary Inventory{% endblock %}</title>
+{% block style %}
+
+#table{
+    background: url(paper.gif);
+    background-position: left top;
+    background-repeat: repeat;
+    background-color:#F3F1DA;
+    padding: 20px;
+    border:2px solid black;
+    color:black;
+}
+
+
+.table tbody tr:hover td, .table tbody tr:hover th {
+    background-color:#67C699;
+    cursor:pointer;
+    }
+
+.selected {
+   background-color:#F3F1DA !important;
+}
+<!--.no-filter-control{
+border-bottom: 2px solid black;
+
+}
+
+tr,th, td {
+    border: 1px black;
+
+}-->
+{% endblock %}
+</head>
 <body>
 
 	{% block main %}
+		<div class="container">
 	<div id="Notification area"></div>
 	<h1>Welcome to Formulary</h1>
 	<h5>Click on Add New Entry to add a new record</h5>
 	<h5>Select a record to edit or delete,download the data using export data option</h5>
-		<div class="form-group" style="margin-top:15px; margin-bottom:50px;">
+		<div class="form-group" style="margin-top:15px; margin-bottom:30px;">
 			<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#AddNew">Add New Entry</button>
+		</div>
 		</div>
 
 		<div class="container">
@@ -24,9 +58,9 @@
 				<thead>
 					<tr>
 						<th data-field="state" data-checkbox="true" id="selectall"></th>
-						<th data-field="Medicine_ID">Database ID</th>
+						<!--<th data-field="Medicine_ID">Database ID</th>-->
 						<th data-field="date">Entry Date</th>
-						<th data-sortable="true" data-field="drug" data-filter-control="select">Drug Name</th>
+					    <th data-sortable="true" data-field="drug">Drug Name</th>
 						<th data-field="vial_size">Vial Size</th>
 						<th data-field="Lot_no">Lot Number</th>
 						<th data-field="expirydate">Expiry Date</th>

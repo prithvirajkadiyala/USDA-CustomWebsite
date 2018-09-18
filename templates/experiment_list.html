@@ -5,6 +5,7 @@
 <body>
 
 	{% block main %}
+
 	<div id="Notification area"></div>
 	<h1>Experiment List</h1>
 	<h5>Click on '+' icon to upload csv files.</h5>
@@ -14,9 +15,12 @@
 			<i class="glyphicon glyphicon-plus" ></i>
 		</button>
 	</div>
+	<div style="background: linear-gradient(to bottom, rgba(220,251,210,1) 1%,rgba(201,193,144,1) 40%,rgba(183,173,112,1) 83%,rgba(216,239,197,1) 100%);">
 	<table id="table"
 		data-search="true"
 		data-pagination="true"
+		data-striped="true"
+		data-smart-display="true"
 		data-show-refresh="true"
 		data-show-columns="true"
 		data-show-export="true"
@@ -30,7 +34,7 @@
 				<th data-field="expt_name">expt_name</th>
 				<th data-field="animalname">animalname</th>
 				<th data-field="animaltype">animaltype</th>
-				<th data-field="herd" class="w100" data-filter-control="select">Herd</th>
+				<th data-field="herd" class="w200">Herd</th>
 				<th data-field="pasture_ID">pasture number</th>
 				<th data-field="currentframescore">currentframescore</th>
 				<th data-field="damframescore">damframescore</th>
@@ -76,7 +80,7 @@
 			</tr>
 		</thead>
 	</table>
-
+    </div>
 	<button type="button" class="btn btn-primary btn-lg" id="Edit">Edit</button>
 	<button type="button" class="btn btn-danger btn-lg" id="Delete">Delete</button>
 	<div class="modal fade" id="UploadCSVModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">

@@ -1,10 +1,45 @@
 {% extends "tempheader.html" %}
 
 <html>
-<head><title>{% block title %}Pasture Management{% endblock %}</title></head>
+<head><title>{% block title %}Pasture Management{% endblock %}</title>
+{% block style %}
+
+#table{
+    background: url(paper.gif);
+    background-position: left top;
+    background-repeat: repeat;
+    background-color:#67C699;
+    padding: 20px;
+    border:2px solid black;
+    color:black;
+}
+
+
+.table tbody tr:hover td, .table tbody tr:hover th {
+    background-color:#F3F1DA;
+    cursor:pointer;
+    }
+
+.selected {
+   background-color:#F3F1DA !important;
+}
+
+<!--.no-filter-control{
+border-bottom: 2px solid black;
+
+}
+
+tr,th, td {
+    border: 1px black;
+
+}-->
+
+{% endblock %}
+</head>
 <body>
 
 	{% block main %}
+		<div class="container">
 	<div id="Notification area"></div>
 	<h1>Welcome to Pasture Management</h1>
 	<h5>Click on Add New Entry to add a new record</h5>
@@ -12,11 +47,12 @@
 	<div class="form-group" style="margin-top:15px; margin-bottom:50px;">
 		<button type="button" class="btn btn-primary btn-lg" id="Add_New">Add New Entry</button>
 	</div>
-	<div id="toolbar" class="btn-group">
-		<button type="button" id="UploadCSV" class="btn btn-default" >
-			<i class="glyphicon glyphicon-plus" ></i>
+	<div id="toolbar" class="btn-group" align="center">
+		<button type="button" id="UploadCSV" class="btn btn-default">
+			<i class="glyphicon glyphicon-plus"></i>
 		</button>
 	</div>
+</div>
 	<div class="container">
 	<table id="table"
 		data-search="true"
@@ -29,9 +65,9 @@
 		<thead>
 			<tr>
 				<th data-field="state" data-checkbox="true" id="selectall"></th>
-				<th data-sortable="true" data-field="pasturenumber" data-filter-control="select">Pasture Number</th>
+				<th data-sortable="true" data-field="pasturenumber">Pasture Number</th>
 				<th data-field="sub_pasture">Sub pasture</th>
-				<th data-field="event_date" class="w200">Date</th>
+				<th data-field="event_date" class="w100">Date</th>
 				<th data-field="qualityofburn">Quality of Burn</th>
 				<th data-field="chemicalname">Chemical Name</th>
 				<th data-field="pesticide_method">Herbicide Method</th>
@@ -46,7 +82,7 @@
 	</table>
 
 	<button type="button" class="btn btn-primary btn-lg" id="Edit">Edit</button>
-	<button type="button" class="btn btn-secondary btn-lg" id="Delete">Delete</button>
+	<button type="button" class="btn btn-danger btn-lg" id="Delete">Delete</button>
 
 	<!-- Modal Expansion code -->
 	<div class="modal fade" id="PastureEditModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -267,6 +303,7 @@
 			  </div>
 			</div>
 		  </div>
+		</div>
 		</div>
 	{% endblock %}
 
