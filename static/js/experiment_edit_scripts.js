@@ -35,7 +35,7 @@ $(document).ready(function(){
 					$("<div class='form-group'>").appendTo("#newfields");
 					if(each[0] == "drop"){
 						var toappend = "<label for="+each[1]+" class='control-label col-xs-2'>"+each[1]+"</label>";
-						toappend += "<div class='col-xs-2'><select name='"+each[1]+"' class='form-control' id="+each[1]+">";
+						toappend += "<div class='col-xs-4'><select name='"+each[1]+"' class='form-control' id="+each[1]+">";
 						toappend += "<option></option>";
 						toappend += elemvalues(each[1]);
 						toappend += "</select></div>";
@@ -43,12 +43,12 @@ $(document).ready(function(){
 					}
 					else if(each[0] == "date"){
 						var toappend = "<label for='date' class='control-label col-xs-2' style='align-right'>"+each[1]+"</label>";
-						toappend += "<div class='input-group col-xs-2'><input class='date form-control' id="+each[1]+" name="+each[1]+" placeholder='YYYY-MM-DD' type='text'/></div>";
+						toappend += "<div class='input-group col-xs-4'><input class='date form-control' id="+each[1]+" name="+each[1]+" placeholder='YYYY-MM-DD' type='text'/></div>";
 						toappend += "<script>$('#"+ each[1] +"').flatpickr({});</script>";
 						$(toappend).appendTo("#newfields");
 					}
 					else{
-						$("<label for="+ each[1] +" class='control-label col-xs-2'>"+each[1] +"</label><div class='col-xs-2'><input type='text' class='form-control' id="+ each[1] +" name="+ each[1] +"></div>").appendTo("#newfields");
+						$("<label for="+ each[1] +" class='control-label col-xs-2'>"+each[1] +"</label><div class='col-xs-4'><input type='text' class='form-control' id="+ each[1] +" name="+ each[1] +"></div>").appendTo("#newfields");
 					}
 				}
 				else if(i%2 == 0){
@@ -56,7 +56,7 @@ $(document).ready(function(){
 					$("<div class='form-group'>").appendTo("#newfields");
 					if(each[0] == "drop"){
 						var toappend = "<label for="+each[1]+" class='control-label col-xs-2'>"+each[1]+"</label>";
-						toappend += "<div class='col-xs-2'><select name='"+each[1]+"' class='form-control' id="+each[1]+">";
+						toappend += "<div class='col-xs-4'><select name='"+each[1]+"' class='form-control' id="+each[1]+">";
 						toappend += "<option></option>";
 						toappend += elemvalues(each[1]);
 						toappend += "</select></div>";
@@ -64,18 +64,18 @@ $(document).ready(function(){
 					}
 					else if(each[0] == "date"){
 						var toappend = "<label for='date' class='control-label col-xs-2' style='align-right'>"+each[1]+"</label>";
-						toappend += "<div class='input-group col-xs-2'><input class='date form-control' id="+each[1]+" name="+each[1]+" placeholder='YYYY-MM-DD' type='text'/></div>";
+						toappend += "<div class='input-group col-xs-4'><input class='date form-control' id="+each[1]+" name="+each[1]+" placeholder='YYYY-MM-DD' type='text'/></div>";
 						toappend += "<script>$('#"+ each[1] +"').flatpickr({});</script>";
 						$(toappend).appendTo("#newfields");
 					}
 					else{
-					$("<label for="+ each[1] +" class='control-label col-xs-2'>"+each[1] +"</label><div class='col-xs-2'><input type='text' class='form-control' id="+ each[1] +" name="+ each[1] +"></div>").appendTo("#newfields");
+					$("<label for="+ each[1] +" class='control-label col-xs-2'>"+each[1] +"</label><div class='col-xs-4'><input type='text' class='form-control' id="+ each[1] +" name="+ each[1] +"></div>").appendTo("#newfields");
 					}
 				}
 				else{
 					if(each[0] == "drop"){
 						var toappend = "<label for="+each[1]+" class='control-label col-xs-2' style='align-right'>"+each[1]+"</label>";
-						toappend += "<div class='col-xs-2'><select name='"+each[1]+"' class='form-control' id="+each[1]+">";
+						toappend += "<div class='col-xs-4'><select name='"+each[1]+"' class='form-control' id="+each[1]+">";
 						toappend += "<option></option>";
 						toappend += elemvalues(each[1]);
 						toappend += "</select></div>";
@@ -83,12 +83,12 @@ $(document).ready(function(){
 					}
 					else if(each[0] == "date"){
 						var toappend = "<label for='date' class='control-label col-xs-2' style='align-right'>"+each[1]+"</label>";
-						toappend += "<div class='input-group col-xs-2'><input class='date form-control' id="+each[1]+" name="+each[1]+" placeholder='YYYY-MM-DD' type='text'/></div>";
+						toappend += "<div class='input-group col-xs-4'><input class='date form-control' id="+each[1]+" name="+each[1]+" placeholder='YYYY-MM-DD' type='text'/></div>";
 						toappend += "<script>$('#"+ each[1] +"').flatpickr({});</script>";
 						$(toappend).appendTo("#newfields");
 					}
 					else{
-						$("<label for="+ each[1] +" class='control-label col-xs-2' style='align-right'>"+each[1] +"</label><div class='col-xs-2'><input type='text' class='form-control' id="+ each[1] +" name="+ each[1] +"></div>").appendTo("#newfields");
+						$("<label for="+ each[1] +" class='control-label col-xs-2' style='align-right'>"+each[1] +"</label><div class='col-xs-4'><input type='text' class='form-control' id="+ each[1] +" name="+ each[1] +"></div>").appendTo("#newfields");
 					}
 				}
 				$("</div>").appendTo("#newfields");
@@ -328,7 +328,7 @@ $("#Update_Yes").click(function(){
 					$("<div class='update form-group'>").appendTo("#allupdatefields");
 					if(each[0] == "drop"){
 						var toappend = "<label for="+each[1]+" class='control-label col-xs-2'>"+each[1]+"</label>";
-						toappend += "<div class='col-xs-2'><select name='"+each[1]+"' class='form-control' id=1"+each[1]+">";
+						toappend += "<div class='col-xs-4'><select name='"+each[1]+"' class='form-control' id=1"+each[1]+">";
 						toappend += "<option></option>";
 						toappend += elemvalues(each[1]);
 						toappend += "</select></div>";
@@ -336,12 +336,12 @@ $("#Update_Yes").click(function(){
 					}
 					else if(each[0] == "date"){
 						var toappend = "<label for='date' class='control-label col-xs-2' style='align-right'>"+each[1]+"</label>";
-						toappend += "<div class='input-group col-xs-2'><input class='date form-control' id=1"+each[1]+" name="+each[1]+" placeholder='YYYY-MM-DD' type='text'/></div>";
+						toappend += "<div class='input-group col-xs-4'><input class='date form-control' id=1"+each[1]+" name="+each[1]+" placeholder='YYYY-MM-DD' type='text'/></div>";
 						toappend += "<script>$('#1"+ each[1] +"').flatpickr({});</script>";
 						$(toappend).appendTo("#allupdatefields");
 					}
 					else{
-						$("<label for="+ each[1] +" class='control-label col-xs-2'>"+each[1] +"</label><div class='col-xs-2'><input type='text' class='form-control' id=1"+ each[1] +" name="+ each[1] +"></div>").appendTo("#allupdatefields");
+						$("<label for="+ each[1] +" class='control-label col-xs-2'>"+each[1] +"</label><div class='col-xs-4'><input type='text' class='form-control' id=1"+ each[1] +" name="+ each[1] +"></div>").appendTo("#allupdatefields");
 					}
 				}
 				else if(i%2 == 0){
@@ -349,7 +349,7 @@ $("#Update_Yes").click(function(){
 					$("<div class='update form-group'>").appendTo("#allupdatefields");
 					if(each[0] == "drop"){
 						var toappend = "<label for="+each[1]+" class='control-label col-xs-2'>"+each[1]+"</label>";
-						toappend += "<div class='col-xs-2'><select name='"+each[1]+"' class='form-control' id=1"+each[1]+">";
+						toappend += "<div class='col-xs-4'><select name='"+each[1]+"' class='form-control' id=1"+each[1]+">";
 						toappend += "<option></option>";
 						toappend += elemvalues(each[1]);
 						toappend += "</select></div>";
@@ -357,18 +357,18 @@ $("#Update_Yes").click(function(){
 					}
 					else if(each[0] == "date"){
 						var toappend = "<label for='date' class='control-label col-xs-2' style='align-right'>"+each[1]+"</label>";
-						toappend += "<div class='input-group col-xs-2'><input class='date form-control' id=1"+each[1]+" name="+each[1]+" placeholder='YYYY-MM-DD' type='text'/></div>";
+						toappend += "<div class='input-group col-xs-4'><input class='date form-control' id=1"+each[1]+" name="+each[1]+" placeholder='YYYY-MM-DD' type='text'/></div>";
 						toappend += "<script>$('#1"+ each[1] +"').flatpickr({});</script>";
 						$(toappend).appendTo("#allupdatefields");
 					}
 					else{
-					$("<label for="+ each[1] +" class='control-label col-xs-2'>"+each[1] +"</label><div class='col-xs-2'><input type='text' class='form-control' id=1"+ each[1] +" name="+ each[1] +"></div>").appendTo("#allupdatefields");
+					$("<label for="+ each[1] +" class='control-label col-xs-2'>"+each[1] +"</label><div class='col-xs-4'><input type='text' class='form-control' id=1"+ each[1] +" name="+ each[1] +"></div>").appendTo("#allupdatefields");
 					}
 				}
 				else{
 					if(each[0] == "drop"){
 						var toappend = "<label for="+each[1]+" class='control-label col-xs-2' style='align-right'>"+each[1]+"</label>";
-						toappend += "<div class='col-xs-2'><select name='"+each[1]+"' class='form-control' id=1"+each[1]+">";
+						toappend += "<div class='col-xs-4'><select name='"+each[1]+"' class='form-control' id=1"+each[1]+">";
 						toappend += "<option></option>";
 						toappend += elemvalues(each[1]);
 						toappend += "</select></div>";
@@ -376,12 +376,12 @@ $("#Update_Yes").click(function(){
 					}
 					else if(each[0] == "date"){
 						var toappend = "<label for='date' class='control-label col-xs-2' style='align-right'>"+each[1]+"</label>";
-						toappend += "<div class='input-group col-xs-2'><input class='date form-control' id=1"+each[1]+" name="+each[1]+" placeholder='YYYY-MM-DD' type='text'/></div>";
+						toappend += "<div class='input-group col-xs-4'><input class='date form-control' id=1"+each[1]+" name="+each[1]+" placeholder='YYYY-MM-DD' type='text'/></div>";
 						toappend += "<script>$('#1"+ each[1] +"').flatpickr({});</script>";
 						$(toappend).appendTo("#allupdatefields");
 					}
 					else{
-						$("<label for="+ each[1] +" class='control-label col-xs-2' style='align-right'>"+each[1] +"</label><div class='col-xs-2'><input type='text' class='form-control' id=1"+ each[1] +" name="+ each[1] +"></div>").appendTo("#allupdatefields");
+						$("<label for="+ each[1] +" class='control-label col-xs-2' style='align-right'>"+each[1] +"</label><div class='col-xs-4'><input type='text' class='form-control' id=1"+ each[1] +" name="+ each[1] +"></div>").appendTo("#allupdatefields");
 					}
 				}
 				$("</div>").appendTo("#allupdatefields");

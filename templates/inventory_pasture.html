@@ -8,7 +8,7 @@
     background: url(paper.gif);
     background-position: left top;
     background-repeat: repeat;
-    background-color:#67C699;
+    background-color:#F3F1DA;
     padding: 20px;
     border:2px solid black;
     color:black;
@@ -16,14 +16,13 @@
 
 
 .table tbody tr:hover td, .table tbody tr:hover th {
-    background-color:#F3F1DA;
+    background-color:#67C699;
     cursor:pointer;
     }
 
 .selected {
    background-color:#F3F1DA !important;
 }
-
 <!--.no-filter-control{
 border-bottom: 2px solid black;
 
@@ -39,9 +38,9 @@ tr,th, td {
 <body>
 
 	{% block main %}
-		<div class="container">
+		<div class="container" style="padding:0;">
 	<div id="Notification area"></div>
-	<h1>Welcome to Pasture Management</h1>
+	<h1 align="center" style="color:blue;">Welcome to Pasture Management</h1>
 	<h5>Click on Add New Entry to add a new record</h5>
 	<h5>Select a record to edit or delete,download the data using export data option</h5>
 	<div class="form-group" style="margin-top:15px; margin-bottom:50px;">
@@ -75,7 +74,7 @@ tr,th, td {
 				<th data-field="fertilizer_name">Fertilizer Name</th>
 				<th data-field="fertilizer_method">Fertilizer Method</th>
 				<th data-field="fertilizer_applicationrate">Fertilizer Application Rate</th>
-				<th data-field="comments">comments</th>
+				<th data-field="comments" class="w150">comments</th>
 				<th data-sortable="true" data-field="email_ID">email ID</th>
 			</tr>
 		</thead>

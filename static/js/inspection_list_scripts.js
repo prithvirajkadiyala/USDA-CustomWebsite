@@ -102,27 +102,27 @@ var columns = [
     "rowspan": 1
   }, {
     "field": "live_stock",
-    "title": "live_stock",
+    "title": "Live Stock",
     "colspan": 1,
     "rowspan": 1
   }, {
     "field": "animal_condition",
-    "title": "animal_condition",
+    "title": "Animal Condition",
     "colspan": 1,
     "rowspan": 1
   }, {
     "field": "fencing",
-    "title": "fencing",
+    "title": "Fencing",
     "colspan": 1,
     "rowspan": 1
   }, {
     "field": "access_to_food",
-    "title": "access_to_food",
+    "title": "Access to Food",
     "colspan": 1,
     "rowspan": 1
   }, {
     "field": "access_to_water",
-    "title": "access_to_water",
+    "title": "Access to Water",
     "colspan": 1,
     "rowspan": 1
   }, {
@@ -132,7 +132,7 @@ var columns = [
     "rowspan": 1
   }, {
     "field": "access_to_shelter",
-    "title": "access_to_shelter",
+    "title": "Access to Shelter",
     "colspan": 1,
     "rowspan": 1
   }, {
@@ -152,27 +152,27 @@ var columns = [
     "rowspan": 1
   }, {
     "field": "head_catch_condition",
-    "title": "head_catch_condition",
+    "title": "Head Catch Condition",
     "colspan": 1,
     "rowspan": 1
   }, {
     "field": "non_slip_surface_evidence",
-    "title": "non_slip_surface_evidence",
+    "title": "Non Slip Surface Evidence",
     "colspan": 1,
     "rowspan": 1
   }, {
     "field": "Pen_condition",
-    "title": "Pen_condition",
+    "title": "Pen Condition",
     "colspan": 1,
     "rowspan": 1
   }, {
     "field": "container_disposal",
-    "title": "container_disposal",
+    "title": "Container Disposal",
     "colspan": 1,
     "rowspan": 1
   }, {
     "field": "drug_storage",
-    "title": "drug_storage",
+    "title": "Drug Storage",
     "colspan": 1,
     "rowspan": 1
   }]

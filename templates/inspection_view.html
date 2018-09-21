@@ -1,12 +1,46 @@
 {% extends "tempheader.html" %}
 
 <html>
-<head><title>{% block title %}Inspection Report View{% endblock %}</title></head>
+<head><title>{% block title %}Inspection Report View{% endblock %}</title>
+{% block style %}
+
+#table{
+    background: url(paper.gif);
+    background-position: left top;
+    background-repeat: repeat;
+    background-color:#F3F1DA;
+    padding: 20px;
+    border:2px solid black;
+    color:black;
+}
+
+
+.table tbody tr:hover td, .table tbody tr:hover th {
+    background-color:#67C699;
+    cursor:pointer;
+    }
+
+.selected {
+   background-color:#F3F1DA !important;
+}
+<!--.no-filter-control{
+border-bottom: 2px solid black;
+
+}
+
+tr,th, td {
+    border: 1px black;
+
+}-->
+
+{% endblock %}
+</head>
 <body>
 
 	{% block main %}
+	<div class="container" style="padding:0;">
 	<div id="Notification area"></div>
-	<h1>Inspection Report List</h1>
+	<h1 align="center" style="color:blue;">Inspection Report List</h1>
 	<h5>Select a record to edit and also download the data using export data option</h5>
 
 
@@ -293,7 +327,7 @@
 		</div>
 	</div>
 
-
+</div>
 	{% endblock %}
 
 {% block Inspection %} class="panel-collapse collapse in" {% endblock %}
