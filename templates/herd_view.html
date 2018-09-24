@@ -1,13 +1,47 @@
 {% extends "tempheader.html" %}
 
 <html>
-<head><title>{% block title %}View Herd{% endblock %}</title></head>
+<head><title>{% block title %}View Herd{% endblock %}</title>
+{% block style %}
+
+#table{
+    background: url(paper.gif);
+    background-position: left top;
+    background-repeat: repeat;
+    background-color:#F3F1DA;
+    padding: 20px;
+    border:4px solid black;
+    color:black;
+}
+
+
+.table tbody tr:hover td, .table tbody tr:hover th {
+    background-color:#67C699;
+    cursor:pointer;
+    }
+
+.selected {
+   background-color:#F3F1DA !important;
+}
+<!--.no-filter-control{
+border-bottom: 3px solid black;
+
+}
+
+tr,th, td {
+    border: 1px black;
+
+}-->
+{% endblock %}
+</head>
 <body>
 
 	{% block main %}
+	<div class="container" style="padding:0px;">
 	<div id="Notification area"></div>
-	<h1> Herd List</h1>
-	<h5>Edit herd to add or remove animals or to enter end date of the herd and click on delete to remove the herd</h5>
+	<h1 align="center" style="color:blue;"> Herd List</h1>
+	<br>
+	<h5 style="font-weight: bold;">Edit herd to add or remove animals or to enter end date of the herd and click on delete to remove the herd</h5>
 
 	<div class="container">
 		<table id="table"
@@ -20,7 +54,7 @@
 			<thead>
 				<tr>
 					<th data-field="state" data-checkbox="true" id="selectall"></th>
-					<th data-sortable="true" data-field="name" data-filter-control="select">Herd Name</th>
+					<th data-sortable="true" data-field="name">Herd Name</th>
 					<th data-sortable="true" data-field="description">Description</th>
 					<th data-field="create_date">Create Date</th>
 					<th data-field="end_date">End Date</th>
@@ -30,7 +64,7 @@
 		</table>
 		<br>
 		<button type="button" class="btn btn-primary btn-lg" id="Edit">Edit</button>
-		<button type="button" class="btn btn-secondary btn-lg" id="Delete">Delete</button>
+		<button type="button" class="btn btn-danger btn-lg" id="Delete">Delete</button>
 	</div>
 	<div class="modal fade" id="HerdEditModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 	  <div class="modal-dialog modal-lg">
@@ -109,6 +143,7 @@
 		  </div>
 		</div>
 	  </div>
+	</div>
 	</div>
 	{% endblock %}
 

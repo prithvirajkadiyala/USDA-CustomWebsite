@@ -1,4 +1,7 @@
 {% extends "tempheader.html" %}
+
+<html>
+<head><title>{% block title %}Calf List{% endblock %}</title>
 {% block style %}
 
 #table{
@@ -7,35 +10,35 @@
     background-repeat: repeat;
     background-color:#F3F1DA;
     padding: 20px;
-    width: 200px;
-    height: 150px;
-border:2px solid black;
+    border:4px solid black;
     color:black;
 }
 
 
 .table tbody tr:hover td, .table tbody tr:hover th {
     background-color:#67C699;
+    cursor:pointer;
+    }
+
+.selected {
+   background-color:#F3F1DA !important;
 }
 {% endblock %}
-<html>
-<head><title>{% block title %}Calf List{% endblock %}</title></head>
+</head>
 <body>
 
 	{% block main %}
 	<div id="Notification area"></div>
-	<h1>Calf List</h1>
-	<h5>Select a record to edit or delete,download the data using export data option</h5>
+	<h1 align="center" style="color: blue;">Calf List</h1>
+	<h5 style="font-weight: bold;" align="center">Select a record to edit or delete,download the data using export data option</h5>
 
-	<div class="container">
-		<table id="table"
+	<table id="table"
 		data-search="true"
 		data-pagination="true"
 		data-show-refresh="true"
 		data-show-columns="true"
 		data-show-export="true"
-		data-filter-control="true"
-		class="table table-striped table-dark">
+		data-filter-control="true">
 		</table>
 		<br>
 		<button type="button" class="btn btn-primary btn-lg" id="Edit">Edit</button>
@@ -141,7 +144,6 @@ border:2px solid black;
 		  </div>
 		</div>
 	  </div>
-	</div>
 	</div>
 
 	{% endblock %}

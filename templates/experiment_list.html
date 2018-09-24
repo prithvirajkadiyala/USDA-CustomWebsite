@@ -1,25 +1,41 @@
 {% extends "tempheader.html" %}
 
 <html>
-<head><title>{% block title %}List Experiment{% endblock %}</title></head>
+<head><title>{% block title %}List Experiment{% endblock %}</title>
+{% block style %}
+
+#table{
+    background-color:#F3F1DA;
+    padding: 20px;
+    width: 200px;
+    height: 150px;
+border:4px solid black;
+    color:black;
+}
+
+.no-filter-control{
+border-bottom: 4px solid black;
+
+}
+.table tbody tr:hover td, .table tbody tr:hover th {
+    background-color:#67C699;
+}
+
+{% endblock %}
+</head>
 <body>
 
 	{% block main %}
 
 	<div id="Notification area"></div>
-	<h1>Experiment List</h1>
-	<h5>Click on '+' icon to upload csv files.</h5>
-	<h5>Select a record to edit or delete,download the data using export data option</h5>
-		<div id="toolbar" class="btn-group">
-		<button type="button" id="UploadCSV" class="btn btn-default" >
-			<i class="glyphicon glyphicon-plus" ></i>
-		</button>
+	<h1 align="center" style="color: blue;">Experiment List</h1>
+	<div id="toolbar" class="btn-group">
+	<button type="button" id="UploadCSV" class="btn btn-default"><i class="glyphicon glyphicon-plus" ></i>Upload CSV</button>
 	</div>
-	<div style="background: linear-gradient(to bottom, rgba(220,251,210,1) 1%,rgba(201,193,144,1) 40%,rgba(183,173,112,1) 83%,rgba(216,239,197,1) 100%);">
+	<div>
 	<table id="table"
 		data-search="true"
 		data-pagination="true"
-		data-striped="true"
 		data-smart-display="true"
 		data-show-refresh="true"
 		data-show-columns="true"
@@ -30,53 +46,53 @@
 			<tr>
 				<th data-field="state" data-checkbox="true"></th>
 				<th data-field="Animal_ID" data-sortable="true">Database ID</th>
-				<th data-field="expt_date" class="w150">expt_date</th>
-				<th data-field="expt_name">expt_name</th>
-				<th data-field="animalname">animalname</th>
-				<th data-field="animaltype">animaltype</th>
+				<th data-field="expt_date" class="w150">Experiment Date</th>
+				<th data-field="expt_name">Experiment Name</th>
+				<th data-field="animalname">Animal Name</th>
+				<th data-field="animaltype">AnimalType</th>
 				<th data-field="herd" class="w200">Herd</th>
-				<th data-field="pasture_ID">pasture number</th>
-				<th data-field="currentframescore">currentframescore</th>
-				<th data-field="damframescore">damframescore</th>
+				<th data-field="pasture_ID">Pasture Number</th>
+				<th data-field="currentframescore">Current Frame Score</th>
+				<th data-field="damframescore">Dam Frame Score</th>
 				<th data-field="height">Height</th>
 				<th data-field="weight">Weight</th>
-				<th data-field="adj205h">adj205h</th>
-				<th data-field="adj205w">adj205w</th>
-				<th data-field="adj365dht">adj365dht</th>
-				<th data-field="adjyearlingh">adjyearlingh</th>
-				<th data-field="adjyearlingw">adjyearlingw</th>
-				<th data-field="ageatwean">ageatwean</th>
-				<th data-field="ageatyearling">ageatyearling</th>
-				<th data-field="backfat">backfat</th>
-				<th data-field="bcsdifference">bcsdifference</th>
-				<th data-field="bcsprevious">bcsprevious</th>
-				<th data-field="bcsrecent">bcsrecent</th>
-				<th data-field="birthweight">birthweight</th>
-				<th data-field="birthweightadj">birthweightadj</th>
-				<th data-field="blockpen">blockpen</th>
-				<th data-field="currentwtcow">currentwtcow</th>
-				<th data-field="currentwtheifer">currentwtheifer</th>
-				<th data-field="customheightdate">customheightdate</th>
-				<th data-field="customheight">customheight</th>
-				<th data-field="customweight">customweight</th>
-				<th data-field="customweightdate">customweightdate</th>
-				<th data-field="damwtatwean">damwtatwean</th>
-				<th data-field="replicate">replicate</th>
-				<th data-field="sireframescore">sireframescore</th>
-				<th data-field="treatment">treatment</th>
-				<th data-field="weandate">weandate</th>
-				<th data-field="weanframescore">weanframescore</th>
-				<th data-field="weangpd">weangpd</th>
-				<th data-field="weanheight">weanheight</th>
-				<th data-field="weanwda">weanwda</th>
-				<th data-field="weanweight">weanweight</th>
-				<th data-field="weanweightdate">weanweightdate</th>
-				<th data-field="yearlingdate">yearlingdate</th>
-				<th data-field="yearlingframescore">yearlingframescore</th>
-				<th data-field="yearlingheight">yearlingheight</th>
-				<th data-field="yearlingweight">yearlingweight</th>
+				<th data-field="adj205h">Adjusted 205d Height</th>
+				<th data-field="adj205w">Adjusted 205d Weight</th>
+				<th data-field="adj365dht">Adjusted 365d Height</th>
+				<th data-field="adjyearlingh">Adjusted Yearling Height</th>
+				<th data-field="adjyearlingw">Adjusted Yearling Weight</th>
+				<th data-field="ageatwean">Age at Wean</th>
+				<th data-field="ageatyearling">Age at Yearling</th>
+				<th data-field="backfat">Backfat</th>
+				<th data-field="bcsdifference">B.C.S Difference</th>
+				<th data-field="bcsprevious">B.C.S Previous</th>
+				<th data-field="bcsrecent">B.C.S Recent</th>
+				<th data-field="birthweight">Birth Weight</th>
+				<th data-field="birthweightadj">Birth Weight Adjusted</th>
+				<th data-field="blockpen">Block/Pen</th>
+				<th data-field="currentwtcow">Current Weight Cow</th>
+				<th data-field="currentwtheifer">Current Weight Heifer</th>
+				<th data-field="customheightdate">Custom Height Date</th>
+				<th data-field="customheight">Custom Height</th>
+				<th data-field="customweight">Custom Weight</th>
+				<th data-field="customweightdate">Custom Weight Date</th>
+				<th data-field="damwtatwean">Dam Weight at Wean</th>
+				<th data-field="replicate">Replicate</th>
+				<th data-field="sireframescore">Sire Frame Score</th>
+				<th data-field="treatment">Treatment</th>
+				<th data-field="weandate">Wean Date</th>
+				<th data-field="weanframescore">Wean Frame Score</th>
+				<th data-field="weangpd">Wean GPD</th>
+				<th data-field="weanheight">Wean Height</th>
+				<th data-field="weanwda">Wean WDA</th>
+				<th data-field="weanweight">Wean Weight</th>
+				<th data-field="weanweightdate">Wean Weight Date</th>
+				<th data-field="yearlingdate">Yearling Date</th>
+				<th data-field="yearlingframescore">Yearling Frame Score</th>
+				<th data-field="yearlingheight">Yearling Height</th>
+				<th data-field="yearlingweight">Yearling Weight</th>
 				<th data-field="comments">Comments</th>
-				<th data-field="email_id">email_id</th>
+				<th data-field="email_id">Email ID</th>
 			</tr>
 		</thead>
 	</table>

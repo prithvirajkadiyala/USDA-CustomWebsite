@@ -1,13 +1,46 @@
 {% extends "tempheader.html" %}
 
 <html>
-<head><title>{% block title %}Health List{% endblock %}</title></head>
+<head><title>{% block title %}Health List{% endblock %}</title>
+{% block style %}
+
+#table{
+    background: url(paper.gif);
+    background-position: left top;
+    background-repeat: repeat;
+    background-color:#F3F1DA;
+    padding: 20px;
+    border:4px solid black;
+    color:black;
+}
+
+
+.table tbody tr:hover td, .table tbody tr:hover th {
+    background-color:#67C699;
+    cursor:pointer;
+    }
+
+.selected {
+   background-color:#F3F1DA !important;
+}
+<!--.no-filter-control{
+border-bottom: 3px solid black;
+
+}
+
+tr,th, td {
+    border: 1px black;
+
+}-->
+{% endblock %}
+</head>
 <body>
 
 	{% block main %}
+	<div class="container" style="padding:0px;">
 	<div id="Notification area"></div>
-	<h1> Health Record List</h1>
-	<h5>Select a record to edit or delete,download the data using export data option</h5>
+	<h1 align="center" style="color:blue;"> Health Record List</h1>
+	<h5 style="font-weight: bold;">Select a record to edit or delete,download the data using export data option</h5>
 
 	<div class="container">
 		<table id="table"
@@ -20,12 +53,12 @@
 			<thead>
 				<tr>
 					<th data-field="state" data-checkbox="true" id="selectall"></th>
-						<th data-field="Record_ID">Database_ID</th>
-						<th data-sortable="true" data-field="create_date">Date</th>
-						<th data-field="animalname" data-filter-control="input">animal Name</th>
+						<th data-field="Record_ID">Database ID</th>
+						<th data-sortable="true" data-field="create_date" class="w100">Date</th>
+						<th data-field="animalname">Animal Name</th>
 						<th data-field="medical_notes" class="w500">Medical Notes</th>
 						<th data-field="drug">Medicine Name</th>
-						<th data-field="location">location</th>
+						<th data-field="location">Location</th>
 						<th data-field="Amt_given">Amount Given</th>
 						<th data-field="route">Route</th>
 						<th data-field="withdraw_time">Withdraw Time</th>
@@ -149,7 +182,7 @@
 		  </div>
 		</div>
 	</div>
-
+</div>
 	{% endblock %}
 
 {% block HealthRecords %} class="panel-collapse collapse in" {% endblock %}

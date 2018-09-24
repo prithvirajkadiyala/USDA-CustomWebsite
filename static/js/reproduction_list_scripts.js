@@ -17,7 +17,7 @@ $(document).ready(function(){
 		"title": "Pregnancy"
 	  }, {
 		"field": "siblingcode",
-		"title": "Siblingcode"
+		"title": "Sibling Code"
 		}, {
 		"field": "calfatside",
 		"title": "Calf at Side"
@@ -38,7 +38,7 @@ $(document).ready(function(){
 		"title": "Calf Birth Weight"
 		}, {
 		"field": "calfdob",
-		"title": "CALF DOB"
+		"title": "Calf Date of Birth"
 		}, {
 		"field": "damageatbirth",
 		"title": "Dam age at Birth"
@@ -128,7 +128,7 @@ $(document).ready(function(){
 		"title": "Dead Abnormal"
 		}, {
 		"field": "date",
-		"title": "Date"
+		"title": "Date (Data Recorded)"
 		}, {
 		"field": "email_id",
 		"title": "Email ID"
@@ -159,14 +159,14 @@ function tablecall(data, columns) {
 
 
 $('#Edit').click(function() {
-	
+
   var log= $('#table').bootstrapTable('getSelections');
   console.log(log);
   var result = alertbox("Please click 'OK' if you want to EDIT the following animal\n'"+ log[0].animalname +"'\nClick 'Cancel' if not");
   if (r = 1){
 	setTimeout(function() {
 		window.location.href = '/reproduction/calfview?animalname='+ log[0].animalname;
-	}, 2000); 
+	}, 2000);
   }
   else{
 	alert("Not Edited");
@@ -192,7 +192,7 @@ $('#Delete').click(function() {
 	});
 	setTimeout(function() {
 		location.reload();
-	}, 2000); 
+	}, 2000);
   }
   else{
 	alert("Not Deleted");

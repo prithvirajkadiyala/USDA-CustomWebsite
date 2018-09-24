@@ -6,12 +6,12 @@
 
 	{% block main %}
 	<div id="Notification area"></div>
-	<h1>Create new experiment</h1>
-	<h5>Select the herd which is created before,choose the attributes required for the experiment and then click Create!</h5>
+	<h1 align="center" style="color: blue;">Create new experiment</h1>
+	<h5 style="font-weight: bold;" align="center">Select the herd which is created before,choose the attributes required for the experiment and then click Create!</h5>
 	<br>
 	<div class="container-fluid">
 		<div class="row-fluid">
-			<div class="col-xs-12" style="background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%); border-radius: 25px; padding:20px; border: 5px solid black;">
+			<div class="col-xs-12" style="background-color:#E3E3AB; border-radius: 25px; padding:20px; border: 5px solid black;">
 				<div style="margin-bottom:100px;">
 					<form>
 						<div class="form-group">
@@ -21,11 +21,8 @@
 							</div>
 							<button type="button" id="create_experiment" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span>Create</button>
 						</div>
-						<hr width="50%" size="8" align="center">
-						<hr width="50%" size="8" align="center">
 						<div class="col-xs-6 font-weight: bold;" >
-							<h4 style="margin:0px auto; padding-bottom:5px;" align="center"><input type="checkbox"  class="selectallexperiment">Experiment</h4>
-							<br>
+							<input type="checkbox"  class="selectallexperiment">Select All<br>
 							<input type="checkbox" class="groupaddinput3" id="sireframescore" value="input-sireframescore">Sire Frame Score<br>
 							<input type="checkbox" class="groupaddinput3" id="weanheight" value="input-weanheight">Wean Height<br>
 							<input type="checkbox" class="groupaddinput3" id="weanweight" value="input-weanweight">Wean Weight<br>
@@ -55,6 +52,7 @@
 				</div>
 			</div>
 		</div>
+		<div class="row" style="margin-bottom:50px"></div>
 	</div>
 
 

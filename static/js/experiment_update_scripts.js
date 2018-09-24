@@ -100,7 +100,7 @@ $(document).ready(function(){
 $('#Change').click(function() {
     var log = $('#table').bootstrapTable('getSelections');
     if(log == 0){
-        alert("Please select an experiment first");
+        alert("Please select an experiment");
     }
     else{
         var ids = log[0].string;

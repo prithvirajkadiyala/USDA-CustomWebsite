@@ -1,14 +1,36 @@
 {% extends "tempheader.html" %}
 
 <html>
-<head><title>{% block title %}Update Experiment{% endblock %}</title></head>
+<head><title>{% block title %}Update Experiment{% endblock %}</title>
+
+{% block style %}
+
+#table{
+    background-color:#F3F1DA;
+    padding: 20px;
+    width: 200px;
+    height: 150px;
+border:2px solid black;
+    color:black;
+}
+
+.no-filter-control{
+border-bottom: 2px solid black;
+
+}
+.table tbody tr:hover td, .table tbody tr:hover th {
+    background-color:#67C699;
+}
+
+{% endblock %}
+</head>
 <body>
 
 	{% block main %}
 	<div id="Notification area"></div>
-	<h1>Update Experiment</h1>
-	<h5>Choose a herd and click on Edit button to update values for selected attributes or click on Change Parameters to change current attributes. </h5>
-	<h5>Download the data using export data option.</h5>
+	<h1 align="center" style="color:blue;">Update Experiment</h1>
+	<h5 style="font-weight: bold;">Choose a herd and click on Edit button to update values for selected attributes or click on Change to change current attributes. </h5>
+	<h5 style="font-weight: bold;">Download the data using export data option.</h5>
 		<div id="toolbar" class="btn-group">
 	</div>
 	<table id="table"
@@ -21,18 +43,18 @@
 		<thead>
 			<tr>
 				<th data-field="state" data-checkbox="true"></th>
-				<th data-field="name">Herd Name</th>
-				<th data-field="description">description</th>
-				<th data-field="create_date">Create Date</th>
-				<th data-field="animalname">Animal names</th>
-				<th data-field="string">Current Attributes</th>
+				<th data-field="create_date" class="w150">Create Date</th>
+				<th data-field="name" class="w150">Herd Name</th>
+				<th data-field="description" class="w150">Description</th>
+				<th data-field="animalname" class="w150">Animal names</th>
+				<th data-field="string" class="w150">Current Attributes</th>
 
 			</tr>
 		</thead>
 	</table>
 
 	<button type="button" class="btn btn-primary btn-lg" id="Edit">Edit</button>
-	<button type="button" class="btn btn-warning btn-lg" id="Change">Change Parameters</button>
+	<button type="button" class="btn btn-warning btn-lg" id="Change">Change</button>
 	<button type="button" class="btn btn-danger btn-lg" id="Delete">Delete</button>
 
 	<!-- Modal Expansion code -->

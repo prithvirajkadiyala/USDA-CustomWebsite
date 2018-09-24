@@ -5,73 +5,107 @@
 <body>
 {% block main %}
 <div id="Notification area"></div>
-<h1>Add new Health Record</h1>
-<div class="container">
-	<button type="button" class="btn btn-primary btn-lg" id="Add_Button">Add</button>
-	<div class="form-group">
-		<label for="animalname" class="control-label col-xs-1">Animal Name</label>
-		<div class="col-xs-2">
-			<input type="text" class="form-control" id="animalname" placeholder="Animal Name">
-		</div>
-		<label for="location" class="control-label col-xs-1">Location</label>
-		<div class="col-xs-2">
-			<input type="text" class="form-control" id="location" placeholder="Location">
-		</div>
-		<label for="create_date" class="control-label col-xs-1">Create Date</label>
-		<div class="input-group col-xs-2">
-		   <input class="date form-control" id="create_date" name="create_date" placeholder="YYYY-MM-DD" type="text"/>
-		</div>
-	</div>
-	<hr width="50%" size="3" align="center">
-	<div class="form-group">
-		<label for="Medical_ID" class="control-label col-xs-1">Medicine</label>
-		<div class="col-xs-2">
-		  <select class="form-control" id="Medical_ID"></select>
-		</div>
-		<label for="lotno" class="control-label col-xs-1">Lot #</label>
-		<div class="col-xs-2">
-		  <select class="form-control" id="lotno"></select>
-		</div>
-		<label for="uploads" class="control-label col-xs-1">Uploads</label>
-		<div class="col-xs-2">
-			<input type="text" class="form-control" id="uploads" placeholder="uploads" disabled>
-		</div>
-		<button type="button" class="btn btn-info" id="Upload_PDF">Upload PDF</button>
-	</div>
-	<br>
-	<hr width="50%" size="3" align="center">
-	<div class="form-group">
-        <div class="col-xs-12">
-            <textarea class="form-control" rows="6" id="medical_notes" placeholder="Medical Notes"></textarea>
-        </div>
-	</div>
-	<br>
-	<hr width="50%" size="3" align="center">
-	<div class="form-group">
-        <div class="col-xs-12">
-            <textarea class="form-control" rows="6" id="result" placeholder="Laboratory Result"></textarea>
-        </div>
-	</div>
-	<br>
-	<hr width="50%" size="3" align="center">
-	<div class="form-group">
-		<label for="Amt_given" class="control-label col-xs-1">Amount Given</label>
-		<div class="col-xs-2">
-			<input type="text" class="form-control" id="Amt_given" placeholder="Amount Given">
-		</div>
-		<label for="route" class="control-label col-xs-1">Route</label>
-		<div class="col-xs-2">
-			<input type="text" class="form-control" id="route" placeholder="Route">
-		</div>
-		<label for="water_feed" class="control-label col-xs-1">Water/Feed</label>
-		<div class="col-xs-2">
-			<input type="text" class="form-control" id="water_feed" placeholder="Water/Feed">
-		</div>
-		<label for="withdraw_time" class="control-label col-xs-1">Withdraw Time</label>
-		<div class="col-xs-2">
-			<input type="text" class="form-control" id="withdraw_time" placeholder="Withdraw Time">
-		</div>
-	</div>
+<h1 style="color:blue;" align="center">Add new Health Record</h1>
+	<form  method="post">
+    <div class="row">
+        <div class="row"></div>
+        <div class="form-group col-xs-12" align="left" style="background-color:#E3E3AB; border-radius: 25px; padding:20px; border: 5px solid black;"  >
+            <div class="row" style="padding-bottom:10px;">
+                <div class="col-xs-6">
+               	    <label for="animalname" class="col-xs-4">Animal Name:</label>
+            		<div class="col-xs-8">
+            			<input type="text" class="form-control" id="animalname" placeholder="Animal Name">
+            		</div>
+            	</div>
+            	<div class="col-xs-6">
+            		<label for="create_date" class="col-xs-4">Create Date:</label>
+            		<div class="col-xs-8">
+            			<input class="date form-control" id="create_date" name="create_date" placeholder="YYYY-MM-DD" type="text"/>
+            		</div>
+				</div>
+			</div>
+            <div class="row" style="padding-bottom:10px;">
+                <div class="col-xs-6">
+                	<label for="location" class="control-label col-xs-4">Location:</label>
+    				<div class="col-xs-8">
+    					<input type="text" class="form-control" id="location" placeholder="Location">
+    				</div>
+				</div>
+			</div>
+			<br>
+			<div class="row" style="padding-bottom:10px;">
+			    <div class="col-xs-6">
+				    <label for="Medical_ID" class="col-xs-4">Medicine:</label>
+    				<div class="col-xs-8">
+    				  <select class="form-control" id="Medical_ID"></select>
+    				</div>
+				</div>
+				<div class="col-xs-6">
+    				<label for="lotno" class="col-xs-4">Lot #:</label>
+    				<div class="col-xs-8">
+                        <select class="form-control" id="lotno"></select>
+    				</div>
+				</div>
+            </div>
+			<div class="row" style="padding-bottom:10px;">
+			    <div class="col-xs-6">
+    				<label for="uploads" class="col-xs-4">Uploads:</label>
+    				<div class="col-xs-8">
+    					<input type="text" class="form-control" id="uploads" placeholder="uploads" disabled>
+    				</div>
+				</div>
+				<div class="col-xs-6">
+    				<button type="button" class="btn btn-info" id="Upload_PDF">Upload PDF</button>
+			    </div>
+			</div>
+		    <div class="row" style="padding-bottom:10px;">
+			    <div class="col-xs-12">
+    				<label for="medical_notes" class="col-xs-2">Medical Notes:</label>
+    				<div class="col-xs-10">
+    					<textarea class="form-control" rows="6" id="medical_notes" placeholder="Medical Notes"></textarea>
+    				</div>
+				</div>
+			</div>
+			<div class="row" style="padding-bottom:10px;">
+			    <div class="col-xs-12">
+    				<label for="result" class="col-xs-2">Laboratory Result:</label>
+    				<div class="col-xs-10">
+    					<textarea class="form-control" rows="6" id="result" placeholder="Laboratory Result"></textarea>
+    				</div>
+				</div>
+			</div>
+			<div class= "row" style="padding-bottom:10px;">
+			    <div class="col-xs-6">
+    				<label for="Amt_given" class="control-label col-xs-4">Amount Given:</label>
+    				<div class="col-xs-8">
+    				  <input type="text" id="Amt_given" class="form-control" placeholder="Amount Given">
+    				</div>
+				</div>
+				<div class="col-xs-6">
+    				<label for="route" class="control-label col-xs-4">Route:</label>
+    				<div class="col-xs-8">
+    				  <input type="text" class="form-control" id="route" placeholder="Route">
+    				</div>
+				</div>
+			</div>
+			<div class="row" style="padding-bottom:10px;">
+			    <div class="col-xs-6">
+    				<label for="water_feed" class="col-xs-4 control-label">Water/Feed:</label>
+    				<div class="col-xs-8">
+    				  <input type="text" class="form-control" id="water_feed" placeholder="Water/Feed">
+    				</div>
+				</div>
+				<div class="col-xs-6">
+    				<label for="withdraw_time" class="control-label col-xs-4">Withdraw Time:</label>
+    				<div class="col-xs-8">
+    				  <input type="text" id="withdraw_time" class="form-control" placeholder="Withdraw Time">
+    				</div>
+				</div>
+			</div>
+	    </div>
+    </div>
+	</form>
+	<div class="row col-xs-12" style="margin:20px" align="center"><span><button type="button" id="add_calf" class="btn btn-primary btn-lg">Add Calf</button></span></div>
 	<div class="modal fade" id="UploadPDFModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 	  <div class="modal-dialog modal-lg">
 		<div class="modal-content">
@@ -95,7 +129,7 @@
 		</form>
 		</div>
 	</div>
-</div>
+    </div>
 
 {% endblock %}
 
