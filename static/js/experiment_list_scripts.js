@@ -94,54 +94,98 @@ $(function () {
                 reader.onload = function (e) {
 					var data=$.csv.toObjects(e.target.result);
 					console.log(data);
+					var keys;
+					var submit = false;
 					$(data).each(function(i, elem){
 				 		var dataJson = JSON.stringify(elem);
-							$.ajax({
-                        		url : '/api/experiment/list/',
-                        		type : 'GET',
-                        		dataType : 'json',
-                        		async: false,
-                        		success : function(data) {
-                        		    $(data).each(function(i,elem1){
-                        		        if(elem1.animalname == elem.animalname){
-                        		            var keys= Object.keys(elem1);
-                        		            var pasture_ID = false;
-                        		            $(keys).each(function(i,pageelement){
-                        		                if(elem[pageelement] === undefined){
-                        		                    elem1[pageelement] = 0;
-                        		                }
-                        		                else if(pageelement == "pasture_ID"){
-                        		                    pasture_ID = true;
-                        		                    elem1["pasture_ID"] = 0;
-                        		                }
-                        		                else{
-                        		                    elem1[pageelement] = elem[pageelement];
-                        		                }
+						$.ajax({
+                    		url : '/api/experiment/list/',
+                    		type : 'GET',
+                    		dataType : 'json',
+                    		async: false,
+                    		success : function(data) {
+                    		    $(data).each(function(i,elem1){
+                    		        keys= Object.keys(elem1);
+                    		        if(elem1.animalname == elem.animalname){
+                    		            var pasture_ID = false;
+                    		            $(keys).each(function(i,pageelement){
+                    		                if(elem[pageelement] === undefined){
+                    		                    elem1[pageelement] = 0;
+                    		                }
+                    		                else if(pageelement == "pasture_ID"){
+                    		                    pasture_ID = true;
+                    		                    elem1["pasture_ID"] = 0;
+                    		                }
+                    		                else{
+                    		                    elem1[pageelement] = elem[pageelement];
+                    		                }
 
-                                            });
-                                            if(pasture_ID == false){
-                                                elem1["pasture_ID"]= 0;
-                                                pasture_ID = false;
-                                            }
-                                            elem1["email_id"]= $("#email")[0].textContent;
+                                        });
+                                        if(pasture_ID == false){
+                                            elem1["pasture_ID"]= 0;
+                                            pasture_ID = false;
+                                        }
+                                        elem1["email_id"]= $("#email")[0].textContent;
 
-                                            console.log(elem1);
-                                            dataJson = JSON.stringify(elem1);
-                        		        }
-                        		    })
+                                        console.log(elem1);
+                                        dataJson = JSON.stringify(elem1);
+                    		        }
+                    		        $.ajax({
+            							url: '/api/experiment/herd/',
+            							data: dataJson,
+            							type: 'post',
+            							dataType: 'json',
+            							success: function(response) {
+            								console.log(response);
+            								submit = true;
+            								$.notify("Data Saved", "info");
+            							},
+            							error: function(response) {
+            								console.log(response);
+            								$.notify("Data Not saved", "error");
+            							}
+            						});
+                    		    })
 
-                        		},
-                        		error: function(response){
-                        			console.log(response);
-                        		}
-                        	});
-    						$.ajax({
+                    		},
+                    		error: function(response){
+                    			console.log(response);
+                    		}
+
+
+						return false;
+						});
+        				if(submit == false){
+        				    var pasture_ID = false;
+        		            $(keys).each(function(i,pageelement){
+        		                if(elem[pageelement] === undefined){
+        		                    elem1[pageelement] = 0;
+        		                }
+        		                else if(pageelement == "pasture_ID"){
+        		                    pasture_ID = true;
+        		                    elem1["pasture_ID"] = 0;
+        		                }
+        		                else{
+        		                    elem1[pageelement] = elem[pageelement];
+        		                }
+
+                            });
+                            if(pasture_ID == false){
+                                elem1["pasture_ID"]= 0;
+                                pasture_ID = false;
+                            }
+                            elem1["email_id"]= $("#email")[0].textContent;
+
+                            console.log(elem1);
+                            dataJson = JSON.stringify(elem1);
+            		        $.ajax({
     							url: '/api/experiment/herd/',
     							data: dataJson,
     							type: 'post',
     							dataType: 'json',
     							success: function(response) {
     								console.log(response);
+    								submit = true;
     								$.notify("Data Saved", "info");
     							},
     							error: function(response) {
@@ -149,6 +193,8 @@ $(function () {
     								$.notify("Data Not saved", "error");
     							}
     						});
+        				}
+    				return false;
 					});
 
                     var table = $("<table />");
