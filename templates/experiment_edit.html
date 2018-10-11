@@ -5,6 +5,10 @@
 {% block style %}
 .scrollable-menu .li .a{
 	background-color: #fff;
+	cursor:pointer;
+}
+a:focus, a:hover{
+    cursor:pointer;
 }
 {% endblock %}
 
@@ -12,15 +16,17 @@
 <body>
 
 	{% block main %}
+<div class="container">
 	<div id="Notification area"></div>
-	<h1 align="center" style="color:blue;">Update your Experiment </h1>
+    <h1 align="center" style="color:blue; font-weight:bold">Update your Experiment </h1>
 	<h5 style="font-weight: bold;">Please select each animal ,enter expt name,create date and update values for each attribute then click on Update!</h5>
 	<br>
 	<div class="container-fluid" style="background-color:#E3E3AB; border-radius: 25px; padding:20px; border: 5px solid black;">
+
 		<div class="col-xs-3">
-			<div style="margin-bottom:30px;max-height:400px;overflow-y:scroll;">
+			<div class="well well-lg" style="margin-bottom:30px;max-height:400px;overflow-y:scroll;">
 				<h4 style="margin:0px auto; padding-bottom:5px;" align="center">Database ID --> Animal Numbers</h4>
-				<ul id="animallist" class=" scrollable-menu">
+				<ul id="animallist" class="scrollable-menu pointer">
 					<li><a id="ALL_CHANGES">All</li>
 				</ul>
 			</div>
@@ -62,11 +68,11 @@
 						<input type="text" class="form-control" id="herddescription" placeholder="Herd Description">
 					</div>
 					<br>
-					<hr width="50%" size="3" align="center">
+					<br>
+					<br>
 				</div>
-				<div id="newfields" class='form-group'>
+				<div id="newfields" class="row"></div>
 
-				</div>
 			</form>
 		</div>
 	</div>
@@ -137,6 +143,7 @@
 	    </div>
 	  </div>
 	 </div>
+	</div>
 	</div>
 	{% endblock %}
 

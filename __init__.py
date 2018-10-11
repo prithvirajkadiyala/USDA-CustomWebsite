@@ -10,7 +10,7 @@ import mysql.connector
 
 from views import table_test, TableAnimalUpdate, TableAnimalAdd, \
     TableInventoryPasture, TableInventoryFormulary, TableHealthList, TableHerd, TableInventoryPastureHistory,\
-    TableHerdUniqueName, TableExperiment, TableHealthAdd, TableReproduction,Expt,TableInspection,Drug
+    TableHerdUniqueName, TableExperiment, TableHealthAdd, TableReproduction,Expt,TableInspection,Drug,Report, ReportAll
 
 app = Flask(__name__)
 
@@ -73,6 +73,12 @@ api.add_resource(TableInspection, '/api/inspection/report/', endpoint="31")
 
 api.add_resource(Drug, '/api/formulary/drug/<drug>')
 api.add_resource(Drug, '/api/formulary/drug/', endpoint="32")
+
+api.add_resource(Report, '/api/report/create/<herdname>')
+api.add_resource(Report, '/api/report/create/', endpoint="33")
+
+api.add_resource(ReportAll, '/api/report/get/<Report_name>')
+api.add_resource(ReportAll, '/api/report/get/', endpoint="34")
 
 #App Routes
 #These will reroute all the data through the webpage to its destinations
@@ -174,6 +180,12 @@ def changepassword():
 def user():
     return render_template("userlist.html")
 
+
+@app.route('/user/add', methods=["GET", "POST","PATCH","DELETE"])
+def useradd():
+    return redirect(url_for("register"))
+
+
 @app.route("/logout")
 def logout():
     session['logged_in'] = False
@@ -239,13 +251,13 @@ def experimentupdate():
     return render_template("experiment_update.html")
 
 
-@app.route('/report/create')
+@app.route('/report/create',methods=['GET', 'POST', 'PATCH', 'DELETE'])
 @login_required
 def report_create():
     return render_template("report_create.html")
 
 
-@app.route('/report/view')
+@app.route('/report/list')
 @login_required
 def report_view():
     return render_template("report_view.html")

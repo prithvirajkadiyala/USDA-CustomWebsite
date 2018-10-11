@@ -1,6 +1,7 @@
 {% extends "tempheader.html" %}
 
-{% block title%} User Management {% endblock %}
+<html>
+<head><title>{% block title %}User Management{% endblock %}</title>
 {% block style %}
 
 #table{
@@ -9,25 +10,40 @@
     background-repeat: repeat;
     background-color:#F3F1DA;
     padding: 20px;
-    width: 200px;
-    height: 150px;
-    border:2px solid black;
+    border:4px solid black;
     color:black;
 }
 
+
 .table tbody tr:hover td, .table tbody tr:hover th {
     background-color:#67C699;
+    cursor:pointer;
+    }
+
+.selected {
+   background-color:#F3F1DA !important;
+}
+<!--.no-filter-control{
+border-bottom: 3px solid black;
+height:auto!important;
 }
 
+tr,th, td {
+    border: 1px black;
+
+}-->
+
 {% endblock %}
+</head>
+<body>
 {% block main %}
 <div  class = "container">
     {% if session['roles']=="SUPERUSER" or session['roles']=="ADMIN" %}
-    <h1 align="center" style="color: blue;">Users' List</h1>
-    <table id="table" data-search="true" data-pagination="true" data-show-refresh="true" data-show-columns="true" data-show-export="true" data-filter-control="true">
+    <h1 align="center" style="color: blue; font-weight:bold">Users' List</h1>
+    <table id="table" data-search="true" data-pagination="true" data-show-refresh="true" data-show-columns="true" data-show-export="true" data-filter-control="true" data-click-to-select="true">
 		<thead>
 			<tr>
-				<th data-field="state" data-checkbox="true" id="selectall"></th>
+				<th data-field="state" data-radio="true" id="selectall"></th>
 				<th data-sortable="true" data-field="first_name">First Name</th>
 				<th data-sortable="true" data-field="last_name">Last Name</th>
 				<th data-field="email_id" data-filter-control="input">Email</th>
@@ -46,8 +62,8 @@
 		<div class="modal-content">
 		  <div class="modal-content">
 			  <div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel">Add new User</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<h5 class="modal-title" id="exampleModalLabel" style="float:left; font-weight:bold;">Add new User</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="float:right">
 				  <span aria-hidden="true">&times;</span>
 				</button>
 			  </div>
@@ -96,6 +112,7 @@
 		</div>
 	  </div>
 	</div>
+	</div>
     <div class="modal fade" id="UserEditModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 	  <div class="modal-dialog modal-lg">
 		<div class="modal-content">
@@ -135,7 +152,10 @@
         Please contact the Systems Administrator.
     {% endif %}
 </div >
+</div>
 {% endblock %}
 
 {% block User %} class="panel-collapse collapse in" {% endblock %}
 {% block imports %} <script type = "text/javascript" src="{{url_for('static', filename= 'js/userlist.js')}}"></script>{% endblock %}
+</body>
+</html>

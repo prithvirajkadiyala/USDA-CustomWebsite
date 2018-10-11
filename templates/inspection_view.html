@@ -25,7 +25,7 @@
 }
 <!--.no-filter-control{
 border-bottom: 3px solid black;
-
+height:auto!important;
 }
 
 tr,th, td {
@@ -40,8 +40,9 @@ tr,th, td {
 	{% block main %}
 	<div class="container" style="padding:0;">
 	<div id="Notification area"></div>
-	<h1 align="center" style="color:blue;">Inspection Report List</h1>
-	<h5>Select a record to edit and also download the data using export data option</h5>
+	<h1 align="center" style="color:blue; font-weight:bold">Inspection Report List</h1>
+	<br>
+	<h5 style="font-weight:bold"> Note: Select a record to edit and also download the data using export data option</h5>
 
 
 	<table id="table"
@@ -49,6 +50,7 @@ tr,th, td {
 		data-pagination="true"
 		data-show-refresh="true"
 		data-show-columns="true"
+		data-click-to-select="true"
 		data-show-export="true"
 		data-filter-control="true">
 	</table>
@@ -60,50 +62,50 @@ tr,th, td {
 			<div class="modal-content">
 			  <div class="modal-content">
 				  <div class="modal-header">
-					<h2 class="modal-title" id="exampleModalLabel">Edit this Inspection Record?</h2>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<h4 class="modal-title" id="exampleModalLabel" style="float:left; font-weight:bold;">Edit this Inspection Record?</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="float:right;">
 					  <span aria-hidden="true">&times;</span>
 					</button>
 				  </div>
 				  <div class="modal-body">
                     	<form class = "form-horizontal">
                     		<ul class="nav nav-pills nav-justified">
-                    			<li role="presentation" class="active"><a href="#1" aria-controls="1" role="tab" data-toggle="tab">Pasture Inspection</a></li>
-                    			<li role="presentation"><a href="#2" aria-controls="2" role="tab" data-toggle="tab">Building Inspection</a></li>
+                    			<li role="presentation"  style="border-radius:5px;" class="active btn-warning"><a href="#1" aria-controls="1" role="tab" data-toggle="tab">Pasture Inspection</a></li>
+                    			<li role="presentation" style="border-radius:5px;" class="btn-warning"><a href="#2" aria-controls="2" role="tab" data-toggle="tab">Building Inspection</a></li>
                     		</ul>
                     		<div class="tab-content">
-                    			<div role="tabpanel" class="tab-pane fade in active" id="1" style="margin-top:15px;margin-left:100px; margin-right:100px;">
+                    			<div role="tabpanel" class="tab-pane fade in active" id="1" style="margin-top:15px;margin-left:50px; margin-right:50px;">
                     				<form class="form-horizontal" style="margin-top:15px;">
                     					<div class="form-group">
-                    						<label for="pasture_number" class="control-label col-xs-1">Pasture Number</label>
+                    						<label for="pasture_number" class="control-label col-xs-2">Pasture Number</label>
                     						<div class="col-xs-2">
                     						  <select class="form-control" id="pasture_number"></select>
                     						</div>
-                    						<label for="sub_pasture" class="control-label col-xs-1">Sub Pasture</label>
+                    						<label for="sub_pasture" class="control-label col-xs-2">Sub Pasture</label>
                     						<div class="col-xs-2">
                     						  <input type="text "class="form-control" id="sub_pasture" placeholder="Sub Pasture">
                     						</div>
-                    						<label class="control-label col-xs-1" for="date">Date Inspected</label>
-                    						<div class="input-group col-xs-2">
+                    						<label class="control-label col-xs-2" for="date">Date Inspected</label>
+                    						<div class="col-xs-2">
                     						   <input class="date form-control" id="date" name="date" placeholder="MM/DD/YYYY" type="text"/>
                     						</div>
                     					</div>
                     					<div class="form-group">
-                    				        <label for="bulls" class="control-label col-xs-1">Bulls</label>
+                    				        <label for="bulls" class="control-label col-xs-2">Bulls</label>
                     				        <div class="col-xs-2">
                     						  <input type="text "class="form-control" id="bulls" placeholder="Bulls">
                     						</div>
-                    						<label for="cows" class="control-label col-xs-1">Cows</label>
+                    						<label for="cows" class="control-label col-xs-2">Cows</label>
                     				        <div class="col-xs-2">
                     						  <input type="text "class="form-control" id="cows" placeholder="Cows">
                     						</div>
-                    						<label for="calf" class="control-label col-xs-1">Calf</label>
+                    						<label for="calf" class="control-label col-xs-2">Calf</label>
                     				        <div class="col-xs-2">
                     						  <input type="text "class="form-control" id="calf" placeholder="Calf">
                     						</div>
                     				    </div>
                     					<div class="form-group">
-                    						<label for="general_appearance" class="control-label col-xs-1">General Appearance</label>
+                    						<label for="general_appearance" class="control-label col-xs-2">General Appearance</label>
                     						<div class="col-xs-2">
                     						  <select class="form-control" id="general_appearance">
                     							<option>Poor</option>
@@ -112,7 +114,7 @@ tr,th, td {
                     							<option>Excellent</option>
                     						  </select>
                     						</div>
-                    						<label for="livestock" class="control-label col-xs-1">Livestock</label>
+                    						<label for="livestock" class="control-label col-xs-2">Livestock</label>
                     						<div class="col-xs-2">
                     						  <select class="form-control" id="livestock">
                     							<option>Present</option>
@@ -120,7 +122,7 @@ tr,th, td {
                     						  </select>
                     						</div>
 
-                    						<label for="animal_condition" class="control-label col-xs-1">Animal Condition</label>
+                    						<label for="animal_condition" class="control-label col-xs-2">Animal Condition</label>
                     						<div class="col-xs-2">
                     						  <select class="form-control" id="animal_condition">
                     							<option>Poor</option>
@@ -131,7 +133,7 @@ tr,th, td {
                     						</div>
                     					</div>
                     					<div class="form-group">
-                    						<label for="fencing" class="control-label col-xs-1">Fencing</label>
+                    						<label for="fencing" class="control-label col-xs-2">Fencing</label>
                     						<div class="col-xs-2">
                     						  <select class="form-control" id="fencing">
                     							<option>Poor</option>
@@ -140,7 +142,7 @@ tr,th, td {
                     							<option>Excellent</option>
                     						  </select>
                     						</div>
-                    						<label for="access_to_feed" class="control-label col-xs-1">Access To Feed/Food</label>
+                    						<label for="access_to_feed" class="control-label col-xs-2">Access To Feed/Food</label>
                     						<div class="col-xs-2">
                     						  <select class="form-control" id="access_to_feed">
                     							<option>Poor</option>
@@ -149,7 +151,7 @@ tr,th, td {
                     							<option>Excellent</option>
                     						  </select>
                     						</div>
-                    						<label for="access_to_water" class="control-label col-xs-1">Access To Water</label>
+                    						<label for="access_to_water" class="control-label col-xs-2">Access To Water</label>
                     						<div class="col-xs-2">
                     						  <select class="form-control" id="access_to_water">
                     							<option>Poor</option>
@@ -160,7 +162,7 @@ tr,th, td {
                     						</div>
                     					</div>
                     					<div class="form-group">
-                    						<label for="water_cleanliness" class="control-label col-xs-1">Cleanliness of Water</label>
+                    						<label for="water_cleanliness" class="control-label col-xs-2">Cleanliness of Water</label>
                     						<div class="col-xs-2">
                     						  <select class="form-control" id="water_cleanliness">
                     							<option>Poor</option>
@@ -169,7 +171,7 @@ tr,th, td {
                     							<option>Excellent</option>
                     						  </select>
                     						</div>
-                    						<label for="shed_access" class="control-label col-xs-1">Access to Shed/Shelter</label>
+                    						<label for="shed_access" class="control-label col-xs-2">Access to Shed/Shelter</label>
                     						<div class="col-xs-2">
                     						  <select class="form-control" id="shed_access">
                     							<option>Poor</option>
@@ -197,7 +199,9 @@ tr,th, td {
                     							<input type="text" class="form-control" id="minor_deficiencies" placeholder="Minor Deficiencies">
                     						</div>
                     					</div>
+                    					<div align="center">
                     					<button type="button" class="btn btn-primary" id="Inspection_Submit">Submit</button>
+                    					</div>
                     				</form>
                     			</div>
                     			<div role="tabpanel" class="tab-pane fade" id="2">
@@ -209,7 +213,7 @@ tr,th, td {
                     								<input type="text" class="form-control" id="building_number" placeholder="Building Number">
                     							</div>
                     							<label class="control-label col-xs-3" for="date">Date Inspected</label>
-                    							<div class="input-group col-xs-3">
+                    							<div class="col-xs-3">
                     							   <input class="date form-control" id="date_building" name="date" placeholder="MM/DD/YYYY" type="text"/>
                     							</div>
                     						</div>
@@ -294,33 +298,35 @@ tr,th, td {
                     							</div>
                     						</div>
                     						<div class="form-group">
-                    							<label for="iacuc2_comments" class="control-label col-xs-2">Comments</label>
-                    							<div class="col-xs-10">
+                    							<label for="iacuc2_comments" class="control-label col-xs-3">Comments</label>
+                    							<div class="col-xs-9">
                     								<input type="text" class="form-control" id="iacuc2_comments" placeholder="Comments">
                     							</div>
                     						</div>
                     						<div class="form-group">
-                    							<label for="iacuc_major2_deficiencies" class="control-label col-xs-2">Major Deficiencies</label>
-                    							<div class="col-xs-10">
+                    							<label for="iacuc_major2_deficiencies" class="control-label col-xs-3">Major Deficiencies</label>
+                    							<div class="col-xs-9">
                     								<input type="text" class="form-control" id="iacuc_major2_deficiencies" placeholder="Major Deficiencies">
                     							</div>
                     						</div>
                     						<div class="form-group">
-                    							<label for="iacuc_minor2_deficiencies" class="control-label col-xs-2">Minor Deficiencies</label>
-                    							<div class="col-xs-10">
+                    							<label for="iacuc_minor2_deficiencies" class="control-label col-xs-3">Minor Deficiencies</label>
+                    							<div class="col-xs-9">
                     								<input type="text" class="form-control" id="iacuc_minor2_deficiencies" placeholder="Minor Deficiencies">
                     							</div>
                     						</div>
+                    						<div align="center">
                     						<button type="button" class="btn btn-primary" id="Inspection_Submit_Building">Submit</button>
+                    						</div>
                     					</form>
                     				</div>
                     			</div>
                     		</div>
                     	</form>
 				  </div>
-				  <div class="modal-footer">
-					<button type="button" class="btn btn-primary" id="refresh_page" data-dismiss="modal">Done</button>
-				  </div>
+				 <!-- <div class="modal-footer">-->
+					<!--<button type="button" class="btn btn-primary" id="refresh_page" data-dismiss="modal">Done</button>-->
+				 <!-- </div>-->
 			  </div>
 			</div>
 		  </div>

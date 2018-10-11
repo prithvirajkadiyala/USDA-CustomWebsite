@@ -380,6 +380,9 @@ ul.list-group  li a:hover, ul li a:focus {
 .w200 .th-inner {
   width: 200px;
 }
+.w250 .th-inner {
+  width: 250px;
+}
 .w100 .th-inner {
   width: 100px;
 }
@@ -389,6 +392,16 @@ ul.list-group  li a:hover, ul li a:focus {
 .w500 .th-inner {
   width: 500px;
 }
+.modal-header {
+    background-color: #FFC300;
+ }
+ .modal-body {
+    background-color: #E3E3AB;
+
+ }
+.modal-footer {
+    background-color: #E3E3AB;
+ }
 
 /*Background*/
 .layered-image {
@@ -422,13 +435,35 @@ ul.list-group  li a:hover, ul li a:focus {
 <body class="layered-image">
 <nav class="navbar navbar-inverse" style="margin-bottom:0px;">
   <div class="container-fluid" style="background-color:#FFC300;">
-
     <div class="navbar-header" style="background-color:#FFC300;">
       <span class="navbar-brand"><img src="/static/images/USDA-Logo.png"></span>
       <h1 class="navbar-brand" style="color:black; font-weight:bold">Grazinglands Research Laboratory - Web-based Animal Management System (GRL-WAMS)</h1>
     </div>
   </div>
 </nav>
+
+<div class="main">
+	<div id="Notification_area">
+		<div class="container-fluid">
+			<div style="width:50%; margin:0px auto;" align="center">
+			  {% with msgs = get_flashed_messages() %}
+				{% if msgs %}
+				  {% for msg in msgs %}
+					<div class="alert alert-info">
+						{{ msg }}
+					</div>
+				  {% endfor %}
+				{% endif %}
+			  {% endwith %}
+			</div>
+		</div>
+	</div>
+{% block main %}
+  <h2>Top Navigation Example</h2>
+  <p>Some content..</p>
+{% endblock %}
+</div>
+
 
 {% if session ['logged_in'] %}
 <nav class="navbar navbar-inverse sidebar float-panel" role="navigation"style="margin-top:0px;">
@@ -498,7 +533,7 @@ ul.list-group  li a:hover, ul li a:focus {
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Report<span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-check"></span></a>
 					<ul class="dropdown-menu forAnimate" role="menu">
 					<li><a class="navlink" href="/report/create">Create Report</a></li>
-                    <li><a class="navlink" href="/report/view">View Report</a></li>
+                    <li><a class="navlink" href="/report/list">Report List</a></li>
 					</ul>
 				</li>
 					<li class="dropdown">
@@ -538,29 +573,6 @@ ul.list-group  li a:hover, ul li a:focus {
 	</div>
 </nav>
 {% endif %}
-
-
-<div class="main">
-	<div id="Notification_area">
-		<div class="container-fluid">
-			<div style="width:50%; margin:0px auto;" align="center">
-			  {% with msgs = get_flashed_messages() %}
-				{% if msgs %}
-				  {% for msg in msgs %}
-					<div class="alert alert-info">
-						{{ msg }}
-					</div>
-				  {% endfor %}
-				{% endif %}
-			  {% endwith %}
-			</div>
-		</div>
-	</div>
-{% block main %}
-  <h2>Top Navigation Example</h2>
-  <p>Some content..</p>
-{% endblock %}
-</div>
 <script>
 	$(".date").flatpickr({});
 </script>

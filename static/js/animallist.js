@@ -56,7 +56,7 @@ $('#Delete').click(function() {
   var log= $('#table').bootstrapTable('getSelections');
   console.log(log);
   var result = alertbox("Please click 'OK' if you want to Delete the following animal\n'"+log[0].Animal_ID +"' named as '"+ log[0].animalname +"'\nClick 'Cancel' if not");
-  if (r = 1){
+  if (result == 1){
 	$.ajax({
 		url: '/api/animal/update/'+log[0].Animal_ID,
 		type : 'DELETE',
@@ -74,7 +74,7 @@ $('#Delete').click(function() {
 	}, 2000);
   }
   else{
-	alert("Not Deleted");
+	$.notify("Not Deleted");
   }
 });
 

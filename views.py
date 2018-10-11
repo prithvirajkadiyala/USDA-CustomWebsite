@@ -278,23 +278,6 @@ class TableAnimalAdd(Resource):
                 cursor.execute(select_animal, data)
                 print >> sys.stderr,"after select stmt"
                 rows = cursor.fetchall()
-                # for row in rows:
-                #     print >> sys.stderr,"* {Animal_ID}".format(Animal_ID=row['Animal_ID'])
-                # # for k, v in rows.iteritems():
-                # #     if k=="Animal_id":
-                # #         print("inside if")
-                # #         res=v
-                # #res=1120
-                # Animal_ID=rows[0]['Animal_ID']
-                # print >> sys.stderr,Animal_ID
-                # data['Animal_ID'] = Animal_ID
-                # experiment_data=("""INSERT INTO experiments (animaltype,birthweight,birthweightadj,sireframescore,bcsrecent,bcsprevious,bcsdifference,
-                #                     damwtatwean,weanheight,weanweight,weandate,weangpd,weanwda,weanweightdate,adj205w,adj205h,weanframescore,ageatwean,
-                #                     yearlingweight,yearlingheight,yearlingdate,adjyearlingw,adjyearlingh,yearlingframescore,ageatyearling,customweight,
-                #                     customweightdate,customheight,customheightdate,currentwtcow,adj365dht,currentwtheifer,backfat,treatment,blockpen,
-                #                     replicate,email_id,Animal_ID,expt_date,expt_name)  VALUES ('0','0','0','0','0','0','0','0','0','0','1960-01-01','0','0','1960-01-01','0','0','0','0','0','0','1960-01-01','0','0','0','0','0','1960-01-01','0','1960-01-01','0','0','0','0','0','0','0',%(email_id)s,%(Animal_ID)s,'1960-01-01','null');""")
-                # cursor.execute(experiment_data, data)
-                # print >> sys.stderr,"after insert expt stmt"
                 cnx.commit()
                 return "Success", 201
             except AttributeError:
@@ -976,7 +959,7 @@ class TableExperiment(Resource):
                                     e.damwtatwean,e.weanheight,e.weanweight,e.weandate,e.weangpd,e.weanwda,e.weanweightdate,e.adj205w,e.adj205h,e.weanframescore,e.ageatwean,e.herd,e.comments,e.pasture_ID,
                                     e.yearlingweight,e.yearlingheight,e.yearlingdate,e.adjyearlingw,e.adjyearlingh,e.yearlingframescore,e.ageatyearling,e.customweight,
                                     e.customweightdate,e.customheight,e.customheightdate,e.currentwtcow,e.adj365dht,e.currentwtheifer,e.backfat,e.treatment,e.blockpen,
-                                    e.replicate,e.email_id,e.Animal_ID,e.expt_date,e.expt_name from animal_table a,experiments e pasture p where a.Animal_ID=e.Animal_ID and e.Animal_ID=%s and p.pasture_ID=e.pasture_ID order by expt_date desc""",(Animal_ID,))
+                                    e.replicate,e.email_id,e.Animal_ID,e.expt_date,e.expt_name from animal_table a,experiments e, pasture p where a.Animal_ID=e.Animal_ID and e.Animal_ID=%s and p.pasture_ID=e.pasture_ID order by expt_date desc""",(Animal_ID,))
             rows = cursor.fetchall()
             print >> sys.stderr,"Fetch Completed"
             cursor.close()
@@ -984,6 +967,8 @@ class TableExperiment(Resource):
             cnx.close()
 
         return jsonify(rows)
+
+
     def post(self):
         data=request.get_json(force=True)
         print >> sys.stderr,data
@@ -1573,6 +1558,112 @@ class Drug(Resource):
             cursor = cnx.cursor(dictionary=True)
             drug_data=("SELECT  Lot_no,Medicine_ID from formulary where drug=%s")
             cursor.execute(drug_data,(drug,))
+            rows = cursor.fetchall()
+            print >> sys.stderr,"Fetch Completed"
+            cursor.close()
+
+            cnx.close()
+        return jsonify(rows)
+
+class Report(Resource):
+    # def get(self,herdname):
+    #     print >> sys.stderr, "Execution started--report table"
+    #     try:
+    #         cnx = mysql.connector.connect(host="livebarn.mysql.pythonanywhere-services.com", user="livebarn", passwd="barnyard123$", db="livebarn$barnyard")
+
+    #     except mysql.connector.Error as err:
+    #         if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
+    #             print >> sys.stderr,"Something is wrong with your user name or password"
+    #         elif err.errno == errorcode.ER_BAD_DB_ERROR:
+    #             print >> sys.stderr,"Database does not exist"
+    #         else:
+    #             print >> sys.stderr,err
+    #     else:
+    #         cursor = cnx.cursor(dictionary=True)
+    #          data=("select * from animal_table a,experiments e,reproduction,medical_record where a.Animal_ID in (select AID from herd where name=%s) and a.dateacquired between '2014-02-10'and '2016-08-09' LIMIT 10")
+    #         cursor.execute(data,(herdname,))
+    #         rows = cursor.fetchall()
+    #         print >> sys.stderr,"Fetch Completed"
+    #         cursor.close()
+
+    #         cnx.close()
+    #     return jsonify(rows)
+
+    def post(self):
+        data=request.get_json(force=True)
+        print >> sys.stderr, "Execution started in report table"
+        try:
+            cnx = mysql.connector.connect(host="livebarn.mysql.pythonanywhere-services.com", user="livebarn", passwd="barnyard123$", db="livebarn$barnyard")
+
+        except mysql.connector.Error as err:
+            if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
+                print >> sys.stderr,"Something is wrong with your user name or password"
+            elif err.errno == errorcode.ER_BAD_DB_ERROR:
+                print >> sys.stderr,"Database does not exist"
+            else:
+                print >> sys.stderr,err
+        else:
+            cursor = cnx.cursor(dictionary=True)
+            insert_data = ("""INSERT INTO report (name,parameters,start_date,end_date)VALUES(%(name)s,%(parameters)s,%(start_date)s,%(end_date)s)""")
+
+            try:
+                cursor.execute( insert_data,data)
+                print >> sys.stderr,"here after execute in inspection add"
+                cnx.commit()
+                return "Success", 201
+            except AttributeError as e:
+                print >> sys.stderr,e
+                raise errors.OperationalError("MySQL Connection not available.")
+            except mysql.connector.IntegrityError as err:
+                print >> sys.stderr,"Error: {}".format(err)
+                return None
+            finally:
+                cursor.close()
+                cnx.close()
+
+class ReportAll(Resource):
+    def get(self,Report_name):
+        print >> sys.stderr, "Execution started"
+        try:
+            cnx = mysql.connector.connect(host="livebarn.mysql.pythonanywhere-services.com", user="livebarn", passwd="barnyard123$", db="livebarn$barnyard")
+
+        except mysql.connector.Error as err:
+            if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
+               print >> sys.stderr,"Something is wrong with your user name or password"
+               return err
+            elif err.errno == errorcode.ER_BAD_DB_ERROR:
+                print >> sys.stderr,"Database does not exist"
+                return err
+            else:
+                print >> sys.stderr,err
+                return err
+        else:
+            cursor = cnx.cursor(dictionary=True)
+            cursor.execute("""select * from report where name=%s""",(Report_name,))
+            rows = cursor.fetchall()
+            print >> sys.stderr,"Fetch Completed"
+            cursor.close()
+
+            cnx.close()
+
+        return jsonify(rows)
+
+    def post(self):
+        print >> sys.stderr, "Execution started--report table"
+        try:
+            cnx = mysql.connector.connect(host="livebarn.mysql.pythonanywhere-services.com", user="livebarn", passwd="barnyard123$", db="livebarn$barnyard")
+
+        except mysql.connector.Error as err:
+            if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
+                print >> sys.stderr,"Something is wrong with your user name or password"
+            elif err.errno == errorcode.ER_BAD_DB_ERROR:
+                print >> sys.stderr,"Database does not exist"
+            else:
+                print >> sys.stderr,err
+        else:
+            cursor = cnx.cursor(dictionary=True)
+            data=("select * from report")
+            cursor.execute(data)
             rows = cursor.fetchall()
             print >> sys.stderr,"Fetch Completed"
             cursor.close()

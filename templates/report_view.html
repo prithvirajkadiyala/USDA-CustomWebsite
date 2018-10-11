@@ -23,61 +23,38 @@
 .selected {
    background-color:#F3F1DA !important;
 }
-.no-filter-control{
-border-bottom: 3px solid black;
-
-}
-
 {% endblock %}
 </head>
 <body>
 {% block main %}
-	<div id="Notification area"></div>
+<div class="container" style="padding:0">
+    	<div id="Notification area"></div>
 	<h5>Coming soon...</h5>
-	<h1 align="center" style="color:blue;">View Reports</h1>
-	<div class="container">
-		<table id="table"
-		data-toggle="table"
-		data-pagination="true"
-		data-search="true"
-		data-click-to-select="true">
-		<thead>
-		<tr>
-		<th data-field="state" data-checkbox="true" id="selectall"></th>
-			<th data-field="report_number">Report Number</th>
-			<th data-field="Herd_Name">Herd Name</th>
-			<th data-field="report_description">Report Description</th>
-			<th data-field="animals_report">Animals in the report</th>
-		</tr>
-		</thead>
-		<tbody>
-		 <tr>
-		   <td data-checkbox="true"></td>
-		   <td>1</td>
-		   <td>Grazer</td>
-		   <td>Grazing in Pasture 10</td>
-		   <td>1,2,3,4,5,6,7,8,9,10</td>
-		 </tr>
-		 <tr>
-		   <td data-checkbox="true"></td>
-		   <td>2</td>
-		   <td>Feed</td>
-		   <td>Different Feeding Patterns</td>
-		   <td>11,12,13,14,15,16,17,18,19,20</td>
-		 </tr>
-		 <tr>
-		   <td data-checkbox="true"></td>
-		   <td>3</td>
-		   <td>Birth</td>
-		   <td>Pregnant Cows</td>
-		   <td>21,22,23,24,25,26,27,28,29,30</td>
-		 </tr>
-		</tbody>
-	</table>
-	</div>
+	<h1 align="center" style="color:blue;font-weight:bold">Reports List</h1>
+	<table id="table"
+			data-search="true"
+			data-pagination="true"
+			data-show-refresh="true"
+			data-show-columns="true"
+			data-show-export="true"
+			data-click-to-select="true"
+			data-filter-control="true">
+			<thead>
+				<tr>
+        		    <th data-field="state" data-radio="true"></th>
+        			<th data-field="name" style="border-bottom: 4px solid black;">Report Name</th>
+        			<th data-field="parameters" style="border-bottom: 4px solid black;"style="border-bottom: 4px solid black;">Parameters</th>
+        			<th data-field="start_date" style="border-bottom: 4px solid black;">Start Date</th>
+        			<th data-field="end_date" style="border-bottom: 4px solid black;">End Date</th>
+				</tr>
+			</thead>
+		</table>
+
 	<button type="button" class="btn btn-primary btn-lg">Edit</button>
 	<button type="button" class="btn btn-danger btn-lg">Delete</button>
+	</div>
 	{% endblock %}
 {% block Report %} class="panel-collapse collapse in" {% endblock %}
+{% block imports %} <script type = "text/javascript" src="{{url_for('static', filename= 'js/report_view.js')}}"></script> {% endblock %}
 </body>
 </html>

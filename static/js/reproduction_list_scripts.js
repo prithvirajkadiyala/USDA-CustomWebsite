@@ -2,7 +2,7 @@ $(document).ready(function(){
 	var columns = [
 	  [{
 		"field": "state",
-		"checkbox" : "true"
+		"radio" : "true"
 	  },{
 		"field": "ID",
 		"title": "ID"
@@ -153,7 +153,8 @@ $(document).ready(function(){
 function tablecall(data, columns) {
   $('#table').bootstrapTable({
     data: data,
-    columns: columns
+    columns: columns,
+    clickToSelect: "true"
   });
 };
 

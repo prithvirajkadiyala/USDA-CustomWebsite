@@ -34,7 +34,7 @@ $('#CreateHerdButton').click(function(e) {
 		url: '/api/herd/create/',
 		data: myJSON,
 		datatype: 'json',
-		type: 'POST'
+		type: 'POST',
 		async: false,
 		success: function(response) {
 			console.log(response);

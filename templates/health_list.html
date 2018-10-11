@@ -25,7 +25,7 @@
 }
 <!--.no-filter-control{
 border-bottom: 3px solid black;
-
+height:auto!important;
 }
 
 tr,th, td {
@@ -39,20 +39,21 @@ tr,th, td {
 	{% block main %}
 	<div class="container" style="padding:0px;">
 	<div id="Notification area"></div>
-	<h1 align="center" style="color:blue;"> Health Record List</h1>
-	<h5 style="font-weight: bold;">Select a record to edit or delete,download the data using export data option</h5>
+	<h1 align="center" style="color:blue; font-weight:bold"> Health Record List</h1>
+	<br>
+	<h5 style="font-weight: bold;"> Note: Select a record to edit or delete,download the data using export data option</h5>
 
-	<div class="container">
-		<table id="table"
+   <table id="table"
 			data-search="true"
 			data-pagination="true"
 			data-show-refresh="true"
 			data-show-columns="true"
 			data-show-export="true"
+			data-click-to-select="true"
 			data-filter-control="true">
 			<thead>
 				<tr>
-					<th data-field="state" data-checkbox="true" id="selectall"></th>
+					<th data-field="state" data-radio="true" id="selectall"></th>
 						<th data-field="Record_ID">Database ID</th>
 						<th data-sortable="true" data-field="create_date" class="w100">Date</th>
 						<th data-field="animalname">Animal Name</th>
@@ -78,8 +79,8 @@ tr,th, td {
 			<div class="modal-content">
 			  <div class="modal-content">
 				  <div class="modal-header">
-					<h2 class="modal-title" id="exampleModalLabel">Edit this Health Record?</h2>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<h4 class="modal-title" id="exampleModalLabel"style="float:left; font-weight:bold;" >Edit this Health Record?</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="float:right;">
 					  <span aria-hidden="true">&times;</span>
 					</button>
 				  </div>
@@ -116,9 +117,10 @@ tr,th, td {
 						<div class="col-xs-2">
                 			<input type="text" class="form-control" id="uploads" placeholder="uploads" disabled>
                 		</div>
-                		<button type="button" class="btn btn-info" id="Upload_PDF">Upload PDF</button>
+						<button type="button" class="btn btn-info" id="Upload_PDF">Upload PDF</button>
+
 					</div>
-					<br>
+
 					<hr width="50%" size="3" align="center">
 					<div class="form-group">
 						<div class="col-xs-12">
@@ -131,7 +133,6 @@ tr,th, td {
                             <textarea class="form-control" rows="6" id="result" placeholder="Laboratory Result"></textarea>
                         </div>
 					</div>
-					<br>
 					<hr width="50%" size="3" align="center">
 					<div class="form-group">
 						<label for="Amt_given" class="control-label col-xs-1">Amount Given</label>
@@ -142,7 +143,7 @@ tr,th, td {
 						<div class="col-xs-2">
 							<input type="text" class="form-control" id="route" placeholder="Route">
 						</div>
-						<label for="water_feed" class="control-label col-xs-1">Water/Feed</label>
+						<label for="water_feed" class="control-label col-xs-1">Water/ Feed</label>
 						<div class="col-xs-2">
 							<input type="text" class="form-control" id="water_feed" placeholder="Water/Feed">
 						</div>
@@ -151,6 +152,7 @@ tr,th, td {
 							<input type="text" class="form-control" id="withdraw_time" placeholder="Withdraw Time">
 						</div>
 					</div>
+					<br>
 				  </div>
 				  <div class="modal-footer">
 					<button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
@@ -182,7 +184,6 @@ tr,th, td {
 		  </div>
 		</div>
 	</div>
-</div>
 	{% endblock %}
 
 {% block HealthRecords %} class="panel-collapse collapse in" {% endblock %}

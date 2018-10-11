@@ -25,7 +25,7 @@
 }
 <!--.no-filter-control{
 border-bottom: 3px solid black;
-
+height:auto!important;
 }
 
 tr,th, td {
@@ -39,21 +39,22 @@ tr,th, td {
 	{% block main %}
 	<div class="container" style="padding:0px;">
 	<div id="Notification area"></div>
-	<h1 align="center" style="color:blue;"> Herd List</h1>
+	<h1 align="center" style="color:blue; font-weight:bold"> Herd List</h1>
 	<br>
 	<h5 style="font-weight: bold;">Edit herd to add or remove animals or to enter end date of the herd and click on delete to remove the herd</h5>
 
-	<div class="container">
+
 		<table id="table"
 			data-search="true"
 			data-pagination="true"
 			data-show-refresh="true"
 			data-show-columns="true"
+			data-click-to-select="true"
 			data-show-export="true"
 			data-filter-control="true">
 			<thead>
 				<tr>
-					<th data-field="state" data-checkbox="true" id="selectall"></th>
+					<th data-field="state" data-radio="true" id="selectall"></th>
 					<th data-sortable="true" data-field="name">Herd Name</th>
 					<th data-sortable="true" data-field="description">Description</th>
 					<th data-field="create_date">Create Date</th>
@@ -65,16 +66,16 @@ tr,th, td {
 		<br>
 		<button type="button" class="btn btn-primary btn-lg" id="Edit">Edit</button>
 		<button type="button" class="btn btn-danger btn-lg" id="Delete">Delete</button>
-	</div>
+
 	<div class="modal fade" id="HerdEditModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 	  <div class="modal-dialog modal-lg">
 		<div class="modal-content">
 		  <div class="modal-content">
 			  <div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel">Edit this Herd?</h5>
-				<!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"> -->
-				  <!-- <span aria-hidden="true">&times;</span> -->
-				<!-- </button> -->
+				<h4 class="modal-title" id="exampleModalLabel" style="float:left; font-weight:bold;">Edit this Herd?</h4>
+				 <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="float:right;">
+				   <span aria-hidden="true">&times;</span>
+				 </button>
 			  </div>
 			  <div class="modal-body">
 					  <fieldset disabled>
@@ -85,6 +86,7 @@ tr,th, td {
 
 						  </div>
 					  </fieldset>
+					  <br>
 					  <div class="enddate">
 					  <label class="control-label col-xs-2" for="end_date">End Date</label>
 				                <div class="input-group col-xs-2">
@@ -99,11 +101,11 @@ tr,th, td {
 							</select>
 						</div>
 
-						<div class="col-xs-2">
-							<button type="button" id="search_rightAll" class="btn btn-block"><i class="glyphicon glyphicon-forward"></i></button>
-							<button type="button" id="search_rightSelected" class="btn btn-block"><i class="glyphicon glyphicon-chevron-right"></i></button>
-							<button type="button" id="search_leftSelected" class="btn btn-block"><i class="glyphicon glyphicon-chevron-left"></i></button>
-							<button type="button" id="search_leftAll" class="btn btn-block"><i class="glyphicon glyphicon-backward"></i></button>
+						<div class="col-xs-2" style="padding-top:25px;">
+							<button type="button" id="search_rightAll" class="btn btn-block" style="background-color:#53C376"><i class="glyphicon glyphicon-forward"></i></button>
+							<button type="button" id="search_rightSelected" class="btn btn-block" style="background-color:#53C376"><i class="glyphicon glyphicon-chevron-right"></i></button>
+							<button type="button" id="search_leftSelected" class="btn btn-block" style="background-color:#53C376"><i class="glyphicon glyphicon-chevron-left"></i></button>
+							<button type="button" id="search_leftAll" class="btn btn-block" style="background-color:#53C376"><i class="glyphicon glyphicon-backward"></i></button>
 						</div>
 
 						<div class="col-xs-5">
@@ -124,8 +126,8 @@ tr,th, td {
 		<div class="modal-content">
 		  <div class="modal-content">
 			  <div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel">Delete this Herd?</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<h4 class="modal-title" id="exampleModalLabel" style="float:left; font-weight:bold;">Delete this Herd?</h4>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="float:right">
 				  <span aria-hidden="true">&times;</span>
 				</button>
 			  </div>
