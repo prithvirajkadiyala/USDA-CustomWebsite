@@ -9,6 +9,10 @@ $(document).ready(function () {
 		async: false,
 		success : function(data) {
 			console.log(data);
+			$(data).each(function(i,elem){
+			   elem.create_date =  StringToDate(elem.create_date);
+			   elem.end_date = StringToDate(elem.end_date);
+			});
 			tablecall(data);
 		},
 		error: function(response){

@@ -151,9 +151,6 @@ $(function () {
                     		error: function(response){
                     			console.log(response);
                     		}
-
-
-						return false;
 						});
         				if(submit == false){
         				    var pasture_ID = false;
@@ -194,7 +191,6 @@ $(function () {
     							}
     						});
         				}
-    				return false;
 					});
 
                     var table = $("<table />");

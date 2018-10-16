@@ -1566,28 +1566,28 @@ class Drug(Resource):
         return jsonify(rows)
 
 class Report(Resource):
-    # def get(self,herdname):
-    #     print >> sys.stderr, "Execution started--report table"
-    #     try:
-    #         cnx = mysql.connector.connect(host="livebarn.mysql.pythonanywhere-services.com", user="livebarn", passwd="barnyard123$", db="livebarn$barnyard")
+    def get(self,herdname):
+        print >> sys.stderr, "Execution started--report table"
+        try:
+            cnx = mysql.connector.connect(host="livebarn.mysql.pythonanywhere-services.com", user="livebarn", passwd="barnyard123$", db="livebarn$barnyard")
 
-    #     except mysql.connector.Error as err:
-    #         if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
-    #             print >> sys.stderr,"Something is wrong with your user name or password"
-    #         elif err.errno == errorcode.ER_BAD_DB_ERROR:
-    #             print >> sys.stderr,"Database does not exist"
-    #         else:
-    #             print >> sys.stderr,err
-    #     else:
-    #         cursor = cnx.cursor(dictionary=True)
-    #          data=("select * from animal_table a,experiments e,reproduction,medical_record where a.Animal_ID in (select AID from herd where name=%s) and a.dateacquired between '2014-02-10'and '2016-08-09' LIMIT 10")
-    #         cursor.execute(data,(herdname,))
-    #         rows = cursor.fetchall()
-    #         print >> sys.stderr,"Fetch Completed"
-    #         cursor.close()
+        except mysql.connector.Error as err:
+            if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
+                print >> sys.stderr,"Something is wrong with your user name or password"
+            elif err.errno == errorcode.ER_BAD_DB_ERROR:
+                print >> sys.stderr,"Database does not exist"
+            else:
+                print >> sys.stderr,err
+        else:
+            cursor = cnx.cursor(dictionary=True)
+            data=("select * from animal_table a,experiments e,reproduction,medical_record where a.Animal_ID in (select AID_string from herds where name=%s) LIMIT 10")
+            cursor.execute(data,(herdname,))
+            rows = cursor.fetchall()
+            print >> sys.stderr,"Fetch Completed"
+            cursor.close()
 
-    #         cnx.close()
-    #     return jsonify(rows)
+            cnx.close()
+        return jsonify(rows)
 
     def post(self):
         data=request.get_json(force=True)
