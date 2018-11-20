@@ -101,7 +101,15 @@ $("#Update_experiment_animal").click(function(){
 		replicate : $('#replicate').val(),//39
 		animaltype : $('#animaltype option:selected').text(),//40
 		expt_date : date,
-		email_id : $('#email')[0].textContent
+		email_id : $('#email')[0].textContent,
+		height : $('#height').val(),
+		weight : $('#weight').val(),
+		currentframescore : $('#currentframescore').val(),
+		damframescore : $('#damframescore').val(),
+		comments : $('#comments').val(),
+		pasture_ID : $('#pasture_ID').val(),
+		herd : $('#herd').val(),
+		entry_date : StringToDateTimeZone(new Date())
 		}
 		var myJSON = JSON.stringify(data);
 		$.ajax({

@@ -1,7 +1,11 @@
 $(function () {
 	$('#basic_update').click(function(e) {
 		var animalname = $('#animalname').val();
-		var basic = {
+	    if(animalname == null || animalname == 0){
+	        alert("Please Enter Animal Name");
+	    }
+	    else{
+	      var basic = {
 			animalname : $('#animalname').val(),
 			email_id : $("#email")[0].textContent,
 			height: $('#height').val(),
@@ -44,7 +48,8 @@ $(function () {
 			managementcode : $('#managementcode').val(),
 			ownerID: $('#ownerID').val(),
 			springfall : $('#springfall').val(),
-			includeinlookups : $('#includeinlookups').val()
+			includeinlookups : $('#includeinlookups').val(),
+			entry_date : StringToDateTimeZone(new Date())
 			}
 			var myJSON = JSON.stringify(basic);
 			$.ajax({
@@ -78,8 +83,8 @@ $(function () {
 					$.notify("Data not saved", "danger");
 				}
 			});
-
-			e.preventDefault();
+	    }
+		e.preventDefault();
 		});
 	});
 

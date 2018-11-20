@@ -31,3 +31,18 @@ $(document).ready(function(){
 		});
 	};
 });
+
+
+$("#ViewReport").click(function(){
+    var log= $('#table').bootstrapTable('getSelections');
+    console.log(log);
+    var result = alertbox("Please click 'OK' if you want to View the Report for the following Herd\n'"+log[0].name +"' \nClick 'Cancel' if not");
+    if (result == 1){
+        setTimeout(function() {
+    		window.location.href = '/report/view?name='+log[0].ID+'&start_date='+log[0].start_date+'&end_date='+log[0].end_date
+    	}, 2000);
+    }
+    else{
+        alert("User Denied the request");
+    }
+});

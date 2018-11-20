@@ -28,8 +28,6 @@
 <body>
 {% block main %}
 <div class="container" style="padding:0">
-    	<div id="Notification area"></div>
-	<h5>Coming soon...</h5>
 	<h1 align="center" style="color:blue;font-weight:bold">Reports List</h1>
 	<table id="table"
 			data-search="true"
@@ -42,16 +40,17 @@
 			<thead>
 				<tr>
         		    <th data-field="state" data-radio="true"></th>
+        		    <th data-field="ID" style="border-bottom: 4px solid black;">Report ID</th>
         			<th data-field="name" style="border-bottom: 4px solid black;">Report Name</th>
-        			<th data-field="parameters" style="border-bottom: 4px solid black;"style="border-bottom: 4px solid black;">Parameters</th>
+        			<th data-field="parameters" style="border-bottom: 4px solid black;">Parameters</th>
         			<th data-field="start_date" style="border-bottom: 4px solid black;">Start Date</th>
         			<th data-field="end_date" style="border-bottom: 4px solid black;">End Date</th>
 				</tr>
 			</thead>
 		</table>
 
-	<button type="button" class="btn btn-primary btn-lg">Edit</button>
-	<button type="button" class="btn btn-danger btn-lg">Delete</button>
+	<button type="button" class="btn btn-primary btn-lg" id="ViewReport" >View</button>
+	<button type="button" class="btn btn-danger btn-lg" id="Delete" >Delete</button>
 	</div>
 	{% endblock %}
 {% block Report %} class="panel-collapse collapse in" {% endblock %}

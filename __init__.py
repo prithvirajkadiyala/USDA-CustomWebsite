@@ -8,9 +8,10 @@ from functools import wraps
 import mysql
 import mysql.connector
 
-from views import table_test, TableAnimalUpdate, TableAnimalAdd, \
+from views import table_test, TableAnimalUpdate, TableAnimalAdd,\
     TableInventoryPasture, TableInventoryFormulary, TableHealthList, TableHerd, TableInventoryPastureHistory,\
-    TableHerdUniqueName, TableExperiment, TableHealthAdd, TableReproduction,Expt,TableInspection,Drug,Report, ReportAll
+    TableHerdUniqueName, TableExperiment, TableHealthAdd, TableReproduction,Expt,TableInspection,Drug,Report, ReportAll,\
+    Event
 
 app = Flask(__name__)
 
@@ -74,11 +75,14 @@ api.add_resource(TableInspection, '/api/inspection/report/', endpoint="31")
 api.add_resource(Drug, '/api/formulary/drug/<drug>')
 api.add_resource(Drug, '/api/formulary/drug/', endpoint="32")
 
-api.add_resource(Report, '/api/report/create/<herdname>')
+api.add_resource(Report, '/api/report/create/<Animal_ID>/<start_date>/<end_date>')
 api.add_resource(Report, '/api/report/create/', endpoint="33")
 
-api.add_resource(ReportAll, '/api/report/get/<Report_name>')
+api.add_resource(ReportAll, '/api/report/get/<ID>')
 api.add_resource(ReportAll, '/api/report/get/', endpoint="34")
+
+api.add_resource(Event, '/api/tempsearchpage/get/')
+api.add_resource(Event, '/api/tempsearchpage/get/', endpoint="35")
 
 #App Routes
 #These will reroute all the data through the webpage to its destinations
@@ -192,7 +196,7 @@ def logout():
     session.clear()
     return redirect(url_for('login'))
 
-@app.route('/tempsearchpage')
+@app.route('/tempsearchpage', methods=["GET","POST","DELETE"])
 @app.route('/')
 @login_required
 def home():
@@ -257,10 +261,16 @@ def report_create():
     return render_template("report_create.html")
 
 
-@app.route('/report/list')
+@app.route('/report/list',methods=['GET', 'POST', 'PATCH', 'DELETE'])
+@login_required
+def report_list():
+    return render_template("report_view.html")
+
+
+@app.route('/report/view',methods=['GET', 'POST', 'PATCH', 'DELETE'])
 @login_required
 def report_view():
-    return render_template("report_view.html")
+    return render_template("report_open.html")
 
 
 @app.route('/inventory/formulary',methods=['GET', 'POST', 'PATCH', 'DELETE'])

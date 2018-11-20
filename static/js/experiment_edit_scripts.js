@@ -237,7 +237,8 @@ $("#experiment_update").click(function(){
             		replicate : 0,
             		animaltype : 0,
             		expt_date : $('#create_date').val(),
-            		email_id : $('#email')[0].textContent
+            		email_id : $('#email')[0].textContent,
+            		entry_date : StringToDateTimeZone(new Date())
         		}
         		$("#newfields input").each(function(i,elem){
     				if(elem.value == ""){
@@ -277,6 +278,7 @@ $("#experiment_update").click(function(){
     			var sendingdata = data[0];
     			sendingdata.expt_date = $("#create_date").val();
     			sendingdata.expt_name = $("#expt_name").val();
+    			sendingdata.entry_date = StringToDateTimeZone(new Date());
     			var myJSON = JSON.stringify(sendingdata);
     			$.ajax({
     				url : '/api/experiment/herd/',

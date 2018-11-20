@@ -3,6 +3,7 @@ from mysql.connector import errorcode, errors
 from flask_restful import Resource
 import sys
 import mysql
+import datetime
 from flask import jsonify, request
 
 class table_test(Resource):
@@ -260,7 +261,7 @@ class TableAnimalAdd(Resource):
                                     damframescore,comments,species,email_id,brand,brandlocation,tattooleft,tattooright,
                                     alternativeid,registration,color,hornstatus,dam,sire,DOB,howacquired,dateacquired,
                                     howdisposed,datedisposed ,disposalreason ,herdnumberlocation ,herdstatus ,
-                                    howconceived, managementcode ,ownerID ,springfall ,includeinlookups,sub_pasture)
+                                    howconceived, managementcode ,ownerID ,springfall ,includeinlookups,sub_pasture,entry_date)
                                     VALUES ( %(animalname)s, %(animaltype)s, %(eartag)s, %(eid)s, %(pasture_ID)s,
                                     %(weight)s, %(height)s, %(gender)s, %(sex)s, %(breed)s, %(status)s,
                                     %(current_expt_no)s, %(Herd)s,%(breeder)s, %(currentframescore)s, %(damframescore)s,
@@ -269,7 +270,7 @@ class TableAnimalAdd(Resource):
                                     %(dam)s, %(sire)s, %(DOB)s, %(howacquired)s,%(dateacquired)s, %(howdisposed)s,
                                     %(datedisposed)s, %(disposalreason)s,%(herdnumberlocation)s, %(herdstatus)s,
                                     %(howconceived)s, %(managementcode)s,%(ownerID)s, %(springfall)s,
-                                    %(includeinlookups)s,%(sub_pasture)s)""")
+                                    %(includeinlookups)s,%(sub_pasture)s,%(entry_date)s)""")
             try:
                 cursor.execute(insert_animaldata, data)
                 print >> sys.stderr,"here after execute"
@@ -991,12 +992,12 @@ class TableExperiment(Resource):
                                     damwtatwean,weanheight,weanweight,weandate,weangpd,weanwda,weanweightdate,adj205w,adj205h,weanframescore,ageatwean,
                                     yearlingweight,yearlingheight,yearlingdate,adjyearlingw,adjyearlingh,yearlingframescore,ageatyearling,customweight,
                                     customweightdate,customheight,customheightdate,currentwtcow,adj365dht,currentwtheifer,backfat,treatment,blockpen,
-                                    replicate,email_id,Animal_ID,expt_date,expt_name,height,weight,currentframescore,damframescore,herd,comments,pasture_ID)
+                                    replicate,email_id,Animal_ID,expt_date,expt_name,height,weight,currentframescore,damframescore,herd,comments,pasture_ID,entry_date)
                                     VALUES( %(animaltype)s,%(birthweight)s,%(birthweightadj)s, %(sireframescore)s, %(bcsrecent)s,%(bcsprevious)s,%(bcsdifference)s,
                                     %(damwtatwean)s, %(weanheight)s,%(weanweight)s ,%(weandate)s,%(weangpd)s,%(weanwda)s,%(weanweightdate)s,%(adj205w)s,%(adj205h)s,%(weanframescore)s,%(ageatwean)s,
                                     %(yearlingweight)s,%(yearlingheight)s,%(yearlingdate)s,%(adjyearlingw)s,%(adjyearlingh)s,%(yearlingframescore)s,%(ageatyearling)s,%(customweight)s,
                                     %(customweightdate)s,%(customheight)s,%(customheightdate)s,%(currentwtcow)s,%(adj365dht)s,%(currentwtheifer)s,%(backfat)s,
-                                    %(treatment)s,%(blockpen)s,%(replicate)s,%(email_id)s,%(Animal_ID)s,%(expt_date)s,%(expt_name)s,%(height)s,%(weight)s,%(currentframescore)s,%(damframescore)s,%(herd)s,%(comments)s,%(pasture_ID)s)""")
+                                    %(treatment)s,%(blockpen)s,%(replicate)s,%(email_id)s,%(Animal_ID)s,%(expt_date)s,%(expt_name)s,%(height)s,%(weight)s,%(currentframescore)s,%(damframescore)s,%(herd)s,%(comments)s,%(pasture_ID)s,%(entry_date)s)""")
             try:
                 cursor.execute(insert_animaldata, data)
                 print >> sys.stderr,"here after insert execute in experiment"
@@ -1033,7 +1034,7 @@ class TableExperiment(Resource):
             update_animaldata = ("""UPDATE experiments SET animaltype=%(animaltype)s,
                                                 birthweight=%(birthweight)s,birthweightadj=%(birthweightadj)s,
                                                 sireframescore=%(sireframescore)s,height=%(height)s,weight=%(weight)s,currentframescore=%(currentframescore)s,damframescore=%(damframescore)s,
-                                                bcsrecent=%(bcsrecent)s, bcsprevious=%(bcsprevious)s,comments=%(comments)s,herd=%(herd)s,pasture_ID=%(pasture_ID)s
+                                                bcsrecent=%(bcsrecent)s, bcsprevious=%(bcsprevious)s,comments=%(comments)s,herd=%(herd)s,pasture_ID=%(pasture_ID)s,
                                                 bcsdifference=%(bcsdifference)s, damwtatwean =%(damwtatwean)s,
                                                 email_id=%(email_id)s,weanheight=%(weanheight)s,
                                                 weanweight=%(weanweight)s,weandate=%(weandate)s,weangpd=%(weangpd)s,weanwda=%(weanwda)s,
@@ -1042,7 +1043,7 @@ class TableExperiment(Resource):
                                                 adjyearlingw=%(adjyearlingw)s,adjyearlingh=%(adjyearlingh)s,yearlingframescore=%(yearlingframescore)s,ageatyearling=%(ageatyearling)s,
                                                 customweight=%(customweight)s,customweightdate=%(customweightdate)s,customheight=%(customheight)s,customheightdate=%(customheightdate)s,
                                                 currentwtcow=%(currentwtcow)s,adj365dht=%(adj365dht)s,currentwtheifer=%(currentwtheifer)s,backfat=%(backfat)s,treatment=%(treatment)s,
-                                                blockpen=%(blockpen)s,replicate=%(replicate)s,Animal_ID=%(Animal_ID)s,expt_date=%(expt_date)s,expt_name=%(expt_name)s,
+                                                blockpen=%(blockpen)s,replicate=%(replicate)s,Animal_ID=%(Animal_ID)s,expt_date=%(expt_date)s,expt_name=%(expt_name)s,entry_date=%(entry_date)s
                                                 WHERE Animal_ID =%(Animal_ID)s and expt_date=%(expt_date)s""")
             try:
                 cursor.execute(update_animaldata,data)
@@ -1263,13 +1264,13 @@ class TableReproduction(Resource):
                                                     conditionscorecalving,hiphtweaning,hiphtbreeding,damdisposition,cowframescore,cowwtbreeding,
                                                     cowhtbreeding,cowwtweaning,cowhtweaning,cowwtcalving,cowhtcalving,bcsweaning,bcscalving,bcsbreeding,
                                                     customcowwt,customcowht,bulldisposition,bullframescore,bullwtprebreeding,bullhtprebreeding,
-                                                    fertility,mobility,conc,deadabnormal,date)
+                                                    fertility,mobility,conc,deadabnormal,date,entry_date)
                                                     VALUES( %(Animal_ID)s,%(breeding)s,%(pregnancy)s, %(calfdob)s,%(damageatbirth)s,%(siblingcode)s,
                                                     %(calfatside)s, %(totalcalves)s,%(previouscalf)s,%(currentcalf)s,%(calfbirthweight)s,%(calfsex)s,%(damcalvingdisposition)s,
                                                     %(calvingease)s, %(udderscore)s,%(email_id)s,%(conditionscorecalving)s,%(hiphtweaning)s,%(hiphtbreeding)s,
                                                     %(damdisposition)s,%(cowframescore)s,%(cowwtbreeding)s,%(cowhtbreeding)s,%(cowwtweaning)s,%(cowhtweaning)s,%(cowwtcalving)s,
                                                     %(cowhtcalving)s,%(bcsweaning)s,%(bcscalving)s,%(bcsbreeding)s,%(customcowwt)s,%(customcowht)s,%(bulldisposition)s,%(bullframescore)s,
-                                                    %(bullwtprebreeding)s,%(bullhtprebreeding)s,%(fertility)s,%(mobility)s,%(conc)s,%(deadabnormal)s,%(date)s)""")
+                                                    %(bullwtprebreeding)s,%(bullhtprebreeding)s,%(fertility)s,%(mobility)s,%(conc)s,%(deadabnormal)s,%(date)s,%(entry_date)s)""")
                 cursor.execute(insert_reproductiondata,data)
                 print >> sys.stderr,"here after execute in repro"
                 cnx.commit()
@@ -1566,7 +1567,7 @@ class Drug(Resource):
         return jsonify(rows)
 
 class Report(Resource):
-    def get(self,herdname):
+    def get(self, Animal_ID,start_date,end_date):
         print >> sys.stderr, "Execution started--report table"
         try:
             cnx = mysql.connector.connect(host="livebarn.mysql.pythonanywhere-services.com", user="livebarn", passwd="barnyard123$", db="livebarn$barnyard")
@@ -1580,8 +1581,7 @@ class Report(Resource):
                 print >> sys.stderr,err
         else:
             cursor = cnx.cursor(dictionary=True)
-            data=("select * from animal_table a,experiments e,reproduction,medical_record where a.Animal_ID in (select AID_string from herds where name=%s) LIMIT 10")
-            cursor.execute(data,(herdname,))
+            cursor.execute("""SELECT * FROM animal_table AS p1 INNER JOIN experiments AS p2 ON p1.Animal_ID = p2.Animal_ID INNER JOIN reproduction AS p3 ON p1.Animal_ID = p3.Animal_ID and p1.Animal_ID=%s and p2.expt_date between %s and %s """, (Animal_ID,start_date,end_date))
             rows = cursor.fetchall()
             print >> sys.stderr,"Fetch Completed"
             cursor.close()
@@ -1622,7 +1622,7 @@ class Report(Resource):
                 cnx.close()
 
 class ReportAll(Resource):
-    def get(self,Report_name):
+    def get(self,ID):
         print >> sys.stderr, "Execution started"
         try:
             cnx = mysql.connector.connect(host="livebarn.mysql.pythonanywhere-services.com", user="livebarn", passwd="barnyard123$", db="livebarn$barnyard")
@@ -1639,7 +1639,7 @@ class ReportAll(Resource):
                 return err
         else:
             cursor = cnx.cursor(dictionary=True)
-            cursor.execute("""select * from report where name=%s""",(Report_name,))
+            cursor.execute("""select * from report where ID=%s""",(ID,))
             rows = cursor.fetchall()
             print >> sys.stderr,"Fetch Completed"
             cursor.close()
@@ -1670,3 +1670,64 @@ class ReportAll(Resource):
 
             cnx.close()
         return jsonify(rows)
+
+class Event(Resource):
+    def get(self):
+        print >> sys.stderr, "Execution started in get event"
+        try:
+            cnx = mysql.connector.connect(host="livebarn.mysql.pythonanywhere-services.com", user="livebarn", passwd="barnyard123$", db="livebarn$barnyard")
+
+        except mysql.connector.Error as err:
+            if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
+               print >> sys.stderr,"Something is wrong with your user name or password"
+               return err
+            elif err.errno == errorcode.ER_BAD_DB_ERROR:
+                print >> sys.stderr,"Database does not exist"
+                return err
+            else:
+                print >> sys.stderr,err
+                return err
+        else:
+            cursor = cnx.cursor(dictionary=True)
+            now = datetime.datetime.now()
+            cursor.execute("""select * from event where YEAR(eventdate) = YEAR(CURRENT_DATE()) AND
+      MONTH(eventdate) = MONTH(CURRENT_DATE())""")
+            rows = cursor.fetchall()
+            print >> sys.stderr,"Fetch Completed"
+            cursor.close()
+
+            cnx.close()
+
+        return jsonify(rows)
+
+    def post(self):
+        data=request.get_json(force=True)
+        print >> sys.stderr, "Execution started in post event class"
+        try:
+            cnx = mysql.connector.connect(host="livebarn.mysql.pythonanywhere-services.com", user="livebarn", passwd="barnyard123$", db="livebarn$barnyard")
+
+        except mysql.connector.Error as err:
+            if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
+                print >> sys.stderr,"Something is wrong with your user name or password"
+            elif err.errno == errorcode.ER_BAD_DB_ERROR:
+                print >> sys.stderr,"Database does not exist"
+            else:
+                print >> sys.stderr,err
+        else:
+            cursor = cnx.cursor(dictionary=True)
+            insert_data = ("""INSERT INTO event (event,eventdate)VALUES(%(event)s,%(eventdate)s)""")
+
+            try:
+                cursor.execute( insert_data,data)
+                print >> sys.stderr,"here after execute in inspection add"
+                cnx.commit()
+                return "Success", 201
+            except AttributeError as e:
+                print >> sys.stderr,e
+                raise errors.OperationalError("MySQL Connection not available.")
+            except mysql.connector.IntegrityError as err:
+                print >> sys.stderr,"Error: {}".format(err)
+                return None
+            finally:
+                cursor.close()
+                cnx.close()

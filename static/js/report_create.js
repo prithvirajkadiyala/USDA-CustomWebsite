@@ -87,7 +87,7 @@ $('#create_report').click(function(){
     			console.log(response);
     			alert("Data Saved", "info");
     			setTimeout(function() {
-    				window.location.href = '/report/view'
+    				window.location.href = '/report/view?name='+name+'&start_date='+start_date+'&end_date='+end_date
     			}, 2000);
     		},
     		error: function(error) {

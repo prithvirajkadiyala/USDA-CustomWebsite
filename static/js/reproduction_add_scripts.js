@@ -52,6 +52,7 @@ $("#add_calf").click(function(){
 			siblingcode : $('#siblingcode option:selected').text(),
 			totalcalves : $('#totalcalves').val(),
 			udderscore : $('#udderscore').val(),
+			entry_date : StringToDateTimeZone(new Date())
 	}
 	var myJSON = JSON.stringify(data)
 	$.ajax({
