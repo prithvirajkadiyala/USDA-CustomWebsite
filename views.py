@@ -1608,6 +1608,8 @@ class Report(Resource):
 
             try:
                 cursor.execute( insert_data,data)
+                ID = cursor.lastrowid
+                print >> sys.stderr,newID
                 print >> sys.stderr,"here after execute in inspection add"
                 cnx.commit()
                 return "Success", 201
@@ -1620,6 +1622,7 @@ class Report(Resource):
             finally:
                 cursor.close()
                 cnx.close()
+                return ID
 
 class ReportAll(Resource):
     def get(self,ID):
