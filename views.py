@@ -1605,12 +1605,12 @@ class Report(Resource):
         else:
             cursor = cnx.cursor(dictionary=True)
             insert_data = ("""INSERT INTO report (name,parameters,start_date,end_date)VALUES(%(name)s,%(parameters)s,%(start_date)s,%(end_date)s)""")
+            print >> sys.stderr,"here  report add"
 
             try:
                 cursor.execute( insert_data,data)
                 ID = cursor.lastrowid
-                print >> sys.stderr,newID
-                print >> sys.stderr,"here after execute in inspection add"
+                print >> sys.stderr,"here after execute in report add"
                 cnx.commit()
                 return "Success", 201
             except AttributeError as e:

@@ -140,6 +140,10 @@ $(document).ready(function(){
 		dataType : 'json',
 		async: false,
 		success : function(data) {
+		    $(data).each(function(i,elem){
+				elem.date = StringToDate(elem.date);
+				elem.calfdob = StringToDate(elem.calfdob);
+			});
 			console.log(data);
 			tablecall(data, columns);
 		},
